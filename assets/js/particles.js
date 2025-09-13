@@ -122,7 +122,7 @@ function createParticles(scene, type) {
         for (let i = 0; i < 7; i++) {
             emitters.push(particles[i].createEmitter({
                 scale: 0.0833,
-                speed: { min: 600, max: 650 },
+                speed: { min: 500, max: 550 },
                 angle: { min: -70, max: -20 },
                 velocity: { min: 600, max: 750 },
                 gravityY: 500,
@@ -135,7 +135,7 @@ function createParticles(scene, type) {
             // mirrored right side
             emitters.push(particles[i].createEmitter({
                 scale: 0.0833,
-                speed: { min: 600, max: 650 },
+                speed: { min: 500, max: 550 },
                 angle: { min: -160, max: -110 },
                 velocity: { min: 600, max: 750 },
                 gravityY: 500,

@@ -21,19 +21,19 @@
 
   <div id="background" class="styles__openBackground___-U4oX-camelCase" style="background: radial-gradient(circle, rgb(146, 181, 125) 0%, rgb(65, 96, 57) 100%);">
     <img src="https://ac.blooket.com/dashclassic/assets/Nav_Icon_Bug-BmYON1mh.svg" alt="Icon" class="styles__cornerIcon___24o3Z-camelCase" draggable="false">
-    <div id="phaser-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-9999;"></div>
+    <div id="phaser-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:--1;"></div>
     <div class="styles__openContainer___3paFG-camelCase">
-      <img loading="lazy" src="https://blacket.org/content/packs/art/Retro.webp" class="styles__blookBackground___3rt4N-camelCase" draggable="false">
+      <img loading="lazy" src="https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bug-D5IFT82n.svg" class="styles__blookBackground___3rt4N-camelCase" draggable="false">
       <div class="styles__blookContainer___36LK2-camelCase styles__unlockedBlookImage___wC4gr-camelCase">
-        <img loading="lazy" src="https://blacket.org/content/blooks/Ghost.webp" draggable="false" class="styles__blook___1R6So-camelCase" />
+        <img loading="lazy" src="https://ac.blooket.com/marketassets/blooks/ant.svg" draggable="false" class="styles__blook___1R6So-camelCase" />
       </div>
       <div class="styles__unlockedText___1diat-camelCase">
         <div class="styles__unlockedBlook___2pr1Z-camelCase" style="font-size: 2.031vw;">
-          <div style="display: block; white-space: nowrap;font-family: Titan One;">new ig</div>
+          <div style="display: block; white-space: nowrap;font-family: Titan One;">Ant</div>
         </div>
-        <div class="styles__rarityText___1PfSA-camelCase" style="color: #fff;">Comman AF</div>
+        <div class="styles__rarityText___1PfSA-camelCase" style="color: #2ecc40;">Uncommon</div>
       </div>
-      <div class="styles__bottomText___3_k10-camelCase">yo mama</div>
+      <div class="styles__bottomText___3_k10-camelCase">100% - NEW!</div>
       <div class="styles__bottomShadow___10ZLG-camelCase"></div>
     </div>
     <div class="styles__openPackContainer___2m4Yf-camelCase" role="button" tabindex="0">
@@ -52,10 +52,7 @@
   const background = document.getElementById("background");
 
   if (openButton) {
-    openButton.addEventListener("click", () => playOpenAnimation("rare"));
-  }
-  if (openPackContainer) {
-    openPackContainer.addEventListener("click", () => playOpenAnimation("rare"));
+    openButton.addEventListener("click", () => playOpenAnimation("uncommon"));
   }
 
   function playOpenAnimation(rarity) {

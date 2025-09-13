@@ -10926,8 +10926,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: calc(20.833vw * 1.375);
-    height: calc(36.458vw * 1.375);
+    width: calc(20.833vw * 1);
+    height: calc(36.458vw * 1);
     overflow: hidden;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -10963,9 +10963,9 @@
 }
 
 .styles__openPack___3QxCP-camelCase {
-    width: calc(20.833vw * 1.375);
-    height: calc(34.740vw * 1.375);
-    background-size: calc(229.167vw * 1.375) calc(34.740vw * 1.375);
+    width: calc(20.833vw * 1);
+    height: calc(34.740vw * 1);
+    background-size: calc(229.167vw * 1) calc(34.740vw * 1);
     background-repeat: no-repeat;
 }
 
@@ -10979,7 +10979,7 @@
         background-position: 0;
     }
     to {
-        background-position: calc(-208.333vw * 1.375);
+        background-position: calc(-208.333vw * 1);
     }
 }
 
@@ -10988,7 +10988,7 @@
         background-position: 0;
     }
     to {
-        background-position: calc(-208.333vw * 1.375);
+        background-position: calc(-208.333vw * 1);
     }
 }
 
@@ -11055,6 +11055,7 @@
     user-select: none;
     opacity: 0.2;
     transform: rotate(-35deg);
+    z-index:-9999
 }
 
 .styles__openBigButton___3KmDM-camelCase,
@@ -18975,8 +18976,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, calc(-50% + 0.35vw));
-    min-width: calc(16.406vw * 1.375);
-    height: calc(15.625vw * 1.375);
+    min-width: calc(16.406vw * 1);
+    height: calc(15.625vw * 1);
     object-position: bottom;
     transform-origin: center;
 }
