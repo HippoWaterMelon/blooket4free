@@ -1,0 +1,268 @@
+// Particle asset paths organized by rarity
+const particleSets = {
+    uncommon: [
+        './assets/particles/uncommon-1.svg',
+        './assets/particles/uncommon-2.svg',
+        './assets/particles/uncommon-3.svg',
+        './assets/particles/uncommon-4.svg',
+        './assets/particles/uncommon-5.svg',
+        './assets/particles/uncommon-6.svg',
+        './assets/particles/uncommon-7.svg'
+    ],
+    rare: [
+        './assets/particles/rare-1.svg',
+        './assets/particles/rare-2.svg',
+        './assets/particles/rare-3.svg',
+        './assets/particles/rare-4.svg',
+        './assets/particles/rare-5.svg',
+        './assets/particles/rare-6.svg',
+        './assets/particles/rare-7.svg'
+    ],
+    epic: [
+        './assets/particles/epic-1.svg',
+        './assets/particles/epic-2.svg',
+        './assets/particles/epic-3.svg',
+        './assets/particles/epic-4.svg',
+        './assets/particles/epic-5.svg',
+        './assets/particles/epic-6.svg',
+        './assets/particles/epic-7.svg'
+    ],
+    legendary: [
+        './assets/particles/legendary-1.svg',
+        './assets/particles/legendary-2.svg',
+        './assets/particles/legendary-3.svg',
+        './assets/particles/legendary-4.svg',
+        './assets/particles/legendary-5.svg',
+        './assets/particles/legendary-6.svg',
+        './assets/particles/legendary-7.svg'
+    ],
+    chroma: [
+        './assets/particles/chroma-1.svg',
+        './assets/particles/chroma-2.svg',
+        './assets/particles/chroma-3.svg',
+        './assets/particles/chroma-4.svg',
+        './assets/particles/chroma-5.svg',
+        './assets/particles/chroma-6.svg',
+        './assets/particles/chroma-7.svg'
+    ]
+};
+
+const rarityColors = {
+    uncommon: "#2ecc40",
+    rare: "#2980b9",
+    epic: "#a259f7",
+    legendary: "#ffb700",
+    chroma: "#ff69b4"
+};
+
+let game = null;
+let currentType = null;
+
+function destroyGame() {
+    if (game) {
+        game.destroy(true);
+        game = null;
+    }
+    $('#close').hide();
+}
+
+function startParticle(type) {
+    destroyGame();
+    $('#close').show();
+    currentType = type;
+
+    const config = {
+        type: Phaser.WEBGL,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        parent: 'phaser-canvas',
+        transparent: true,
+        scene: {
+            preload: preload,
+            create: function() { createParticles(this, type); }
+        }
+    };
+
+    game = new Phaser.Game(config);
+
+    function preload() {
+        const set = particleSets[type];
+        for (let i = 0; i < set.length; i++) {
+            this.load.image(type + '-p' + (i + 1), set[i]);
+        }
+    }
+}
+
+function createParticles(scene, type) {
+    const particles = [];
+
+    for (let i = 1; i <= 7; i++) {
+        particles.push(scene.add.particles(type + '-p' + i));
+    }
+
+    // --- Uncommon ---
+    if (type === 'uncommon') {
+        const emitters = particles.map(p => p.createEmitter({
+            scale: 0.0833,
+            speed: 700,
+            angle: { min: -115, max: -65 },
+            gravityY: 700,
+            frequency: 75,
+            lifespan: 5000,
+            x: { min: scene.sys.game.config.width / 2 - 25, max: scene.sys.game.config.width / 2 + 25 },
+            y: scene.sys.game.config.height / 2 + 25,
+            rotate: { onEmit: () => 0, onUpdate: (p) => p.angle + 1 }
+        }));
+        setTimeout(() => emitters.forEach(e => e.stop()), 5000);
+    }
+
+    // --- Rare ---
+    else if (type === 'rare') {
+        const emitters = [];
+        for (let i = 0; i < 7; i++) {
+            emitters.push(particles[i].createEmitter({
+                scale: 0.0833,
+                speed: { min: 600, max: 650 },
+                angle: { min: -70, max: -20 },
+                velocity: { min: 600, max: 750 },
+                gravityY: 500,
+                frequency: 75,
+                lifespan: 5000,
+                x: { min: -25, max: 25 },
+                y: scene.sys.game.config.height,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            }));
+            // mirrored right side
+            emitters.push(particles[i].createEmitter({
+                scale: 0.0833,
+                speed: { min: 600, max: 650 },
+                angle: { min: -160, max: -110 },
+                velocity: { min: 600, max: 750 },
+                gravityY: 500,
+                frequency: 75,
+                lifespan: 5000,
+                x: { min: scene.sys.game.config.width - 25, max: scene.sys.game.config.width + 25 },
+                y: scene.sys.game.config.height,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            }));
+        }
+        setTimeout(() => emitters.forEach(e => e.stop()), 5000);
+    }
+
+    // --- Epic ---
+    else if (type === 'epic') {
+        for (let i = 0; i < 7; i++) {
+            // Left side
+            particles[i].createEmitter({
+                scale: 0.0833,
+                speed: 650,
+                angle: { min: -50, max: 0 },
+                velocity: { min: 600, max: 750 },
+                gravityY: 400,
+                frequency: 65,
+                lifespan: 5000,
+                x: 0,
+                y: { min: 0, max: scene.sys.game.config.height },
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+            // Right side
+            particles[i].createEmitter({
+                scale: 0.0833,
+                speed: 650,
+                angle: { min: -180, max: -130 },
+                velocity: { min: 600, max: 750 },
+                gravityY: 400,
+                frequency: 65,
+                lifespan: 5000,
+                x: scene.sys.game.config.width,
+                y: { min: 0, max: scene.sys.game.config.height },
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+        }
+    }
+
+    // --- Legendary ---
+    else if (type === 'legendary') {
+        for (let i = 0; i < 7; i++) {
+            particles[i].createEmitter({
+                scale: 0.0833,
+                speed: 500,
+                angle: 90,
+                velocity: 180,
+                gravityY: 300,
+                frequency: 65,
+                lifespan: 5000,
+                x: { min: 0, max: scene.sys.game.config.width },
+                y: -50,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+        }
+    }
+
+    // --- Chroma / Mystical ---
+    else if (type === 'chroma') {
+        let ys = [];
+        for (let i = 0; i < 7; i++) {
+            ys.push(scene.sys.game.config.height - (651 + i));
+        }
+        for (let i = 0; i < 7; i++) {
+            // Left side
+            particles[i].createEmitter({
+                speed: 1200,
+                angle: -30,
+                velocity: 700,
+                gravityY: 0,
+                frequency: 350 - i * 50,
+                scale: 0.0833,
+                lifespan: { min: 2500, max: 3000 },
+                y: { min: ys[i] + 300, max: scene.sys.game.config.height },
+                x: 0,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+            // Right side
+            particles[i].createEmitter({
+                speed: 1200,
+                angle: -150,
+                velocity: 700,
+                gravityY: 0,
+                frequency: 350 - i * 50,
+                scale: 0.0833,
+                lifespan: { min: 2500, max: 3000 },
+                y: { min: ys[i] + 300, max: scene.sys.game.config.height },
+                x: scene.sys.game.config.width,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+            // Top left
+            particles[i].createEmitter({
+                speed: 1200,
+                angle: 30,
+                velocity: 700,
+                gravityY: 0,
+                frequency: 350 - i * 50,
+                scale: 0.0833,
+                lifespan: { min: 2500, max: 3000 },
+                y: { min: 0, max: 301 + i },
+                x: 0,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+            // Top right
+            particles[i].createEmitter({
+                speed: 1200,
+                angle: -210,
+                velocity: 700,
+                gravityY: 0,
+                frequency: 350 - i * 50,
+                scale: 0.0833,
+                lifespan: { min: 2500, max: 3000 },
+                y: { min: 0, max: 301 + i },
+                x: scene.sys.game.config.width,
+                rotate: { onEmit: () => 0, onUpdate: p => p.angle + 1 }
+            });
+        }
+    }
+}
+
+// Resize handling
+window.addEventListener('resize', () => {
+    if (game) game.scale.resize(window.innerWidth, window.innerHeight);
+});
