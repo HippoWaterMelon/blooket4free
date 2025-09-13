@@ -103,7 +103,7 @@ function createParticles(scene, type) {
     // --- Uncommon ---
     if (type === 'uncommon') {
         const emitters = particles.map(p => p.createEmitter({
-            scale: 0.25,
+            scale: 0.125,
             speed: 700,
             angle: { min: -115, max: -65 },
             gravityY: 700,
@@ -121,7 +121,7 @@ function createParticles(scene, type) {
         const emitters = [];
         for (let i = 0; i < 7; i++) {
             emitters.push(particles[i].createEmitter({
-                scale: 0.25,
+                scale: 0.125,
                 speed: { min: 500, max: 550 },
                 angle: { min: -70, max: -20 },
                 velocity: { min: 600, max: 750 },
@@ -134,7 +134,7 @@ function createParticles(scene, type) {
             }));
             // mirrored right side
             emitters.push(particles[i].createEmitter({
-                scale: 0.25,
+                scale: 0.125,
                 speed: { min: 500, max: 550 },
                 angle: { min: -160, max: -110 },
                 velocity: { min: 600, max: 750 },
@@ -154,7 +154,7 @@ function createParticles(scene, type) {
         for (let i = 0; i < 7; i++) {
             // Left side
             particles[i].createEmitter({
-                scale: 0.25,
+                scale: 0.125,
                 speed: 650,
                 angle: { min: -50, max: 0 },
                 velocity: { min: 600, max: 750 },
@@ -167,7 +167,7 @@ function createParticles(scene, type) {
             });
             // Right side
             particles[i].createEmitter({
-                scale: 0.25,
+                scale: 0.125,
                 speed: 650,
                 angle: { min: -180, max: -130 },
                 velocity: { min: 600, max: 750 },
@@ -185,7 +185,7 @@ function createParticles(scene, type) {
     else if (type === 'legendary') {
         for (let i = 0; i < 7; i++) {
             particles[i].createEmitter({
-                scale: 0.25,
+                scale: 0.125,
                 speed: 500,
                 angle: 90,
                 velocity: 180,
@@ -213,7 +213,7 @@ function createParticles(scene, type) {
                 velocity: 700,
                 gravityY: 0,
                 frequency: 350 - i * 50,
-                scale: 0.25,
+                scale: 0.125,
                 lifespan: { min: 2500, max: 3000 },
                 y: { min: ys[i] + 300, max: scene.sys.game.config.height },
                 x: 0,
@@ -226,7 +226,7 @@ function createParticles(scene, type) {
                 velocity: 700,
                 gravityY: 0,
                 frequency: 350 - i * 50,
-                scale: 0.25,
+                scale: 0.125,
                 lifespan: { min: 2500, max: 3000 },
                 y: { min: ys[i] + 300, max: scene.sys.game.config.height },
                 x: scene.sys.game.config.width,
@@ -239,7 +239,7 @@ function createParticles(scene, type) {
                 velocity: 700,
                 gravityY: 0,
                 frequency: 350 - i * 50,
-                scale: 0.25,
+                scale: 0.125,
                 lifespan: { min: 2500, max: 3000 },
                 y: { min: 0, max: 301 + i },
                 x: 0,
@@ -252,7 +252,7 @@ function createParticles(scene, type) {
                 velocity: 700,
                 gravityY: 0,
                 frequency: 350 - i * 50,
-                scale: 0.25,
+                scale: 0.125,
                 lifespan: { min: 2500, max: 3000 },
                 y: { min: 0, max: 301 + i },
                 x: scene.sys.game.config.width,
