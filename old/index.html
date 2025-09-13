@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Rarity Animation Demo</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Titan+One|Creepster|Satisfy|Eczar:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+</head>
+<body>
+  <div id="controls">
+    <button onclick="applyRarity('uncommon')">Uncommon</button>
+    <button onclick="applyRarity('rare')">Rare</button>
+    <button onclick="applyRarity('epic')">Epic</button>
+    <button onclick="applyRarity('legendary')">Legendary</button>
+    <button onclick="applyRarity('chroma')">Chroma/Mystical</button>
+  </div>
+
+  <div id="background" class="styles__openBackground___-U4oX-camelCase" style="background: radial-gradient(circle, rgb(146, 181, 125) 0%, rgb(65, 96, 57) 100%);">
+    <img src="https://ac.blooket.com/dashclassic/assets/Nav_Icon_Bug-BmYON1mh.svg" alt="Icon" class="styles__cornerIcon___24o3Z-camelCase" draggable="false">
+    <div id="phaser-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:--1;"></div>
+    <div class="styles__openContainer___3paFG-camelCase">
+      <img loading="lazy" src="https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bug-D5IFT82n.svg" class="styles__blookBackground___3rt4N-camelCase" draggable="false">
+      <div class="styles__blookContainer___36LK2-camelCase styles__unlockedBlookImage___wC4gr-camelCase">
+        <img loading="lazy" src="https://ac.blooket.com/marketassets/blooks/ant.svg" draggable="false" class="styles__blook___1R6So-camelCase" />
+      </div>
+      <div class="styles__unlockedText___1diat-camelCase">
+        <div class="styles__unlockedBlook___2pr1Z-camelCase" style="font-size: 2.031vw;">
+          <div style="display: block; white-space: nowrap;font-family: Titan One;">Ant</div>
+        </div>
+        <div class="styles__rarityText___1PfSA-camelCase" style="color: #2ecc40;">Uncommon</div>
+      </div>
+      <div class="styles__bottomText___3_k10-camelCase">100% - NEW!</div>
+      <div class="styles__bottomShadow___10ZLG-camelCase"></div>
+    </div>
+    <div class="styles__openPackContainer___2m4Yf-camelCase" role="button" tabindex="0">
+      <div>
+        <img loading="lazy" class="styles__packImage___1jX3J-camelCase" src="https://ac.blooket.com/dashclassic/assets/BugPackBottom-C88wEd96.png">
+        <div class="styles__openPack___3QxCP-camelCase" style="background-image: url('https://blacket.org/content/packSeelOpen.webp');transform: scale(0.99);"></div>
+      </div>
+    </div>
+    <div class="styles__openBigButton___3KmDM-camelCase styles__canOpen___2znG2-camelCase" role="button" tabindex="0"></div>
+  </div>
+
+<script>
+  const openButton = document.querySelector(".styles__openBigButton___3KmDM-camelCase");
+  const openPackContainer = document.querySelector(".styles__openPackContainer___2m4Yf-camelCase");
+  const openContainer = document.querySelector(".styles__openContainer___3paFG-camelCase");
+  const background = document.getElementById("background");
+
+  if (openButton) {
+    openButton.addEventListener("click", () => playOpenAnimation("uncommon"));
+  }
+
+  function playOpenAnimation(rarity) {
+  const pack = document.querySelector(".styles__openPack___3QxCP-camelCase");
+  const packContainer = document.querySelector(".styles__openPackContainer___2m4Yf-camelCase");
+  const openContainer = document.querySelector(".styles__openContainer___3paFG-camelCase");
+  const background = document.getElementById("background");
+  const packBottom = document.querySelector(".styles__packImage___1jX3J-camelCase");
+
+  if (!pack || !packContainer || !openContainer || !packBottom) {
+    console.error("Missing DOM elements for pack opening");
+    return;
+  }
+
+  pack.className = "styles__openPack___3QxCP-camelCase styles__isOpeningPack___1qY5t-camelCase";
+  packBottom.classList.add("styles__wigglingPackBottom___4F3d2-camelCase");
+
+  pack.addEventListener("animationend", () => {
+    packBottom.classList.remove("styles__wigglingPackBottom___4F3d2-camelCase");
+
+    pack.style.display = "none";
+
+    packContainer.classList.add("styles__openingPackContainer___1ZQzY-camelCase");
+
+    openContainer.className = "styles__openContainer___3paFG-camelCase";
+    if (rarity === "uncommon") openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
+    if (rarity === "rare")     openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
+    if (rarity === "epic")     openContainer.classList.add("styles__openingContainerEpic___3TzCR-camelCase");
+    if (rarity === "legendary")openContainer.classList.add("styles__openingContainerLegendary___RbJZ_-camelCase");
+    if (rarity === "chroma")   openContainer.classList.add("styles__openingContainerChroma___3VBd5-camelCase");
+
+    if (background) background.classList.add("styles__openBackgroundActive___3WzzZ-camelCase");
+
+    setTimeout(() => {
+      startParticle(rarity);  // call your Phaser particle function
+    }, 400);
+  }, { once: true });
+}
+
+</script>
+
+<script src="./assets/js/particles.js"></script>
+
+</body>
+</html>
