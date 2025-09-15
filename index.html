@@ -237,7 +237,7 @@
             if (rarity == "Legendary") return "rgb(255,145,15)";
             if (rarity == "Chroma") return "rgb(0,204,255)";
             if (rarity == "Mystical") return "rgb(163,53,238)";
-            return "#444";
+            return "#fff";
         }
 
         function rollBlook(pack) {
@@ -362,6 +362,7 @@
                 if (rarity === "epic") openContainer.classList.add("styles__openingContainerEpic___3TzCR-camelCase");
                 if (rarity === "legendary") openContainer.classList.add("styles__openingContainerLegendary___RbJZ_-camelCase");
                 if (rarity === "chroma") openContainer.classList.add("styles__openingContainerChroma___3VBd5-camelCase");
+                if (rarity === "mystical") openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
                 if (background) background.classList.add("styles__openBackgroundActive___3WzzZ-camelCase");
 
                 setTimeout(() => {
