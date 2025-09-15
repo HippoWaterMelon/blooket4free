@@ -44,6 +44,15 @@ const particleSets = {
         './assets/particles/chroma-5.svg',
         './assets/particles/chroma-6.svg',
         './assets/particles/chroma-7.svg'
+    ],
+    mystical: [
+        './assets/particles/chroma-1.svg',
+        './assets/particles/chroma-2.svg',
+        './assets/particles/chroma-3.svg',
+        './assets/particles/chroma-4.svg',
+        './assets/particles/chroma-5.svg',
+        './assets/particles/chroma-6.svg',
+        './assets/particles/chroma-7.svg'
     ]
 };
 
