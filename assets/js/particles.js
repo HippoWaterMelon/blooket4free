@@ -271,10 +271,7 @@ function createParticles(scene, type) {
     }
 
     else if (type === 'mystical') {
-                let particles = [];
-                for (let i = 1; i <= 7; i++) {
-                    particles.push(scene.add.particles('p' + i));
-                }
+                
                 // Y positions for each emitter
                 let ys = [];
                 for (let i = 0; i < 7; i++) {
