@@ -313,7 +313,7 @@ const packData = [{
     comingSoon: true,
 
     tileBackground: "./assets/blooktiles/blizzard.svg",
-},     /* {
+}, {
     name: "Debug Pack",
     id: "debug",
     bg: "radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%)",
@@ -321,7 +321,7 @@ const packData = [{
     chance: [100],
     svg: ["http://blacket.org/content/blooks/Error.webp"],
     png: "https://blacket.org/content/packs/Debug.webp",
-    rarity: ["Uncommon"],
+    rarity: ["Mystical"],
     
     colorBlook: [],
     colorSvg: [],
@@ -334,4 +334,4 @@ const packData = [{
     comingSoon: true,
 
     tileBackground: "./assets/blooktiles/farm.svg",
-} */ ]
+}]
