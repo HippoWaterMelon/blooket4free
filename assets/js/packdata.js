@@ -3,7 +3,7 @@ const packData = [{
     id: "bug",
     bg: "radial-gradient(circle, rgba(146,181,125,1) 0%, rgba(65,96,57,1) 100%)",
     blook: ["Ant","Rhino Beetle","Ladybug","Fly","Worm","Bee","Mantis","Butterfly","Blue Butterfly"],
-    chance: [0.03,0.5,19.625,19.625,9,9,2.97,19.625,19.625],
+    chance: [19.625,19.625,19.625,19.625,9,9,2.97,0.5,0.03],
     svg: ["https://ac.blooket.com/marketassets/blooks/ant.svg","https://ac.blooket.com/marketassets/blooks/rhinobeetle.svg","https://ac.blooket.com/marketassets/blooks/ladybug.svg","https://ac.blooket.com/marketassets/blooks/fly.svg","https://ac.blooket.com/marketassets/blooks/worm.svg","https://ac.blooket.com/marketassets/blooks/bee.svg","https://ac.blooket.com/marketassets/blooks/mantis.svg","https://ac.blooket.com/marketassets/blooks/butterfly.svg","https://ac.blooket.com/marketassets/blooks/bluebutterfly.svg"],
     png: "https://ac.blooket.com/dashclassic/assets/Bug_Pack-Cm44315z.png",
     rarity: ["Uncommon","Uncommon","Uncommon","Uncommon","Rare","Rare","Epic","Legendary","Chroma"],
