@@ -42,7 +42,7 @@ const freePackData = [
 
     comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/farm.svg",
+    tileBackground: "./assets/blooktiles/pet.svg",
 },
 
 {
@@ -65,7 +65,7 @@ const freePackData = [
 
     comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/farm.svg",
+    tileBackground: "./assets/blooktiles/forest.svg",
 },
 
 {
@@ -88,7 +88,7 @@ const freePackData = [
 
     comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/farm.svg",
+    tileBackground: "./assets/blooktiles/tropical.svg",
 },
 
 {
@@ -111,5 +111,5 @@ const freePackData = [
 
     comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/farm.svg",
+    tileBackground: "./assets/blooktiles/arctic.svg",
 }]
