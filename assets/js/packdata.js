@@ -316,7 +316,7 @@ const packData = [{
 }, {
     name: "Debug Pack",
     id: "debug",
-    bg: "radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%)",
+    bg: "radial-gradient(circle, rgb(0, 255, 0) 0%, rgb(0, 0, 0) 100%)",
     blook: ["Debug"],
     chance: [100],
     svg: ["http://blacket.org/content/blooks/Error.webp"],
@@ -327,9 +327,9 @@ const packData = [{
     colorSvg: [],
     colorRarity: [],
 
-    packBottom: "https://ac.blooket.com/dashclassic/assets/IceMonstersPackBottom-UDSf4--N.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Ice_Monster-BPkY957e.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
+    packBottom: "https://ac.blooket.com/dashclassic/assets/BugPackBottom-C88wEd96.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Bug-BmYON1mh.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bug-D5IFT82n.svg",
 
     comingSoon: false,
 
