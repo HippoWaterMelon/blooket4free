@@ -289,7 +289,7 @@ function createParticles(scene, type) {
                         velocity: { min: 600, max: 750 },
                         gravityY: 500,
                         frequency: 300,
-                        tint: color,
+                        
                         lifespan: 5000,
                         x: { min: -25, max: 25 },
                         y: scene.sys.game.config.height,
@@ -306,7 +306,7 @@ function createParticles(scene, type) {
                         velocity: { min: 600, max: 750 },
                         gravityY: 500,
                         frequency: 300,
-                        tint: color,
+                        
                         lifespan: 5000,
                         x: { min: scene.sys.game.config.width - 25, max: scene.sys.game.config.width + 25 },
                         y: scene.sys.game.config.height,
@@ -325,7 +325,6 @@ function createParticles(scene, type) {
                         velocity: { min: 600, max: 750 },
                         gravityY: -500,
                         frequency: 300,
-                        tint: color,
                         lifespan: 5000,
                         x: { min: -25, max: 25 },
                         y: 0,
@@ -342,7 +341,7 @@ function createParticles(scene, type) {
                         velocity: { min: 600, max: 750 },
                         gravityY: -500,
                         frequency: 300,
-                        tint: color,
+                        
                         lifespan: 5000,
                         x: { min: scene.sys.game.config.width - 25, max: scene.sys.game.config.width + 25 },
                         y: 0,
