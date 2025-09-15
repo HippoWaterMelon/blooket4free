@@ -331,7 +331,7 @@ const packData = [{
     cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Ice_Monster-BPkY957e.svg",
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
 
-    comingSoon: true,
+    comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/farm.svg",
+    tileBackground: "./assets/blooktiles/bug.svg",
 }]
