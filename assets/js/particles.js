@@ -280,7 +280,7 @@ function createParticles(scene, type) {
                 for (let i = 0; i < 7; i++) {
                     // Left
                     particles[i].createEmitter({
-                        scale: 0.25,
+                        scale: 0.15,
                         speed: { min: 700, max: 750 },
                         angle: { min: -70, max: -20 },
                         velocity: { min: 600, max: 750 },
@@ -297,7 +297,7 @@ function createParticles(scene, type) {
                     });
                     // Right
                     particles[i].createEmitter({
-                        scale: 0.25,
+                        scale: 0.15,
                         speed: { min: 700, max: 750 },
                         angle: { min: -160, max: -110 },
                         velocity: { min: 600, max: 750 },
@@ -316,7 +316,7 @@ function createParticles(scene, type) {
                 // Top left
                 for (let i = 0; i < 7; i++) {
                     particles[i].createEmitter({
-                        scale: 0.25,
+                        scale: 0.15,
                         speed: { min: 700, max: 750 },
                         angle: { min: 70, max: 20 },
                         velocity: { min: 600, max: 750 },
@@ -332,7 +332,7 @@ function createParticles(scene, type) {
                     });
                     // Top right
                     particles[i].createEmitter({
-                        scale: 0.25,
+                        scale: 0.15,
                         speed: { min: 700, max: 750 },
                         angle: { min: 160, max: 110 },
                         velocity: { min: 600, max: 750 },
