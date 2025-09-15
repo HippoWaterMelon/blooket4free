@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Preloads used in original -->
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/lightblue.svg">
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/purple.svg">
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/elfsweatersnowman.svg">
+
+  <!-- Same stylesheet references as the source (kept as in uploaded file) -->
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/121a1462914990a5.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/7d2a7f4491889bcd.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/43cb5a8b08a4fd81.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/a0406186fc01ce56.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/453191536c2b89e6.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/51e88ac748998e08.css"
+        data-precedence="next">
+
+  <link rel="icon" type="image/x-icon" href="https://ac.blooket.com/dashclassic/favicon.ico">
+  <title>My Blooks | Blooket (dynamic)</title>
+  <meta name="description"
+        content="Blooks represent players and compete in races during games. Use this page to view, sell, and manage your Blooks.">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    /* Minimal helper CSS for modal visibility only; main UI appearance relies on original stylesheet links above */
+    .cky-hide { display:none; }
+    /* basic modal override to ensure it appears (original site CSS should normally handle this) */
+    #blook-info-modal { display:none; position:fixed; inset:0; align-items:center; justify-content:center; z-index:999999; }
+    #blook-info-modal.open { display:flex; }
+    #blook-info-modal .overlay { position:absolute; inset:0; background:rgba(0,0,0,0.45); }
+    #blook-info-modal .dialog { position:relative; z-index:2; background:#fff; border-radius:8px; max-width:880px; width:calc(100% - 40px); box-shadow:0 24px 48px rgba(2,6,23,0.2); overflow:hidden; }
+    /* keep rest to external css */
+  </style>
+</head>
+<body class="__variable_b724e5 __variable_f9d1f4">
+  <!-- KEEP cookie / overlay placeholders present (as in the original) -->
+  <div class="cky-hide cky-overlay"></div>
+
+  <!-- Header / layout (using same classnames so the original CSS applies) -->
+  <main class="layout_main__mXTwS">
+    <div class="page_wrapper___woS4" data-sentry-component="Blooks" data-sentry-source-file="page.tsx">
+      <div class="_background_l90pt_1" style="background:linear-gradient(#0bc2cf, #349aef)">
+        <div class="_checkers_l90pt_12" style="background-size:1000px"></div>
+      </div>
+
+      <h1 class="BlooksWrapper_header__OMK6W">My Blooks</h1>
+
+      <!-- Token counter (kept visually identical) -->
+      <div class="TokenCounter_tokenContainer__wE6XL"><img alt="Token" loading="lazy" width="21" height="22"
+        src="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/media/token.8de4e1b8.svg"
+        style="color: transparent; margin-right: 5px;"> <span id="token-count">0</span></div>
+
+      <div class="BlooksWrapper_content__wfMjd">
+        <div class="BlooksWrapper_container___qLk4">
+          <!-- header controls identical classes -->
+          <div class="BlooksHeader_row__D7cwg" data-sentry-component="BlooksHeader">
+            <div class="BlooksHeader_buttons__0DDTc">
+              <label class="BlooksHeader_button__I4Kms"><input id="toggle-free" type="checkbox" checked name="free"><span class="BlooksHeader_checkmark__Zztu9"></span>Show Free Blooks</label>
+              <label class="BlooksHeader_button__I4Kms"><input id="toggle-packs" type="checkbox" checked name="packs"><span class="BlooksHeader_checkmark__Zztu9"></span>Show Packs</label>
+            </div>
+          </div>
+
+          <!-- PLACEHOLDER: where packs will be injected (class names match original) -->
+          <div id="packs-root" class="BlooksPacks_container__nayTq" data-sentry-component="BlooksPacksContainer">
+            <div id="packs-scroll" class="BlooksPacks_scrollbox__SPjLM">
+              <!-- dynamic content goes here -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BLOOK INFO MODAL: markup uses original-ish classes so the original CSS will style it -->
+  <div id="blook-info-modal" role="dialog" aria-hidden="true">
+    <div class="overlay" data-action="close"></div>
+    <div class="dialog" role="document" aria-modal="true">
+      <!-- Keep structure similar to what the original popup uses for consistent styling -->
+      <div style="display:flex; gap:0; align-items:stretch; min-height:300px;">
+        <div style="flex:0 0 360px; padding:22px; background:linear-gradient(#f7fbff, #fff); display:flex;align-items:center;justify-content:center;position:relative;">
+          <div id="modal-qty" class="BlookModal_quantity__BiP_5" style="position:absolute; left:16px; top:16px; display:none">1</div>
+          <div style="width:260px; height:260px; display:flex; align-items:center; justify-content:center; background: #fff; border-radius:12px;">
+            <img id="modal-img" src="" alt="" style="max-width:90%; max-height:90%; display:block;" />
+          </div>
+        </div>
+
+        <div style="flex:1; padding:20px; position:relative;">
+          <button id="modal-close-btn" class="BlooksHeader_button__I4Kms" style="position:absolute; right:14px; top:12px;">Close</button>
+          <h2 id="modal-title" style="margin:0 0 6px 0; font-size:20px;">Blook Name</h2>
+          <div style="margin-bottom:12px; color:#6b7280">
+            <span id="modal-pack-name">Pack Name</span> • <span id="modal-rarity" style="font-weight:700">Common</span> • <span id="modal-chance">—</span>
+          </div>
+          <div id="modal-desc" style="color:#374151; line-height:1.45;">Description (if available)</div>
+
+          <div style="margin-top:18px;">
+            <button id="modal-sell" class="BlooksHeader_button__I4Kms" style="display:none">Sell</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load pack data (user requested these exact paths) -->
+  <script src="./assets/js/freepackdata.js"></script>
+  <script src="./assets/js/packdata.js"></script>
+
+  <!-- Main renderer script (uses packData and freePackData) -->
+  <script>
+    (function() {
+      // Safety: ensure arrays exist
+      const freeArr = (typeof freePackData !== 'undefined' && Array.isArray(freePackData)) ? freePackData : [];
+      const packArr = (typeof packData !== 'undefined' && Array.isArray(packData)) ? packData : [];
+
+      // Combined: free packs first to match appearance in original
+      const allPacks = [...freeArr.map(p => ({...p, _isFree:true})), ...packArr.map(p => ({...p, _isFree:false}))];
+
+      const packsScroll = document.getElementById('packs-scroll');
+      const tokenCountEl = document.getElementById('token-count');
+
+      // optional: if packData provides a tokenCount or user tokens, show it
+      // (many original pages compute this; if not present, leave 0)
+      try {
+        const tokens = (typeof window.userTokens !== 'undefined') ? window.userTokens : ((typeof window.tokenCount !== 'undefined') ? window.tokenCount : null);
+        if (tokens !== null) tokenCountEl.textContent = String(tokens);
+      } catch (e){ /* ignore */ }
+
+      // Toggle controls
+      const toggleFree = document.getElementById('toggle-free');
+      const togglePacks = document.getElementById('toggle-packs');
+
+      function safeGet(arr, i, fallback = '') { return (Array.isArray(arr) && arr[i] !== undefined) ? arr[i] : fallback; }
+
+      // Render function (rebuilds the packs area)
+      function renderPacks() {
+        packsScroll.innerHTML = '';
+        const showFree = toggleFree.checked;
+        const showPacks = togglePacks.checked;
+
+        allPacks.forEach((pack, packIndex) => {
+          if (pack._isFree && !showFree) return;
+          if (!pack._isFree && !showPacks) return;
+
+          // pick name and arrays (some pack files use "blook", others "blooks")
+          const packName = pack.name || pack.title || ('Pack ' + (packIndex+1));
+          const blookNames = Array.isArray(pack.blook) ? pack.blook : (Array.isArray(pack.blooks) ? pack.blooks : []);
+          const svgs = Array.isArray(pack.svg) ? pack.svg : [];
+          const chances = Array.isArray(pack.chance) ? pack.chance : [];
+          const rarities = Array.isArray(pack.rarity) ? pack.rarity : [];
+          const quantities = Array.isArray(pack.quantity) ? pack.quantity : (Array.isArray(pack.owned) ? pack.owned : []);
+          const sellPrices = Array.isArray(pack.sellPrice) ? pack.sellPrice : (Array.isArray(pack.price) ? pack.price : []);
+
+          if (!blookNames.length) return;
+
+          // build pack node using original-ish classes so CSS applies
+          const packNode = document.createElement('div');
+          packNode.className = 'BlooksPacks_pack___MJtt';
+          packNode.innerHTML = `
+            <div class="BlooksPacks_textureHeader__1ecGZ">
+              <div class="BlooksPacks_texture__7_8Gf" style="${pack.bg ? `background-image: url('${pack.bg}')` : ''}"></div>
+              <h2 class="BlooksPacks_title__qiDcM">${escapeHtml(packName)}</h2>
+            </div>
+            <div class="BlooksPacks_divider__mT_iM"></div>
+            <div class="BlooksPacks_blooks__ocBoL"></div>
+          `;
+
+          const blooksContainer = packNode.querySelector('.BlooksPacks_blooks__ocBoL');
+
+          blookNames.forEach((bname, i) => {
+            const img = svgs[i] || '';
+            const qty = (quantities[i] !== undefined) ? quantities[i] : null;
+            const sell = (sellPrices[i] !== undefined) ? sellPrices[i] : null;
+            const rarity = (rarities[i] !== undefined) ? rarities[i] : '';
+
+            // create blook block
+            const bWrapper = document.createElement('div');
+            bWrapper.className = 'BlookModal_blook__h0dTV';
+            // quantity badge (if available)
+            let qtyHtml = '';
+            if (qty !== null && qty !== undefined && qty !== '') {
+              qtyHtml = `<div class="BlookModal_quantity__BiP_5" style="background-color: var(--Chroma);">${escapeHtml(String(qty))}</div>`;
+            }
+            bWrapper.innerHTML = `
+              ${qtyHtml}
+              <button type="button" class="BlookModal_blookButton__hSYIJ" data-pack-index="${packIndex}" data-b-index="${i}">
+                <div class="_blookContainer_inzvw_1" data-tooltip-id="blook-tooltip">
+                  <img src="${escapeAttr(img)}" alt="${escapeAttr(bname)}" draggable="false" class="_blook_inzvw_1">
+                </div>
+              </button>
+            `;
+            // attach metadata on wrapper for quick access
+            if (sell !== null && sell !== undefined) bWrapper.dataset.sellPrice = sell;
+            if (rarity) bWrapper.dataset.rarity = rarity;
+            blooksContainer.appendChild(bWrapper);
+          });
+
+          packsScroll.appendChild(packNode);
+        });
+      }
+
+      // small escape helpers
+      function escapeHtml(str){ return String(str || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+      function escapeAttr(s){ return String(s || '').replace(/"/g, '&quot;'); }
+
+      // Modal wiring (summary popup)
+      const modalRoot = document.getElementById('blook-info-modal');
+      const modalImg = document.getElementById('modal-img');
+      const modalTitle = document.getElementById('modal-title');
+      const modalPackName = document.getElementById('modal-pack-name');
+      const modalRarity = document.getElementById('modal-rarity');
+      const modalChance = document.getElementById('modal-chance');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalQty = document.getElementById('modal-qty');
+      const modalSellBtn = document.getElementById('modal-sell');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+
+      function openInfoModal(packObj, bIndex) {
+        const names = Array.isArray(packObj.blook) ? packObj.blook : (Array.isArray(packObj.blooks) ? packObj.blooks : []);
+        const imgs = Array.isArray(packObj.svg) ? packObj.svg : [];
+        const rarities = Array.isArray(packObj.rarity) ? packObj.rarity : [];
+        const chances = Array.isArray(packObj.chance) ? packObj.chance : [];
+        const quantities = Array.isArray(packObj.quantity) ? packObj.quantity : (Array.isArray(packObj.owned) ? packObj.owned : []);
+        const sellPrices = Array.isArray(packObj.sellPrice) ? packObj.sellPrice : (Array.isArray(packObj.price) ? packObj.price : []);
+
+        const name = names[bIndex] || 'Unknown';
+        const img = imgs[bIndex] || '';
+        const rarity = rarities[bIndex] || (packObj.rarity || 'Common');
+        const chance = (chances[bIndex] !== undefined) ? chances[bIndex] : (packObj.chance || '—');
+        const qty = quantities[bIndex] !== undefined ? quantities[bIndex] : null;
+        const sell = sellPrices[bIndex] !== undefined ? sellPrices[bIndex] : null;
+
+        modalImg.src = img;
+        modalImg.alt = name;
+        modalTitle.textContent = name;
+        modalPackName.textContent = packObj.name || '—';
+        modalRarity.textContent = rarity;
+        modalChance.textContent = (chance !== undefined && chance !== null) ? (String(chance) + '%') : '—';
+        modalDesc.textContent = (Array.isArray(packObj.blookDesc) ? (packObj.blookDesc[bIndex] || '') : (packObj.description || packObj.desc || 'No description available.'));
+        if (qty !== null && qty !== undefined) {
+          modalQty.style.display = 'inline-block';
+          modalQty.textContent = qty;
+        } else {
+          modalQty.style.display = 'none';
+        }
+
+        if (sell !== null && sell !== undefined) {
+          modalSellBtn.style.display = '';
+          modalSellBtn.textContent = 'Sell for ' + sell;
+          modalSellBtn.onclick = () => { alert('SELL: ' + name + ' → ' + sell); };
+        } else {
+          modalSellBtn.style.display = 'none';
+          modalSellBtn.onclick = null;
+        }
+
+        modalRoot.classList.add('open');
+        modalRoot.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        modalRoot.classList.remove('open');
+        modalRoot.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+      }
+
+      // Delegated listener for clicks on blook buttons
+      packsScroll.addEventListener('click', function(ev) {
+        const btn = ev.target.closest('.BlookModal_blookButton__hSYIJ');
+        if (!btn) return;
+        const packIndex = parseInt(btn.dataset.packIndex, 10);
+        const bIndex = parseInt(btn.dataset.bIndex, 10);
+        const packObj = allPacks[packIndex];
+        if (!packObj) return;
+        openInfoModal(packObj, bIndex);
+      });
+
+      // close handlers
+      modalRoot.querySelector('.overlay').addEventListener('click', closeModal);
+      modalCloseBtn.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closeModal(); });
+
+      // toggles
+      toggleFree.addEventListener('change', renderPacks);
+      togglePacks.addEventListener('change', renderPacks);
+
+      // initial render — ensure scripts defining packData/freePackData have executed
+      document.addEventListener('DOMContentLoaded', function() {
+        // slight guard: if packData/freePackData were injected AFTER DOMContentLoaded, re-render on a small timeout
+        try { renderPacks(); } catch(e) { console.warn('render failed first pass, retrying', e); setTimeout(renderPacks, 50); }
+      });
+
+    })();
+  </script>
+</body>
+</html>

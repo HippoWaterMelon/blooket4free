@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- exact stylesheet includes from your source (kept identical) -->
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/lightblue.svg">
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/purple.svg">
+  <link rel="preload" as="image" href="https://ac.blooket.com/marketassets/blooks/elfsweatersnowman.svg">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/121a1462914990a5.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/7d2a7f4491889bcd.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/43cb5a8b08a4fd81.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/a0406186fc01ce56.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/453191536c2b89e6.css"
+        data-precedence="next">
+  <link rel="stylesheet"
+        href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/51e88ac748998e08.css"
+        data-precedence="next">
+  <title>My Blooks | Blooket (local)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    /* small helpers to center the main wrapper and hide the token counter as requested */
+    .BlooksWrapper_container___qLk4 { margin: 0 auto; max-width: 1100px; }
+    .TokenCounter_tokenContainer__wE6XL { display: none !important; }
+    /* make sure modal and overlay start hidden and will be shown by script */
+    button._overlay_fhi6r_1 { display: none; }
+    div._modal_fhi6r_13.BlookModal_blookModal__kZ5LX { display: none; }
+    /* fallback for blook quantity to ensure it's visible */
+    .BlookModal_quantity__BiP_5 { font-weight:700; }
+  </style>
+</head>
+<body class="__variable_b724e5 __variable_f9d1f4">
+
+<main class="layout_main__mXTwS">
+  <div class="page_wrapper___woS4" data-sentry-component="Blooks">
+    <div class="_background_l90pt_1" style="background:linear-gradient(#0bc2cf, #349aef)">
+      <div class="_checkers_l90pt_12" style="background-size:1000px"></div>
+    </div>
+
+    <h1 class="BlooksWrapper_header__OMK6W">My Blooks</h1>
+
+    <!-- header: token removed, centered wrapper -->
+    <div class="BlooksWrapper_content__wfMjd">
+      <div class="BlooksWrapper_container___qLk4">
+
+        <!-- Header buttons (EXACT markup including SVG checkmark so checks show properly) -->
+        <div class="BlooksHeader_row__D7cwg" data-sentry-component="BlooksHeader">
+          <div class="BlooksHeader_buttons__0DDTc">
+            <label class="BlooksHeader_button__I4Kms">
+              <input type="checkbox" name="free">
+              <span class="BlooksHeader_checkmark__Zztu9">
+                <!-- checkmark SVG (exact) -->
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check"
+                     class="svg-inline--fa fa-check fa-w-16 " role="img"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="currentColor"
+                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                  </path>
+                </svg>
+              </span>
+              Show Free Blooks
+            </label>
+
+            <label class="BlooksHeader_button__I4Kms">
+              <input type="checkbox" name="packs" checked>
+              <span class="BlooksHeader_checkmark__Zztu9">
+                <!-- same check -->
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check"
+                     class="svg-inline--fa fa-check fa-w-16 " role="img"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="currentColor"
+                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                  </path>
+                </svg>
+              </span>
+              Show Packs
+            </label>
+          </div>
+        </div>
+
+        <!-- Packs container (we will populate this dynamically) -->
+        <div class="BlooksPacks_container__nayTq" data-sentry-component="BlooksPacksContainer">
+          <div class="BlooksPacks_scrollbox__SPjLM">
+            <!-- Packs will be appended here by script -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal markup copied from your source so styling matches exactly.
+     We keep the same classes and inner structure and populate it dynamically. -->
+<div class="_modalWrapper_fhi6r_12">
+  <button type="button" class="_overlay_fhi6r_1" aria-label="Close"></button>
+  <div class="_modal_fhi6r_13 BlookModal_blookModal__kZ5LX">
+    <form class="BlookModal_modalForm__PdjL_" action="#" method="post">
+      <input type="hidden" name="blook" value="">
+      <div class="BlookModal_modalInner__1jG3k">
+        <div class="BlookModal_modalMedia__b0X4c">
+          <div class="BlookModal_modalImage__k0V9n">
+            <div class="_blookContainer_inzvw_1" style="height:80px;width:80px" data-tooltip-id="blook-tooltip">
+              <img src="" alt="" draggable="false" class="_blook_inzvw_1">
+            </div>
+          </div>
+        </div>
+        <div class="BlookModal_modalInfo__Z2VdS">
+          <!-- Filled dynamically: h2, h3, tags, description -->
+        </div>
+      </div>
+
+      <div class="BlookModal_modalFooter__wL4s3">
+        <button class="_closeIcon_fhi6r_70" type="button" aria-label="Close">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times"
+               class="svg-inline--fa fa-times fa-w-11 " role="img" xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 352 512">
+            <path fill="currentColor"
+                  d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+            </path>
+          </svg>
+          <span class="_srOnly_1m5m7_103">Close</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- load data files (must exist at these paths and define packData[], freePackData[]) -->
+<script src="./assets/js/freepackdata.js"></script>
+<script src="./assets/js/packdata.js"></script>
+
+<script>
+/* Helper functions */
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, function (m) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+  });
+}
+function escUrl(s) {
+  if (!s) return '';
+  return String(s).replace(/'/g, "\\'");
+}
+
+/* Wait for DOM ready, then build UI from packData & freePackData */
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof packData === 'undefined' && typeof freePackData === 'undefined') {
+    console.error('packData and freePackData are missing. Make sure ./assets/js/packdata.js and ./assets/js/freepackdata.js are loaded and define packData[] and freePackData[].');
+    return;
+  }
+
+  const packs = Array.isArray(packData) ? packData.slice() : [];
+  const free = Array.isArray(freePackData) ? freePackData.slice() : [];
+
+  // Annotate free packs
+  const freePacks = free.map(p => Object.assign({}, p, { isFree: true }));
+  const allPacks = [...freePacks, ...packs];
+
+  const scrollbox = document.querySelector('.BlooksPacks_scrollbox__SPjLM');
+  scrollbox.innerHTML = '';
+
+  // Build packs
+  allPacks.forEach((pack, packIdx) => {
+    const packDiv = document.createElement('div');
+    packDiv.className = 'BlooksPacks_pack___MJtt';
+
+    // header + tiled background; use pack.tiledBackground exactly
+    const tileUrl = pack.tiledBackground ? escUrl(pack.tiledBackground) : '';
+    const headerHtml = `
+      <div class="BlooksPacks_textureHeader__1ecGZ">
+        <div class="BlooksPacks_texture__7_8Gf" style="background-image: url('${tileUrl}');"></div>
+      </div>
+      <div class="BlooksPacks_divider__mT_iM"></div>
+      <div class="BlooksPacks_blooks__ocBoL"></div>
+    `;
+    packDiv.innerHTML = headerHtml;
+    const blooksContainer = packDiv.querySelector('.BlooksPacks_blooks__ocBoL');
+
+    // Some packs might have blooks under a property 'blooks' or 'blooksData'
+    const blookList = Array.isArray(pack.blooks) ? pack.blooks : (Array.isArray(pack.blooksData) ? pack.blooksData : []);
+
+    blookList.forEach((blook, bIdx) => {
+      const item = document.createElement('div');
+      item.className = 'BlookModal_blook__h0dTV';
+      item.dataset.packIndex = packIdx;
+      item.dataset.blookIndex = bIdx;
+
+      // quantity bottom-left (set to 999 as requested)
+      const quantityHtml = `<div class="BlookModal_quantity__BiP_5" style="background-color:var(--Uncommon)">999</div>`;
+
+      // blook button with image; the site uses _blookContainer_inzvw_1 and _blook_inzvw_1
+      const imageSrc = blook.image || blook.url || blook.img || '';
+      const nameAttr = escapeHtml(blook.name || blook.id || '');
+      const btnHtml = `
+        <button type="button" class="BlookModal_blookButton__hSYIJ" aria-label="${nameAttr}">
+          <div class="_blookContainer_inzvw_1" style="height:34.5px;width:30px" data-tooltip-id="blook-tooltip">
+            <img src="${escapeHtml(imageSrc)}" alt="${nameAttr}" draggable="false" class="_blook_inzvw_1">
+          </div>
+        </button>
+      `;
+
+      item.innerHTML = quantityHtml + btnHtml;
+      blooksContainer.appendChild(item);
+    });
+
+    scrollbox.appendChild(packDiv);
+  });
+
+  // Hook up header checkboxes
+  const freeCheckbox = document.querySelector('input[name="free"]');
+  const packsCheckbox = document.querySelector('input[name="packs"]');
+
+  // initial states: packs checked (show), free unchecked
+  if (packsCheckbox) packsCheckbox.checked = true;
+  if (freeCheckbox) freeCheckbox.checked = false;
+
+  function applyFilters() {
+    const showPacks = packsCheckbox ? packsCheckbox.checked : true;
+    const showFree = freeCheckbox ? freeCheckbox.checked : false;
+
+    const packEls = Array.from(document.querySelectorAll('.BlooksPacks_pack___MJtt'));
+    packEls.forEach((el, idx) => {
+      const p = allPacks[idx];
+      if (!p) { el.style.display = ''; return; }
+      if (p.isFree) {
+        el.style.display = showFree ? '' : 'none';
+      } else {
+        el.style.display = showPacks ? '' : 'none';
+      }
+    });
+  }
+  if (packsCheckbox) packsCheckbox.addEventListener('change', applyFilters);
+  if (freeCheckbox) freeCheckbox.addEventListener('change', applyFilters);
+  applyFilters();
+
+  // Modal elements (copied markup)
+  const overlayBtn = document.querySelector('button._overlay_fhi6r_1');
+  const modalRoot = document.querySelector('div._modal_fhi6r_13.BlookModal_blookModal__kZ5LX');
+  const modalForm = document.querySelector('form.BlookModal_modalForm__PdjL_');
+  const modalInfo = modalForm ? modalForm.querySelector('.BlookModal_modalInfo__Z2VdS') : null;
+  const modalBlookImg = modalForm ? modalForm.querySelector('._blookContainer_inzvw_1 img') : null;
+  const closeIcon = document.querySelector('button._closeIcon_fhi6r_70');
+
+  function showModalFor(blook, pack) {
+    if (!modalForm || !overlayBtn || !modalRoot) return;
+    modalForm.querySelector('input[name="blook"]').value = blook.name || '';
+    // fill modal info using the same structure used in the source (h2/h3/tags)
+    const rarity = blook.rarity || 'Common';
+    // tokens/score icons from site assets (kept as-is)
+    const tokenIcon = 'https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/media/token.8de4e1b8.svg';
+    const scoreIcon = 'https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/media/score.c7490e53.svg';
+    // create tags markup similar to source
+    const tagsHtml = `
+      <div class="BlookModal_tags__My798">
+        <div class="BlookModal_tag__b5p3W"><img src="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/media/common.38546a9e.svg" alt="rarity"> ${escapeHtml(rarity)}</div>
+        <div class="BlookModal_tag__b5p3W"><img src="${tokenIcon}" alt="token"> 0</div>
+        <div class="BlookModal_tag__b5p3W"><img src="${scoreIcon}" alt="score"> 0</div>
+      </div>
+    `;
+
+    modalInfo.innerHTML = `
+      <h2>${escapeHtml(blook.name || '')}</h2>
+      <h3>${escapeHtml(pack.name || '')}</h3>
+      ${tagsHtml}
+      <div class="BlookModal_description__tq3g">${escapeHtml(blook.description || blook.desc || '')}</div>
+    `;
+
+    if (modalBlookImg) {
+      modalBlookImg.src = blook.image || blook.url || '';
+      modalBlookImg.alt = blook.name || '';
+    }
+
+    // show overlay + modal (the source CSS will handle look — we only toggle display here)
+    overlayBtn.style.display = 'block';
+    modalRoot.style.display = 'block';
+
+    // give it a tick so any CSS transitions can apply (mimic opening)
+    setTimeout(() => {
+      overlayBtn.classList.add('open');
+      modalRoot.classList.add('open');
+    }, 10);
+  }
+
+  function closeModal() {
+    if (!overlayBtn || !modalRoot) return;
+    overlayBtn.classList.remove('open');
+    modalRoot.classList.remove('open');
+    overlayBtn.style.display = 'none';
+    modalRoot.style.display = 'none';
+  }
+
+  // close handlers
+  if (overlayBtn) overlayBtn.addEventListener('click', closeModal);
+  if (closeIcon) closeIcon.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+  // delegate blook clicks (use the same selector as the source)
+  const delegateRoot = document.querySelector('.BlooksPacks_scrollbox__SPjLM');
+  if (delegateRoot) {
+    delegateRoot.addEventListener('click', function (evt) {
+      const btn = evt.target.closest('.BlookModal_blookButton__hSYIJ');
+      if (!btn) return;
+      const broot = btn.closest('.BlookModal_blook__h0dTV');
+      if (!broot) return;
+      const pidx = Number(broot.dataset.packIndex);
+      const bidx = Number(broot.dataset.blookIndex);
+      const pack = allPacks[pidx];
+      if (!pack) return;
+      const list = Array.isArray(pack.blooks) ? pack.blooks : (Array.isArray(pack.blooksData) ? pack.blooksData : []);
+      const blook = list[bidx];
+      if (!blook) return;
+      showModalFor(blook, pack);
+    });
+  }
+
+  // ensure quantities show (set to 999 as requested)
+  Array.from(document.querySelectorAll('.BlookModal_quantity__BiP_5')).forEach(q => { q.textContent = '999'; });
+
+});
+</script>
+
+</body>
+</html>

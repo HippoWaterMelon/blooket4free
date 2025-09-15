@@ -17,6 +17,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bug-D5IFT82n.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Pirate Pack",
     id: "pirate",
@@ -36,6 +38,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Pirate-CrD0PKuQ.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Outback Pack",
     id: "outback",
@@ -55,6 +59,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Outback-CCDUJgD9.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Ice Monsters Pack",
     id: "iceMonsters",
@@ -74,6 +80,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Dino Pack",
     id: "dino",
@@ -93,6 +101,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Dino-qvYP8NHH.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Aquatic Pack",
     id: "aquatic",
@@ -112,6 +122,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Aquatic-CDVAa5Z1.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Safari Pack",
     id: "safari",
@@ -131,6 +143,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Safari-Bov1ICT4.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Bot Pack",
     id: "bot",
@@ -150,6 +164,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bots-CWFp85lE.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Space Pack",
     id: "space",
@@ -169,6 +185,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Space-BVfDeCoN.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Medieval Pack",
     id: "medieval",
@@ -188,6 +206,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Medieval-HAKt-8uS.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Wonderland Pack",
     id: "wonderland",
@@ -207,6 +227,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Wonderland-By4voe3_.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Breakfast Pack",
     id: "breakfast",
@@ -226,6 +248,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Breakfast-rXV3rN0C.svg",
 
     comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Spooky Pack",
     id: "spooky",
@@ -245,6 +269,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
 
     comingSoon: true,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Autumn Pack",
     id: "autumn",
@@ -264,6 +290,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
 
     comingSoon: true,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 }, {
     name: "Blizzard Pack",
     id: "blizzard",
@@ -283,6 +311,8 @@ const packData = [{
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Pirate-CrD0PKuQ.svg",
 
     comingSoon: true,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 },     /* {
     name: "Debug Pack",
     id: "debug",
@@ -300,4 +330,8 @@ const packData = [{
     packBottom: "https://ac.blooket.com/dashclassic/assets/IceMonstersPackBottom-UDSf4--N.png",
     cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Ice_Monster-BPkY957e.svg",
     blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
+
+    comingSoon: true,
+
+    tileBackground: "./assets/blooktiles/farm.svg",
 } */ ]

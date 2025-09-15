@@ -10955,8 +10955,8 @@
 }
 
 .styles__openingContainer___2OmG9-camelCase {
-    -webkit-animation: styles__growIn___1R3Nj-camelCase 0.2s linear 0.1s forwards;
-    animation: styles__growIn___1R3Nj-camelCase 0.2s linear 0.1s forwards;
+    -webkit-animation: styles__growIn___1R3Nj-camelCase 0.2s linear forwards;
+    animation: styles__growIn___1R3Nj-camelCase 0.2s linear forwards;
 }
 
 @-webkit-keyframes styles__growIn___1R3Nj-camelCase {
@@ -11300,8 +11300,8 @@
 }
 
 .styles__isOpeningPack___1qY5t-camelCase {
-    -webkit-animation: styles__open___1v-ch-camelCase 0.4s steps(10) forwards;
-    animation: styles__open___1v-ch-camelCase 0.4s steps(10) forwards;
+    -webkit-animation: styles__open___1v-ch-camelCase 0.3s steps(10) forwards;
+    animation: styles__open___1v-ch-camelCase 0.3s steps(10) forwards;
 }
 
 @-webkit-keyframes styles__open___1v-ch-camelCase {
