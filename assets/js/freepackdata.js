@@ -14,8 +14,8 @@ const freePackData = [
     colorRarity: [],
 
     packBottom: "",
-    cornerIcon: "",
-    blookBackground: "",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Farm-DLJOEU1H.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Farm-Cf8P0mJz.svg",
 
     comingSoon: false,
 
@@ -37,8 +37,8 @@ const freePackData = [
     colorRarity: [],
 
     packBottom: "",
-    cornerIcon: "",
-    blookBackground: "",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Pets-BgCBMaDh.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Pets--9tpvwHe.svg",
 
     comingSoon: false,
 
@@ -60,8 +60,8 @@ const freePackData = [
     colorRarity: [],
 
     packBottom: "",
-    cornerIcon: "",
-    blookBackground: "",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Forest-D7iXnxVN.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Forest-56I9sRnu.svg",
 
     comingSoon: false,
 
@@ -83,8 +83,8 @@ const freePackData = [
     colorRarity: [],
 
     packBottom: "",
-    cornerIcon: "",
-    blookBackground: "",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Tropical-DFEdkGBU.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Tropical-DV9rwhsh.svg",
 
     comingSoon: false,
 
@@ -106,8 +106,8 @@ const freePackData = [
     colorRarity: [],
 
     packBottom: "",
-    cornerIcon: "",
-    blookBackground: "",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Arctic-DzaIX0Uv.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Arctic-DnFet-Es.svg",
 
     comingSoon: false,
 

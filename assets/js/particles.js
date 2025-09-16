@@ -164,11 +164,11 @@ function createParticles(scene, type) {
             // Left side
             particles[i].createEmitter({
                 scale: 0.15,
-                speed: 350,
+                speed: 450,
                 angle: { min: -50, max: 0 },
                 velocity: { min: 600, max: 750 },
                 gravityY: 400,
-                frequency: 100,
+                frequency: 150,
                 lifespan: 5000,
                 x: 0,
                 y: { min: 0, max: scene.sys.game.config.height },
@@ -177,11 +177,11 @@ function createParticles(scene, type) {
             // Right side
             particles[i].createEmitter({
                 scale: 0.15,
-                speed: 350,
+                speed: 450,
                 angle: { min: -180, max: -130 },
                 velocity: { min: 600, max: 750 },
                 gravityY: 400,
-                frequency: 100,
+                frequency: 150,
                 lifespan: 5000,
                 x: scene.sys.game.config.width,
                 y: { min: 0, max: scene.sys.game.config.height },

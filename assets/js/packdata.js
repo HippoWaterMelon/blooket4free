@@ -264,32 +264,32 @@ const packData = [{
     colorSvg: [],
     colorRarity: [],
 
-    packBottom: "https://ac.blooket.com/dashclassic/assets/IceMonstersPackBottom-UDSf4--N.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Ice_Monster-BPkY957e.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
+    packBottom: "https://ac.blooket.com/dashclassic/assets/SpookyPackBottom-Bb7nZ1oD.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Spooky-T-OEBdM8.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Spooky-BE3Q44ax.svg",
 
-    comingSoon: true,
+    comingSoon: false,
 
     tileBackground: "./assets/blooktiles/spooky.svg",
 }, {
     name: "Autumn Pack",
     id: "autumn",
-    bg: "radial-gradient(circle, rgb(255, 255, 255) 0%, rgb(0, 0, 0) 100%)",
-    blook: ["Deckhand", "Buccaneer", "Swashbuckler", "Treasure Map", "Seagull", "Jolly Pirate", "Pirate Ship", "Kraken", "Captain Blackbeard", "Pirate Pufferfish"],
-    chance: [16, 16, 16, 16, 16, 8, 8, 3.67, 0.3, 0.03],
-    svg: ["https://ac.blooket.com/marketassets/blooks/deckhand.svg", "https://ac.blooket.com/marketassets/blooks/buccaneer.svg", "https://ac.blooket.com/marketassets/blooks/swashbuckler.svg", "https://ac.blooket.com/marketassets/blooks/treasuremap.svg", "https://ac.blooket.com/marketassets/blooks/seagull.svg", "https://ac.blooket.com/marketassets/blooks/jollypirate.svg", "https://ac.blooket.com/marketassets/blooks/pirateship.svg", "https://ac.blooket.com/marketassets/blooks/kraken.svg", "https://ac.blooket.com/marketassets/blooks/captainblackbeard.svg", "https://ac.blooket.com/marketassets/blooks/piratepufferfish.svg"],
+    bg: "radial-gradient(circle, #e9b91c 0%, #be471b 100%)",
+    blook: ["Black Bear","Pumpkin Pie","Chipmunk","Cornucopia","Autumn Cat","Pumpkin Puppy","Autumn Crow","Turkey","Golden Pumpkin Pie"],
+    chance: [19.5, 19.5, 19.5, 19.5, 9, 9, 2.95, 1, 0.05],
+    svg: ["https://ac.blooket.com/marketassets/blooks/blackbear.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/chipmunk.svg", "https://ac.blooket.com/marketassets/blooks/cornucopia.svg", "https://ac.blooket.com/marketassets/blooks/autumncat.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpuppy.svg", "https://ac.blooket.com/marketassets/blooks/autumncrow.svg", "https://ac.blooket.com/marketassets/blooks/turkey.svg", "https://ac.blooket.com/marketassets/blooks/goldenpumpkinpie.svg"],
     png: "https://ac.blooket.com/dashclassic/assets/Autumn_Pack-C5VMbtyO.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
+    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
 
     colorBlook: [],
     colorSvg: [],
     colorRarity: [],
 
-    packBottom: "https://ac.blooket.com/dashclassic/assets/IceMonstersPackBottom-UDSf4--N.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Ice_Monster-BPkY957e.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Ice_Monster-IrnSpiG5.svg",
+    packBottom: "https://ac.blooket.com/dashclassic/assets/AutumnPackBottom-C4jQFT0R.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Autumn-NlPLazWs.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Autumn-p3HcOb_2.svg",
 
-    comingSoon: true,
+    comingSoon: false,
 
     tileBackground: "./assets/blooktiles/autumn.svg",
 }, {
@@ -306,32 +306,32 @@ const packData = [{
     colorSvg: ["https://ac.blooket.com/marketassets/blooks/newyorksnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/londonsnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/japansnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/egyptsnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/parissnowglobe.svg"],
     colorRarity: ["Chroma", "Chroma", "Chroma", "Chroma", "Chroma"],
 
-    packBottom: "https://ac.blooket.com/dashclassic/assets/PiratePackBottom-BZOz9aW_.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Pirate-ew8qi374.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Pirate-CrD0PKuQ.svg",
+    packBottom: "https://ac.blooket.com/dashclassic/assets/BlizzardPackBottom-DECOyX4X.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Blizzard-FwlNPZIo.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Blizzard-BEOZGRo9.svg",
 
-    comingSoon: true,
+    comingSoon: false,
 
     tileBackground: "./assets/blooktiles/blizzard.svg",
-}, {
+}, /* {
     name: "Debug Pack",
     id: "debug",
-    bg: "radial-gradient(circle, rgb(0, 255, 0) 0%, rgb(0, 0, 0) 100%)",
-    blook: ["Debug"],
-    chance: [100],
-    svg: ["http://blacket.org/content/blooks/Error.webp"],
+    bg: "radial-gradient(circle, #00ff00 0%, #000000 100%)",
+    blook: ["Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"],
+    chance: [14.28, 14.28, 14.28, 14.29, 14.29, 14.29, 14.29],
+    svg: ["https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg", "https://ac.blooket.com/marketassets/blooks/lightblue.svg"],
     png: "https://blacket.org/content/packs/Debug.webp",
-    rarity: ["Mystical"],
+    rarity: ["Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"],
     
     colorBlook: [],
     colorSvg: [],
     colorRarity: [],
 
-    packBottom: "https://ac.blooket.com/dashclassic/assets/BugPackBottom-C88wEd96.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Bug-BmYON1mh.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Bug-D5IFT82n.svg",
+    packBottom: "./assets/misc_images/debug_bottom.png",
+    cornerIcon: "./assets/misc_images/debug_navicon.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Generic-BG3_DSfA.svg",
 
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/bug.svg",
-}]
+ } */]
