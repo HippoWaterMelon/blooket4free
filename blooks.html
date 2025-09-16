@@ -53,7 +53,7 @@
       height: 100%;
       width: 300px;
       transition: left 0.3s ease;
-      z-index: 1002;
+      z-index: 1005;
     }
 
     /* Active state slides it in */
@@ -70,7 +70,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
       display: none;
-      z-index: 1001;
+      z-index: 1004;
     }
 
     #overlay.active {
@@ -80,26 +80,30 @@
     /* Hamburger button */
     .hamburger {
       position: fixed;
-      top: 15px;
-      right: 15px;
+      top: 35px;
+      right: 25px;
       /* move to top-right */
       font-size: 28px;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
+      z-index: 1003;
+    }
+
+    .hamburger img {
+      width: 30px;
+      /* adjust size as needed */
+      height: 30px;
+      filter: drop-shadow(4px 4px var(--gray-shadow));
+      transition: transform 0.2s;
+    }
+
+    .hamburger img:hover {
+      transform: scale(0.95);
     }
 
     /* Close button (keeps original class styles, just positioning) */
-    #closeSidebar {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-    }
 
     /* Always show the sidebar logo, ignore base media queries */
     /* Always show logo */
@@ -166,7 +170,9 @@
   <div id="overlay"></div>
 
   <!-- Hamburger -->
-  <button id="hamburgerBtn" class="hamburger">&#9776;</button>
+  <button id="hamburgerBtn" class="hamburger">
+    <img src="./assets/misc_images/borgor.svg" alt="Menu">
+  </button>
 
   <main class="layout_main__mXTwS">
     <div class="page_wrapper___woS4" data-sentry-component="Blooks">

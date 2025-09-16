@@ -125,7 +125,7 @@
             transition: opacity 0.2s ease;
             z-index: 999;
             white-space: normal;
-            min-width: 160px;
+            min-width: 200px;
             bottom: 110%;
             left: 50%;
             transform: translateX(-50%);
@@ -189,7 +189,7 @@
             height: 100%;
             width: 300px;
             transition: left 0.3s ease;
-            z-index: 1002;
+            z-index: 1005;
         }
 
         /* Active state slides it in */
@@ -206,7 +206,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
             display: none;
-            z-index: 1001;
+            z-index: 1004;
         }
 
         #overlay.active {
@@ -216,13 +216,25 @@
         /* Hamburger button */
         .hamburger {
             position: fixed;
-            top: 15px;
-            left: 15px;
+            top: 35px;
+            left: 25px;
             font-size: 28px;
             background: none;
             border: none;
             color: white;
             cursor: pointer;
+            z-index: 1003;
+        }
+
+        .hamburger img {
+            width: 30px;   /* adjust size as needed */
+            height: 30px;
+            filter: drop-shadow(4px 4px var(--gray-shadow));
+            transition: transform 0.2s;
+        }
+
+        .hamburger img:hover {
+            transform: scale(0.95);
         }
 
         /* Close button (keeps original class styles, just positioning) */
@@ -239,16 +251,17 @@
         /* Always show the sidebar logo, ignore base media queries */
         /* Always show logo */
         .Sidebar_logoDesktop__NeFcd {
-        display: block !important;
-        margin: 0 auto 0 !important; /* default */
-        width: 80% !important;
+            display: block !important;
+            margin: 0 auto 0 !important;
+            /* default */
+            width: 80% !important;
         }
 
         /* Mobile adjustments */
         @media (max-width: 849px) {
-        .Sidebar_logoDesktop__NeFcd {
-            margin-top: 20px !important;
-        }
+            .Sidebar_logoDesktop__NeFcd {
+                margin-top: 20px !important;
+            }
         }
 
         #sidebar.Sidebar_sidebar__J7H_G {
@@ -316,7 +329,9 @@
     <div id="overlay"></div>
 
     <!-- Hamburger -->
-    <button id="hamburgerBtn" class="hamburger">&#9776;</button>
+    <button id="hamburgerBtn" class="hamburger">
+        <img src="./assets/misc_images/borgor.svg" alt="Menu">
+    </button>
 
     <div class="_background_l90pt_1" style="background:linear-gradient(#0bc2cf,#349aef)">
         <div class="_checkers_l90pt_12" style="background-size:1000px"></div>
@@ -365,6 +380,7 @@
     </div>
 
     <script src="./assets/js/packdata.js"></script>
+    <script src="./assets/js/freepackdata.js"></script>
 
     <script>
         let currentResult = null;
@@ -499,6 +515,7 @@
                 pack.style.display = "none";
                 packContainer.classList.add("styles__openingPackContainer___1ZQzY-camelCase");
                 openContainer.className = "styles__openContainer___3paFG-camelCase";
+                if (rarity === "common") openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
                 if (rarity === "uncommon") openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
                 if (rarity === "rare") openContainer.classList.add("styles__openingContainer___2OmG9-camelCase");
                 if (rarity === "epic") openContainer.classList.add("styles__openingContainerEpic___3TzCR-camelCase");
@@ -537,13 +554,16 @@
         });
 
         $(document).ready(function () {
-            for (let i = 0; i < packData.length; i++) {
+            // Combine both arrays
+            const allPacks = packData.concat(freePackData);
+
+            for (let i = 0; i < allPacks.length; i++) {
                 const wrapper = document.createElement("div");
                 wrapper.classList.add("packWrapper");
 
                 const newPack = document.createElement("div");
                 newPack.classList.add("pack");
-                newPack.style.backgroundImage = packData[i].bg;
+                newPack.style.backgroundImage = allPacks[i].bg;
                 wrapper.appendChild(newPack);
 
                 const pngContainer = document.createElement("div");
@@ -551,12 +571,12 @@
                 newPack.appendChild(pngContainer);
 
                 const pngBg = document.createElement("img");
-                pngBg.src = packData[i].png;
+                pngBg.src = allPacks[i].png;
                 pngBg.classList.add('pngBg');
                 pngContainer.appendChild(pngBg);
 
                 const pngMain = document.createElement("img");
-                pngMain.src = packData[i].png;
+                pngMain.src = allPacks[i].png;
                 pngMain.classList.add('pngMain');
                 pngContainer.appendChild(pngMain);
 
@@ -564,15 +584,13 @@
                 const tooltip = document.createElement("div");
                 tooltip.classList.add("tooltip");
 
-                if (packData[i].comingSoon) {
+                if (allPacks[i].comingSoon) {
                     tooltip.innerHTML = "Coming Soon";
 
-                    // Dark overlay
                     const overlay = document.createElement("div");
                     overlay.classList.add("darkOverlay");
                     newPack.appendChild(overlay);
 
-                    // Lock icon
                     const lock = document.createElement("img");
                     lock.src = "./assets/misc_images/lock.svg";
                     lock.classList.add("lockIcon");
@@ -580,21 +598,18 @@
 
                     document.getElementById("comingSoonContainer").appendChild(wrapper);
                 } else {
-                    // Normal tooltip
                     let tooltipHtml = "<strong>Pack Rates:</strong><br>";
-                    for (let j = 0; j < packData[i].blook.length; j++) {
-                        tooltipHtml += `${packData[i].blook[j]}: ${packData[i].chance[j]}%<br>`;
+                    for (let j = 0; j < allPacks[i].blook.length; j++) {
+                        tooltipHtml += `${allPacks[i].blook[j]}: ${allPacks[i].chance[j]}%<br>`;
                     }
                     tooltip.innerHTML = tooltipHtml;
 
-                    // Click event for active packs
                     newPack.addEventListener("click", function () {
-                        const result = rollBlook(packData[i]);
+                        const result = rollBlook(allPacks[i]);
                         document.getElementById("packContainer").style.display = "none";
-                        showUnlock(result, packData[i]);
+                        showUnlock(result, allPacks[i]);
                     });
 
-                    // append to active packs
                     document.getElementById("packContainer").appendChild(wrapper);
                 }
 
@@ -610,6 +625,7 @@
                 });
             }
         });
+
 
         // Bind big open button
         const openButton = document.querySelector(".styles__openBigButton___3KmDM-camelCase");
