@@ -197,8 +197,8 @@ const packData = [{
     png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1661921783/Media/market/png/Space_Pack.png",
     rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
 
-    colorBlook: ["Red Astronaut", "Green Astronaut", "Pink Astronaut", "Orange Astronaut", "Yellow Astronaut", "Black Astronaut", "Brown Astronaut"],
-    colorSvg: ["https://ac.blooket.com/marketassets/blooks/redastronaut.svg", "https://ac.blooket.com/marketassets/blooks/greenastronaut.svg", "https://ac.blooket.com/marketassets/blooks/pinkastronaut.svg", "https://ac.blooket.com/marketassets/blooks/orangeastronaut.svg", "https://ac.blooket.com/marketassets/blooks/yellowastronaut.svg", "https://ac.blooket.com/marketassets/blooks/blackastronaut.svg", "https://ac.blooket.com/marketassets/blooks/brownastronaut.svg"],
+    colorBlook: ["Pink Astronaut", "Yellow Astronaut", "Black Astronaut", "Orange Astronaut", "Red Astronaut", "Brown Astronaut", "Green Astronaut"],
+    colorSvg: ["https://ac.blooket.com/marketassets/blooks/pinkastronaut.svg", "https://ac.blooket.com/marketassets/blooks/yellowastronaut.svg", "https://ac.blooket.com/marketassets/blooks/blackastronaut.svg", "https://ac.blooket.com/marketassets/blooks/orangeastronaut.svg", "https://ac.blooket.com/marketassets/blooks/redastronaut.svg", "https://ac.blooket.com/marketassets/blooks/brownastronaut.svg", "https://ac.blooket.com/marketassets/blooks/greenastronaut.svg"],
     colorRarity: ["Chroma", "Chroma", "Chroma", "Chroma", "Chroma", "Chroma", "Chroma", "Chroma"],
 
     packBottom: "https://ac.blooket.com/dashclassic/assets/SpacePackBottom-D7AfM-Ek.png",
@@ -271,69 +271,6 @@ const packData = [{
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/breakfast.svg",
-}, {
-    name: "Spooky Pack",
-    id: "spooky",
-    bg: "radial-gradient(#525252, #1A1A1A)",
-    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Werewolf", "Ghost", "Pumpkin Cookie", "Ghost Cookie"],
-    chance: [18.5, 18.5, 18.5, 18.5, 6.7, 6.7, 6.7, 5.2, 0.65, 0.03, 0.02],
-    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg", "https://ac.blooket.com/marketassets/blooks/swampmonster.svg", "https://ac.blooket.com/marketassets/blooks/frankenstein.svg", "https://ac.blooket.com/marketassets/blooks/vampire.svg", "https://ac.blooket.com/marketassets/blooks/zombie.svg", "https://ac.blooket.com/marketassets/blooks/mummy.svg", "https://ac.blooket.com/marketassets/blooks/caramelapple.svg", "https://ac.blooket.com/marketassets/blooks/werewolf.svg", "https://ac.blooket.com/marketassets/blooks/ghost.svg", "https://ac.blooket.com/marketassets/blooks/pumpkincookie.svg", "https://ac.blooket.com/marketassets/blooks/ghostcookie.svg"],
-    png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1663063471/Media/market/spooky_pack.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
-
-    colorBlook: [],
-    colorSvg: [],
-    colorRarity: [],
-
-    packBottom: "https://ac.blooket.com/dashclassic/assets/SpookyPackBottom-Bb7nZ1oD.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Spooky-T-OEBdM8.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Spooky-BE3Q44ax.svg",
-
-    comingSoon: false,
-
-    tileBackground: "./assets/blooktiles/spooky.svg",
-}, {
-    name: "Autumn Pack",
-    id: "autumn",
-    bg: "radial-gradient(circle, #e9b91c 0%, #be471b 100%)",
-    blook: ["Black Bear","Pumpkin Pie","Chipmunk","Cornucopia","Autumn Cat","Pumpkin Puppy","Autumn Crow","Turkey","Golden Pumpkin Pie"],
-    chance: [19.5, 19.5, 19.5, 19.5, 9, 9, 2.95, 1, 0.05],
-    svg: ["https://ac.blooket.com/marketassets/blooks/blackbear.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/chipmunk.svg", "https://ac.blooket.com/marketassets/blooks/cornucopia.svg", "https://ac.blooket.com/marketassets/blooks/autumncat.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpuppy.svg", "https://ac.blooket.com/marketassets/blooks/autumncrow.svg", "https://ac.blooket.com/marketassets/blooks/turkey.svg", "https://ac.blooket.com/marketassets/blooks/goldenpumpkinpie.svg"],
-    png: "https://ac.blooket.com/dashclassic/assets/Autumn_Pack-C5VMbtyO.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
-
-    colorBlook: [],
-    colorSvg: [],
-    colorRarity: [],
-
-    packBottom: "https://ac.blooket.com/dashclassic/assets/AutumnPackBottom-C4jQFT0R.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Autumn-NlPLazWs.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Autumn-p3HcOb_2.svg",
-
-    comingSoon: false,
-
-    tileBackground: "./assets/blooktiles/autumn.svg",
-}, {
-    name: "Blizzard Pack",
-    id: "blizzard",
-    bg: "radial-gradient(circle, rgb(255 255 255) 0%, rgb(80 172 225) 100%)",
-    blook: ["Snow Globe", "Holiday Gift", "Hot Chocolate", "Holiday Wreath", "Stocking", "Gingerbread Man", "Gingerbread House", "Reindeer", "Snowman", "Santa Claus", "City Snow Globe"],
-    chance: [14.5, 14.5, 14.5, 14.5, 14.5, 7.1, 7.1, 7.1, 5.15, 1, 0.05],
-    svg: ["https://ac.blooket.com/marketassets/blooks/snowglobe.svg", "https://ac.blooket.com/marketassets/blooks/holidaygift.svg", "https://ac.blooket.com/marketassets/blooks/hotchocolate.svg", "https://ac.blooket.com/marketassets/blooks/holidaywreath.svg", "https://ac.blooket.com/marketassets/blooks/stocking.svg", "https://ac.blooket.com/marketassets/blooks/gingerbreadman.svg", "https://ac.blooket.com/marketassets/blooks/gingerbreadhouse.svg", "https://ac.blooket.com/marketassets/blooks/reindeer.svg", "https://ac.blooket.com/marketassets/blooks/snowman.svg", "https://ac.blooket.com/marketassets/blooks/santaclaus.svg", "https://ac.blooket.com/marketassets/blooks/japansnowglobe.svg"],
-    png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1670301639/Media/market/blizzard_pack_2.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
-
-    colorBlook: ["New York Snow Globe", "London Snow Globe", "Japan Snow Globe", "Egypt Snow Globe", "Paris Snow Globe"],
-    colorSvg: ["https://ac.blooket.com/marketassets/blooks/newyorksnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/londonsnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/japansnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/egyptsnowglobe.svg", "https://ac.blooket.com/marketassets/blooks/parissnowglobe.svg"],
-    colorRarity: ["Chroma", "Chroma", "Chroma", "Chroma", "Chroma"],
-
-    packBottom: "https://ac.blooket.com/dashclassic/assets/BlizzardPackBottom-DECOyX4X.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Blizzard-FwlNPZIo.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Blizzard-BEOZGRo9.svg",
-
-    comingSoon: false,
-
-    tileBackground: "./assets/blooktiles/blizzard.svg",
 }, /* {
     name: "Debug Pack",
     id: "debug",

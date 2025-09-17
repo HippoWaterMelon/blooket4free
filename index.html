@@ -125,7 +125,7 @@
             transition: opacity 0.2s ease;
             z-index: 999;
             white-space: normal;
-            min-width: 200px;
+            min-width: 230px;
             bottom: 110%;
             left: 50%;
             transform: translateX(-50%);
@@ -277,6 +277,25 @@
             pointer-events: none;
 
         }
+
+        .packYear {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 24px;
+            padding: 0 12px;
+            background-color: #0003;
+            font-family: Titan One, sans-serif;
+            font-size: 18px;
+            color: #fff;
+            text-shadow: 1px 1px 0 grey;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            bottom: 12px;
+            left: 0;
+        }
     </style>
 
     <link rel="stylesheet"
@@ -387,6 +406,7 @@
     </div>
 
     <script src="./assets/js/packdata.js"></script>
+    <script src="./assets/js/seasonalpackdata.js"></script>
     <script src="./assets/js/freepackdata.js"></script>
 
     <script>
@@ -466,7 +486,7 @@
 
         function closeUnlock() {
             document.getElementById("unlockScreen").style.display = "none";
-            document.getElementById("packContainer").style.display = "grid";
+            document.getElementById("packContainer").style.visibility = "visible";
             document.getElementById("hamburgerBtn").style.display = "block";
             currentResult = null;
             currentPack = null;
@@ -560,9 +580,55 @@
             }
         });
 
-        $(document).ready(function () {
+        function rotateArray(arr, times) {
+            const n = arr.length;
+            const shift = times % n;
+            return arr.slice(shift).concat(arr.slice(0, shift));
+        }
 
-            const allPacks = packData.concat(freePackData);
+        let debugOffset = 0; 
+
+        function getDaysSinceRef() {
+            const refDate = new Date("2025-09-15T00:00:00Z");
+            const today = new Date();
+            return Math.floor((today - refDate) / (1000 * 60 * 60 * 24)) + debugOffset;
+        }
+
+        function processPacks(packs) {
+            return packs.map(pack => {
+
+                if (pack.colorBlook && pack.colorBlook.length > 0) {
+                    let newPack = { ...pack };
+
+                    newPack.blook = [...newPack.blook];
+                    newPack.rarity = [...newPack.rarity];
+                    newPack.svg = [...newPack.svg];
+                    newPack.chance = [...newPack.chance];
+
+                    const idx = getDaysSinceRef() % pack.colorBlook.length;
+
+                    const last = newPack.blook.length - 1;
+                    newPack.blook[last] = pack.colorBlook[idx];
+                    if (pack.colorRarity) newPack.rarity[last] = pack.colorRarity[idx];
+                    if (pack.colorSvg) newPack.svg[last] = pack.colorSvg[idx];
+                    if (pack.colorChance) newPack.chance[last] = pack.colorChance[idx];
+
+                    return newPack;
+                }
+
+                return pack;
+            });
+        }
+
+        $(document).ready(function () {
+            renderPacks();
+        });
+
+        function renderPacks() {
+
+            let allPacks = packData.concat(seasonalPackData).concat(freePackData);
+
+            allPacks = processPacks(allPacks);
 
             for (let i = 0; i < allPacks.length; i++) {
                 const wrapper = document.createElement("div");
@@ -586,6 +652,13 @@
                 pngMain.src = allPacks[i].png;
                 pngMain.classList.add('pngMain');
                 pngContainer.appendChild(pngMain);
+
+                if (allPacks[i].year) {
+                    const packBottomDiv = document.createElement("div");
+                    packBottomDiv.classList.add("packYear");
+                    packBottomDiv.innerText = allPacks[i].year;
+                    newPack.appendChild(packBottomDiv);
+                }
 
                 const tooltip = document.createElement("div");
                 tooltip.classList.add("tooltip");
@@ -612,7 +685,7 @@
 
                     newPack.addEventListener("click", function () {
                         const result = rollBlook(allPacks[i]);
-                        document.getElementById("packContainer").style.display = "none";
+                        document.getElementById("packContainer").style.visibility = "hidden";
                         showUnlock(result, allPacks[i]);
                     });
 
@@ -623,14 +696,14 @@
 
                 wrapper.addEventListener("mouseenter", () => {
                     const rect = wrapper.getBoundingClientRect();
-                    if (rect.top < 150) {
+                    if (rect.top < 200) {
                         tooltip.classList.add("below");
                     } else {
                         tooltip.classList.remove("below");
                     }
                 });
             }
-        });
+        };
 
         const openButton = document.querySelector(".styles__openBigButton___3KmDM-camelCase");
         if (openButton) {
@@ -708,10 +781,21 @@
 
         function getAllBlooks() {
             let all = [];
-            const packs = packData.concat(freePackData);
+            const packs = packData.concat(freePackData).concat(seasonalPackData);
+
             packs.forEach(pack => {
-                all = all.concat(pack.blook);
+
+                let packBlooks = [...pack.blook];
+
+                if (pack.colorBlook && pack.colorBlook.length > 0) {
+                    packBlooks.pop(); 
+
+                    packBlooks = packBlooks.concat(pack.colorBlook);
+                }
+
+                all = all.concat(packBlooks);
             });
+
             return [...new Set(all)];
         }
 

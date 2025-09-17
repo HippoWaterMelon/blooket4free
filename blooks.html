@@ -26,13 +26,11 @@
     data-precedence="next">
 
   <style>
-    /* preserve layout centering + hide token counter per your request */
 
     .TokenCounter_tokenContainer__wE6XL {
       display: none !important;
     }
 
-    /* hide the template node itself */
     #blook-modal-template {
       display: none;
     }
@@ -44,24 +42,21 @@
       margin-right: auto;
     }
 
-    /* Sidebar wrapper (position + animation only) */
     #sidebar {
       position: fixed;
       top: 0;
       left: -300px;
-      /* keep hidden */
+
       height: 100%;
       width: 300px;
       transition: left 0.3s ease;
       z-index: 1005;
     }
 
-    /* Active state slides it in */
     #sidebar.active {
       left: 0;
     }
 
-    /* Overlay (dark background behind sidebar) */
     #overlay {
       position: fixed;
       top: 0;
@@ -77,12 +72,11 @@
       display: block;
     }
 
-    /* Hamburger button */
     .hamburger {
       position: fixed;
       top: 35px;
       right: 25px;
-      /* move to top-right */
+
       font-size: 28px;
       background: none;
       border: none;
@@ -93,7 +87,7 @@
 
     .hamburger img {
       width: 30px;
-      /* adjust size as needed */
+
       height: 30px;
       filter: drop-shadow(4px 4px var(--gray-shadow));
       transition: transform 0.2s;
@@ -103,18 +97,13 @@
       transform: scale(0.95);
     }
 
-    /* Close button (keeps original class styles, just positioning) */
-
-    /* Always show the sidebar logo, ignore base media queries */
-    /* Always show logo */
     .Sidebar_logoDesktop__NeFcd {
       display: block !important;
       margin: 0 auto 0 !important;
-      /* default */
+
       width: 80% !important;
     }
 
-    /* Mobile adjustments */
     @media (max-width: 849px) {
       .Sidebar_logoDesktop__NeFcd {
         margin-top: 20px !important;
@@ -127,11 +116,8 @@
   </style>
 </head>
 
-<!-- keep the exact body classes from your working file so Titan + font variables load -->
-
 <body class="__variable_b724e5 __variable_f9d1f4">
 
-  <!-- Sidebar -->
   <nav id="sidebar" class="Sidebar_sidebar__J7H_G">
     <img alt="Blooket" loading="lazy" width="168" decoding="async" data-nimg="1" class="Sidebar_logoDesktop__NeFcd"
       src="./assets/misc_images/logo.png">
@@ -166,17 +152,15 @@
     </ul>
   </nav>
 
-  <!-- Overlay -->
   <div id="overlay"></div>
 
-  <!-- Hamburger -->
   <button id="hamburgerBtn" class="hamburger">
     <img src="./assets/misc_images/borgor.svg" alt="Menu">
   </button>
 
   <main class="layout_main__mXTwS">
     <div class="page_wrapper___woS4" data-sentry-component="Blooks">
-      <!-- keep the original background wrapper unchanged -->
+
       <div class="_background_l90pt_1" style="background:linear-gradient(#0bc2cf,#349aef)">
         <div class="_checkers_l90pt_12" style="background-size:1000px"></div>
       </div>
@@ -190,7 +174,7 @@
               <label class="BlooksHeader_button__I4Kms">
                 <input id="toggle-free" type="checkbox" name="free">
                 <span class="BlooksHeader_checkmark__Zztu9">
-                  <!-- checkmark SVG (exact) -->
+
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check"
                     class="svg-inline--fa fa-check fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512">
@@ -205,7 +189,7 @@
               <label class="BlooksHeader_button__I4Kms">
                 <input id="toggle-packs" type="checkbox" name="packs" checked>
                 <span class="BlooksHeader_checkmark__Zztu9">
-                  <!-- checkmark SVG (exact) -->
+
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check"
                     class="svg-inline--fa fa-check fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512">
@@ -227,10 +211,6 @@
     </div>
   </main>
 
-  <!-- modal TEMPLATE (hidden) — structure matches your Horse popup exactly:
-     left column = _blookContainer_inzvw_1 (blook), below it modal-bg img,
-     right column = modal info (name, pack, rarity with small icon, description).
--->
   <div id="blook-modal-template">
     <div class="_modal_fhi6r_13 BlookModal_blookModal__kZ5LX">
       <button type="button" class="_closeIcon_fhi6r_70" aria-label="Close">
@@ -262,9 +242,10 @@
 
   <script src="./assets/js/freepackdata.js"></script>
   <script src="./assets/js/packdata.js"></script>
+  <script src="./assets/js/seasonalpackdata.js"></script>
 
   <script>
-    /* tiny helpers */
+
     function esc(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function normRarity(r) { return r ? String(r).trim().replace(/\s+/g, '') : 'Common'; }
 
@@ -276,9 +257,11 @@
 
       const freeArr = (typeof freePackData !== 'undefined' && Array.isArray(freePackData)) ? freePackData : [];
       const packArr = (typeof packData !== 'undefined' && Array.isArray(packData)) ? packData : [];
+      const seasonalArr = (typeof seasonalPackData !== 'undefined' && Array.isArray(seasonalPackData)) ? seasonalPackData : [];
       const allPacks = [
         ...freeArr.map(p => (Object.assign({}, p, { _isFree: true }))),
-        ...packArr.map(p => (Object.assign({}, p, { _isFree: false })))
+        ...packArr.map(p => (Object.assign({}, p, { _isFree: false }))),
+        ...seasonalArr.map(p => (Object.assign({}, p, { _isFree: false })))
       ];
 
       function createTile(name, img, rarity, pIdx, bIdx) {
@@ -288,7 +271,6 @@
         root.dataset.pack = String(pIdx);
         root.dataset.index = String(bIdx);
 
-        // load counts from localStorage
         const stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
         const count = stored[name] || 0;
 
@@ -311,7 +293,7 @@
         root.appendChild(btn);
 
         if (count > 0) {
-          // unlocked
+
           const badge = document.createElement('div');
           badge.className = 'BlookModal_quantity__BiP_5';
           badge.style.backgroundColor = `var(--${rn})`;
@@ -319,7 +301,7 @@
           root.appendChild(badge);
           root.dataset.locked = "false";
         } else {
-          // locked
+
           root.dataset.locked = "true";
           imgEl.style.filter = "brightness(0)";
 
@@ -336,9 +318,37 @@
           root.appendChild(lock);
         }
 
-
         return root;
       }
+
+      function expandColorPack(pack) {
+        if (pack.colorBlook && pack.colorBlook.length > 0) {
+          const baseNames = Array.isArray(pack.blook) ? [...pack.blook] : [];
+          const baseSvgs = Array.isArray(pack.svg) ? [...pack.svg] : [];
+          const baseRarities = Array.isArray(pack.rarity) ? [...pack.rarity] : [];
+          const baseChances = Array.isArray(pack.chance) ? [...pack.chance] : [];
+
+          baseNames.pop();
+          baseSvgs.pop();
+          baseRarities.pop();
+          baseChances.pop();
+
+          pack.colorBlook.forEach((b, i) => {
+            baseNames.push(b);
+            baseSvgs.push(pack.colorSvg ? pack.colorSvg[i] : '');
+            baseRarities.push(pack.colorRarity ? pack.colorRarity[i] : 'Chroma');
+            baseChances.push(pack.colorChance ? pack.colorChance[i] : 0);
+          });
+
+          pack.blook = baseNames;
+          pack.svg = baseSvgs;
+          pack.rarity = baseRarities;
+          pack.chance = baseChances;
+        }
+        return pack;
+      }
+
+      allPacks.forEach((p, i) => { allPacks[i] = expandColorPack(p); });
 
       function render() {
         packsScroll.innerHTML = '';
@@ -364,7 +374,6 @@
           return;
         }
 
-        // grouped
         allPacks.forEach((pack, pIdx) => {
           if (pack._isFree && !showFree) return;
           const names = Array.isArray(pack.blook) ? pack.blook : (Array.isArray(pack.blooks) ? pack.blooks : []);
@@ -373,7 +382,7 @@
           const rarities = Array.isArray(pack.rarity) ? pack.rarity : [];
           const packDiv = document.createElement('div');
           packDiv.className = 'BlooksPacks_pack___MJtt';
-          // tileBackground may be a gradient or a url
+
           let bg = pack.tileBackground || pack.bg || '';
           if (bg && !String(bg).trim().startsWith('linear-gradient')) bg = `url('${esc(bg)}')`;
           packDiv.innerHTML = `
@@ -394,7 +403,6 @@
         });
       }
 
-      /* Open modal inline below the pack's blooks container and copy that container's background */
       function openModal(packIdx, bIdx, clickedTile) {
         closeModal();
 
@@ -411,11 +419,9 @@
         if (typeof entry === 'string') { name = entry; imgSrc = svgs[bIdx] || ''; rarity = rarities[bIdx] || pack.rarity || 'Common'; desc = descs[bIdx] || ''; }
         else { name = entry.name || entry.title || ''; imgSrc = entry.svg || entry.image || svgs[bIdx] || ''; rarity = entry.rarity || rarities[bIdx] || pack.rarity || 'Common'; desc = entry.description || entry.desc || descs[bIdx] || ''; }
 
-        // find the pack's blooks container (this is the purple box the tiles sit in)
         const packDiv = clickedTile.closest('.BlooksPacks_pack___MJtt');
         const blooksContainer = packDiv ? packDiv.querySelector('.BlooksPacks_blooks__ocBoL') : clickedTile.closest('.BlooksPacks_blooks__ocBoL');
 
-        // clone modal template and populate
         const clone = modalTemplate.cloneNode(true);
         const modalImg = clone.querySelector('#modal-img');
         const modalBg = clone.querySelector('#modal-bg');
@@ -424,8 +430,6 @@
 
         if (modalImg) { modalImg.src = imgSrc || ''; modalImg.alt = name || ''; }
 
-        // if tileBackground is an image url, use it for modal-bg <img> (sits under the blook)
-        // else if pack has gradient (linear-gradient...), apply that directly to the modalBlook container
         const bgVal = pack.blookBackground || pack.tileBackground || pack.bg || '';
         if (bgVal && String(bgVal).trim().startsWith('linear-gradient')) {
           if (modalBlook) modalBlook.style.backgroundImage = bgVal;
@@ -465,18 +469,15 @@
       `;
         }
 
-        // wire close button
         const closeBtn = clone.querySelector('._closeIcon_fhi6r_70');
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-        // **copy computed background & width from the blooks container so the modal visually matches**
         if (clickedTile) {
-          clickedTile.appendChild(clone);  // nest inside the tile
+          clickedTile.appendChild(clone);  
         } else if (blooksContainer) {
           blooksContainer.appendChild(clone);
         }
 
-        // register outside-click close after a tick so the click that opened the modal doesn't immediately close it
         setTimeout(() => document.addEventListener('click', outsideClickClose), 0);
       }
 
@@ -493,7 +494,6 @@
         }
       }
 
-      // tile click delegation
       packsScroll.addEventListener('click', function (ev) {
         const tile = ev.target.closest('.BlookModal_blook__h0dTV');
         if (!tile) return;
@@ -507,20 +507,16 @@
         openModal(tile.dataset.pack, tile.dataset.index, tile);
       });
 
-
-      // toggles
       if (chkFree) chkFree.addEventListener('change', render);
       if (chkPacks) chkPacks.addEventListener('change', render);
 
-      // Esc closes
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-      // initial paint
       render();
 
       chkFree.addEventListener('change', () => {
         render();
-        packsScroll.scrollTop = 0;  // reset scroll to top
+        packsScroll.scrollTop = 0;  
       });
     });    
   </script>
