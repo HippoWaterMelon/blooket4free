@@ -2,11 +2,11 @@ const seasonalPackData = [{
     name: "Spooky Pack (2021)",
     id: "spooky2021",
     bg: "radial-gradient(#525252, #1A1A1A)",
-    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Werewolf", "Ghost", "Pumpkin Cookie", "Ghost Cookie"],
+    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Werewolf", "Ghost", "Haunted Pumpkin"],
     chance: [18.5, 18.5, 18.5, 18.5, 10.125, 10.125, 5, 0.7, 0.05],
-    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg", "https://ac.blooket.com/marketassets/blooks/swampmonster.svg", "https://ac.blooket.com/marketassets/blooks/frankenstein.svg", "https://ac.blooket.com/marketassets/blooks/vampire.svg", "https://ac.blooket.com/marketassets/blooks/zombie.svg", "https://ac.blooket.com/marketassets/blooks/mummy.svg", "https://ac.blooket.com/marketassets/blooks/caramelapple.svg", "https://ac.blooket.com/marketassets/blooks/werewolf.svg", "https://ac.blooket.com/marketassets/blooks/ghost.svg", "https://ac.blooket.com/marketassets/blooks/pumpkincookie.svg", "https://ac.blooket.com/marketassets/blooks/ghostcookie.svg"],
+    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg", "https://ac.blooket.com/marketassets/blooks/swampmonster.svg", "https://ac.blooket.com/marketassets/blooks/frankenstein.svg", "https://ac.blooket.com/marketassets/blooks/vampire.svg", "https://ac.blooket.com/marketassets/blooks/zombie.svg", "https://ac.blooket.com/marketassets/blooks/mummy.svg", "https://ac.blooket.com/marketassets/blooks/werewolf.svg", "https://ac.blooket.com/marketassets/blooks/ghost.svg", "https://ac.blooket.com/marketassets/blooks/hauntedpumpkin.svg"],
     png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1663063471/Media/market/spooky_pack.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
+    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
 
     colorBlook: [],
     colorSvg: [],
@@ -19,6 +19,8 @@ const seasonalPackData = [{
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/spooky.svg",
+
+    year: "2021"
 },{
     name: "Spooky Pack (2022)",
     id: "spooky2022",
@@ -40,6 +42,8 @@ const seasonalPackData = [{
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/spooky.svg",
+
+    year: "2022"
 }, {
     name: "Spooky Pack (2023)",
     id: "spooky2023",
@@ -61,13 +65,15 @@ const seasonalPackData = [{
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/spooky.svg",
+
+    year: "2023"
 }, {
     name: "Spooky Pack (2024)",
     id: "spooky2024",
     bg: "radial-gradient(#525252, #1A1A1A)",
-    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Werewolf", "Ghost", "Pumpkin Cookie", "Ghost Cookie"],
-    chance: [18.5, 18.5, 18.5, 18.5, 6.7, 6.7, 6.7, 5.2, 0.65, 0.03, 0.02],
-    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg", "https://ac.blooket.com/marketassets/blooks/swampmonster.svg", "https://ac.blooket.com/marketassets/blooks/frankenstein.svg", "https://ac.blooket.com/marketassets/blooks/vampire.svg", "https://ac.blooket.com/marketassets/blooks/zombie.svg", "https://ac.blooket.com/marketassets/blooks/mummy.svg", "https://ac.blooket.com/marketassets/blooks/caramelapple.svg", "https://ac.blooket.com/marketassets/blooks/werewolf.svg", "https://ac.blooket.com/marketassets/blooks/ghost.svg", "https://ac.blooket.com/marketassets/blooks/pumpkincookie.svg", "https://ac.blooket.com/marketassets/blooks/ghostcookie.svg"],
+    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Candy Corn", "Crow", "Werewolf", "Ghost", "Pumpkin Cookie", "Ghost Cookie"],
+    chance: [19, 19, 19, 19, 4, 4, 4, 4, 4, 3.29, 0.65, 0.02, 0.02, 0.02],
+    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg","https://ac.blooket.com/marketassets/blooks/swampmonster.svg","https://ac.blooket.com/marketassets/blooks/frankenstein.svg","https://ac.blooket.com/marketassets/blooks/vampire.svg","https://ac.blooket.com/marketassets/blooks/zombie.svg","https://ac.blooket.com/marketassets/blooks/mummy.svg","https://ac.blooket.com/marketassets/blooks/caramelapple2.svg","https://ac.blooket.com/marketassets/blooks/candycorn.svg","https://ac.blooket.com/marketassets/blooks/crow.svg","https://ac.blooket.com/marketassets/blooks/werewolf.svg","https://ac.blooket.com/marketassets/blooks/ghost.svg","https://ac.blooket.com/marketassets/blooks/redgummybear.svg","https://ac.blooket.com/marketassets/blooks/bluegummybear.svg","https://ac.blooket.com/marketassets/blooks/greengummybear.svg"],
     png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1663063471/Media/market/spooky_pack.png",
     rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
 
@@ -82,27 +88,8 @@ const seasonalPackData = [{
     comingSoon: false,
 
     tileBackground: "./assets/blooktiles/spooky.svg",
-}, {
-    name: "Spooky Pack",
-    id: "spooky",
-    bg: "radial-gradient(#525252, #1A1A1A)",
-    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Werewolf", "Ghost", "Pumpkin Cookie", "Ghost Cookie"],
-    chance: [18.5, 18.5, 18.5, 18.5, 6.7, 6.7, 6.7, 5.2, 0.65, 0.03, 0.02],
-    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg", "https://ac.blooket.com/marketassets/blooks/swampmonster.svg", "https://ac.blooket.com/marketassets/blooks/frankenstein.svg", "https://ac.blooket.com/marketassets/blooks/vampire.svg", "https://ac.blooket.com/marketassets/blooks/zombie.svg", "https://ac.blooket.com/marketassets/blooks/mummy.svg", "https://ac.blooket.com/marketassets/blooks/caramelapple.svg", "https://ac.blooket.com/marketassets/blooks/werewolf.svg", "https://ac.blooket.com/marketassets/blooks/ghost.svg", "https://ac.blooket.com/marketassets/blooks/pumpkincookie.svg", "https://ac.blooket.com/marketassets/blooks/ghostcookie.svg"],
-    png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1663063471/Media/market/spooky_pack.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
-
-    colorBlook: [],
-    colorSvg: [],
-    colorRarity: [],
-
-    packBottom: "https://ac.blooket.com/dashclassic/assets/SpookyPackBottom-Bb7nZ1oD.png",
-    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Spooky-T-OEBdM8.svg",
-    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Spooky-BE3Q44ax.svg",
-
-    comingSoon: false,
-
-    tileBackground: "./assets/blooktiles/spooky.svg",
+    
+    year: "2024"
 }, {
     name: "Autumn Pack",
     id: "autumn",
