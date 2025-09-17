@@ -33,9 +33,9 @@
         .scrollWrapper {
             width: 100%;
             height: calc(100vh - (2vh + 3vw - 60px));
-            /* or whatever fits */
+
             overflow: auto;
-            /* scroll area */
+
         }
 
         .packContainer {
@@ -44,7 +44,7 @@
             grid-template-rows: repeat(auto-fill, 210px);
             grid-gap: 25px;
             width: 100%;
-            /* height: calc(100vh - (2vh + 3vw + 10px)); */
+
             justify-content: center;
             overflow: visible;
             padding-bottom: 10px;
@@ -166,7 +166,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            /* darkens the pack */
+
             z-index: 1;
         }
 
@@ -177,27 +177,24 @@
             transform: translate(-50%, -50%);
             width: 40%;
             z-index: 2;
-            /* stays above overlay */
+
         }
 
-        /* Sidebar wrapper (position + animation only) */
         #sidebar {
             position: fixed;
             top: 0;
             left: -300px;
-            /* keep hidden */
+
             height: 100%;
             width: 300px;
             transition: left 0.3s ease;
             z-index: 1005;
         }
 
-        /* Active state slides it in */
         #sidebar.active {
             left: 0;
         }
 
-        /* Overlay (dark background behind sidebar) */
         #overlay {
             position: fixed;
             top: 0;
@@ -213,7 +210,6 @@
             display: block;
         }
 
-        /* Hamburger button */
         .hamburger {
             position: fixed;
             top: 35px;
@@ -227,7 +223,8 @@
         }
 
         .hamburger img {
-            width: 30px;   /* adjust size as needed */
+            width: 30px;
+
             height: 30px;
             filter: drop-shadow(4px 4px var(--gray-shadow));
             transition: transform 0.2s;
@@ -237,7 +234,6 @@
             transform: scale(0.95);
         }
 
-        /* Close button (keeps original class styles, just positioning) */
         #closeSidebar {
             position: absolute;
             top: 10px;
@@ -248,16 +244,13 @@
             cursor: pointer;
         }
 
-        /* Always show the sidebar logo, ignore base media queries */
-        /* Always show logo */
         .Sidebar_logoDesktop__NeFcd {
             display: block !important;
             margin: 0 auto 0 !important;
-            /* default */
+
             width: 80% !important;
         }
 
-        /* Mobile adjustments */
         @media (max-width: 849px) {
             .Sidebar_logoDesktop__NeFcd {
                 margin-top: 20px !important;
@@ -266,6 +259,23 @@
 
         #sidebar.Sidebar_sidebar__J7H_G {
             justify-content: flex-start !important;
+        }
+
+        .blookBgShadow {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+
+            box-shadow: inset 0 -9px #0003;
+
+            border-bottom-left-radius: calc(0.721vw * 1.15);
+            ;
+            border-bottom-right-radius: calc(0.721vw * 1.15);
+            ;
+            pointer-events: none;
+
         }
     </style>
 
@@ -290,7 +300,7 @@
 </head>
 
 <body>
-    <!-- Sidebar -->
+
     <nav id="sidebar" class="Sidebar_sidebar__J7H_G">
         <img alt="Blooket" loading="lazy" width="168" decoding="async" data-nimg="1" class="Sidebar_logoDesktop__NeFcd"
             src="./assets/misc_images/logo.png">
@@ -325,10 +335,8 @@
         </ul>
     </nav>
 
-    <!-- Overlay -->
     <div id="overlay"></div>
 
-    <!-- Hamburger -->
     <button id="hamburgerBtn" class="hamburger">
         <img src="./assets/misc_images/borgor.svg" alt="Menu">
     </button>
@@ -345,7 +353,6 @@
     </div>
     </div>
 
-    <!-- Unlock Screen -->
     <div id="unlockScreen" style="display:none;">
         <div id="background" class="styles__openBackground___-U4oX-camelCase">
             <img id="cornerIcon" alt="Icon" class="styles__cornerIcon___24o3Z-camelCase" draggable="false">
@@ -353,6 +360,7 @@
             <div id="phaser-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;"></div>
             <div class="styles__openContainer___3paFG-camelCase">
                 <img id="blookBg" loading="lazy" class="styles__blookBackground___3rt4N-camelCase" draggable="false">
+                <div class="styles__bottomShadow___10ZLG-camelCase"></div>
                 <div class="styles__blookContainer___36LK2-camelCase styles__unlockedBlookImage___wC4gr-camelCase">
                     <img id="unlockImg" draggable="false" class="styles__blook___1R6So-camelCase" />
                 </div>
@@ -373,7 +381,6 @@
                 </div>
             </div>
 
-            <!-- Big button -->
             <div class="styles__openBigButton___3KmDM-camelCase styles__canOpen___2znG2-camelCase" role="button"
                 tabindex="0"></div>
         </div>
@@ -385,7 +392,7 @@
     <script>
         let currentResult = null;
         let currentPack = null;
-        let opened = false; // track if blook revealed
+        let opened = false;
 
         function rarityColor(rarity) {
             if (rarity == "Uncommon") return "#2ecc40";
@@ -422,7 +429,16 @@
             document.getElementById("unlockRarity").innerText = result.rarity;
             document.getElementById("unlockRarity").style.color = rarityColor(result.rarity);
             document.getElementById("unlockImg").src = result.svg;
-            document.getElementById("unlockChance").innerText = result.chance + "% - NEW!";
+
+            let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+            let count = stored[result.name] || 0;
+
+            if (count === 0) {
+                document.getElementById("unlockChance").innerText = result.chance + "% - NEW!";
+            } else {
+                document.getElementById("unlockChance").innerText = result.chance + "%";
+            }
+
             document.getElementById("background").style.background = pack.bg;
             document.getElementById("blookBg").src = pack.blookBackground;
             document.getElementById("cornerIcon").src = pack.cornerIcon;
@@ -431,16 +447,13 @@
             const unlockNameElement = document.getElementById("unlockName");
             const unlockContainer = document.querySelector(".styles__unlockedBlook___2pr1Z-camelCase");
 
-            // Add this after setting unlockNameElement.innerText = result.name;
             setTimeout(() => {
                 resizeTextToFit(unlockNameElement, unlockContainer);
             }, 10);
 
-            // reset container classes
             const openContainer = document.querySelector(".styles__openContainer___3paFG-camelCase");
             if (openContainer) openContainer.className = "styles__openContainer___3paFG-camelCase";
 
-            // reset pack animation classes
             const packDiv = document.querySelector(".styles__openPack___3QxCP-camelCase");
             if (packDiv) {
                 packDiv.style.display = "block";
@@ -448,20 +461,20 @@
             }
 
             document.getElementById("unlockScreen").style.display = "block";
+            document.getElementById("hamburgerBtn").style.display = "none";
         }
 
         function closeUnlock() {
             document.getElementById("unlockScreen").style.display = "none";
             document.getElementById("packContainer").style.display = "grid";
+            document.getElementById("hamburgerBtn").style.display = "block";
             currentResult = null;
             currentPack = null;
             opened = false;
 
-            // Add this line near the top of closeUnlock()
             const unlockNameElement = document.getElementById("unlockName");
             unlockNameElement.style.fontSize = "2vw";
 
-            // reset pack top animation
             const pack = document.querySelector(".styles__openPack___3QxCP-camelCase");
             if (pack) {
                 pack.style.display = "block";
@@ -470,31 +483,26 @@
                 );
             }
 
-            // reset pack bottom wiggle
             const packBottom = document.querySelector(".styles__packImage___1jX3J-camelCase");
             if (packBottom) {
                 packBottom.classList.remove("styles__wigglingPackBottom___4F3d2-camelCase");
             }
 
-            // reset pack container
             const packContainer = document.querySelector(".styles__openPackContainer___2m4Yf-camelCase");
             if (packContainer) {
                 packContainer.classList.remove("styles__openingPackContainer___1ZQzY-camelCase");
             }
 
-            // reset open container
             const openContainer = document.querySelector(".styles__openContainer___3paFG-camelCase");
             if (openContainer) {
                 openContainer.className = "styles__openContainer___3paFG-camelCase";
             }
 
-            // reset background
             const background = document.getElementById("background");
             if (background) {
                 background.classList.remove("styles__openBackgroundActive___3WzzZ-camelCase");
             }
 
-            // clear particles
             document.getElementById("phaser-canvas").innerHTML = "";
         }
 
@@ -511,7 +519,7 @@
             packBottom.classList.add("styles__wigglingPackBottom___4F3d2-camelCase");
 
             pack.addEventListener("animationend", () => {
-                // packBottom.classList.remove("styles__wigglingPackBottom___4F3d2-camelCase");
+
                 pack.style.display = "none";
                 packContainer.classList.add("styles__openingPackContainer___1ZQzY-camelCase");
                 openContainer.className = "styles__openContainer___3paFG-camelCase";
@@ -536,7 +544,6 @@
             }, { once: true });
         }
 
-        // click anywhere to close once opened
         document.getElementById("background").addEventListener("click", (e) => {
             if (opened) {
                 closeUnlock();
@@ -554,7 +561,7 @@
         });
 
         $(document).ready(function () {
-            // Combine both arrays
+
             const allPacks = packData.concat(freePackData);
 
             for (let i = 0; i < allPacks.length; i++) {
@@ -580,7 +587,6 @@
                 pngMain.classList.add('pngMain');
                 pngContainer.appendChild(pngMain);
 
-                // Tooltip
                 const tooltip = document.createElement("div");
                 tooltip.classList.add("tooltip");
 
@@ -626,8 +632,6 @@
             }
         });
 
-
-        // Bind big open button
         const openButton = document.querySelector(".styles__openBigButton___3KmDM-camelCase");
         if (openButton) {
             openButton.addEventListener("click", () => {
@@ -639,20 +643,17 @@
 
         function resizeTextToFit(textElement, containerElement) {
             const container = containerElement || textElement.parentElement;
-            const maxWidth = container.offsetWidth * 0.95; // Leave 5% padding
-            const maxHeight = container.offsetHeight * 0.9; // Leave 10% padding for vertical space
+            const maxWidth = container.offsetWidth * 0.95;
+            const maxHeight = container.offsetHeight * 0.9;
 
-            // Start with the initial font size (2vw converted to pixels)
-            let fontSize = window.innerWidth * 0.02; // 2vw in pixels
+            let fontSize = window.innerWidth * 0.02;
             textElement.style.fontSize = fontSize + 'px';
 
-            // Reduce font size until text fits within container
             while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSize > 8) {
                 fontSize -= 0.5;
                 textElement.style.fontSize = fontSize + 'px';
             }
 
-            // Ensure minimum readable size
             if (fontSize < 12) {
                 fontSize = 12;
                 textElement.style.fontSize = fontSize + 'px';
@@ -677,6 +678,52 @@
 
         hamburgerBtn.addEventListener('click', openSidebar);
         overlay.addEventListener('click', closeSidebarMenu);
+    </script>
+
+    <script>
+
+        function initBlooksStorage(allBlooks) {
+            let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+
+            allBlooks.forEach(blook => {
+                if (!(blook in stored)) {
+                    stored[blook] = 0;
+                }
+            });
+
+            localStorage.setItem("blooksCollection", JSON.stringify(stored));
+        }
+
+        function addBlookToStorage(blookName) {
+            let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+
+            if (!(blookName in stored)) {
+                stored[blookName] = 0;
+            }
+
+            stored[blookName] += 1;
+
+            localStorage.setItem("blooksCollection", JSON.stringify(stored));
+        }
+
+        function getAllBlooks() {
+            let all = [];
+            const packs = packData.concat(freePackData);
+            packs.forEach(pack => {
+                all = all.concat(pack.blook);
+            });
+            return [...new Set(all)];
+        }
+
+        initBlooksStorage(getAllBlooks());
+
+        const originalShowUnlock = showUnlock;
+        showUnlock = function (result, pack) {
+
+            originalShowUnlock(result, pack);
+
+            addBlookToStorage(result.name);
+        };
     </script>
 
     <script src="./assets/js/particles.js"></script>

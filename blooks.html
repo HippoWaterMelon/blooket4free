@@ -288,11 +288,9 @@
         root.dataset.pack = String(pIdx);
         root.dataset.index = String(bIdx);
 
-        // badge before button for correct overlap
-        const badge = document.createElement('div');
-        badge.className = 'BlookModal_quantity__BiP_5';
-        badge.style.backgroundColor = `var(--${rn})`;
-        badge.textContent = '0';
+        // load counts from localStorage
+        const stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+        const count = stored[name] || 0;
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -310,9 +308,35 @@
 
         inner.appendChild(imgEl);
         btn.appendChild(inner);
-
-        root.appendChild(badge);
         root.appendChild(btn);
+
+        if (count > 0) {
+          // unlocked
+          const badge = document.createElement('div');
+          badge.className = 'BlookModal_quantity__BiP_5';
+          badge.style.backgroundColor = `var(--${rn})`;
+          badge.textContent = count;
+          root.appendChild(badge);
+          root.dataset.locked = "false";
+        } else {
+          // locked
+          root.dataset.locked = "true";
+          imgEl.style.filter = "brightness(0)";
+
+          const lock = document.createElement("img");
+          lock.src = "./assets/misc_images/lock.svg";
+          lock.style.position = "absolute";
+          lock.style.top = "50%";
+          lock.style.left = "50%";
+          lock.style.transform = "translate(-50%, -50%)";
+          lock.style.width = "40%";
+          lock.style.zIndex = 2;
+
+          root.style.position = "relative";
+          root.appendChild(lock);
+        }
+
+
         return root;
       }
 
@@ -473,8 +497,16 @@
       packsScroll.addEventListener('click', function (ev) {
         const tile = ev.target.closest('.BlookModal_blook__h0dTV');
         if (!tile) return;
+
+        if (tile.dataset.locked === "true") {
+          ev.stopPropagation();
+          ev.preventDefault();
+          return;
+        }
+
         openModal(tile.dataset.pack, tile.dataset.index, tile);
       });
+
 
       // toggles
       if (chkFree) chkFree.addEventListener('change', render);

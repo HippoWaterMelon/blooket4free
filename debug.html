@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blooket4Free | Super Secret Debug</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    h1 { margin-bottom: 10px; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background: #349aef;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    button {
+      margin: 10px 0;
+      padding: 6px 12px;
+      background: #349aef;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #277ac9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blook Storage Debug</h1>
+  <button onclick="refreshTable()">Refresh</button>
+  <button onclick="localStorage.removeItem('blooksCollection'); refreshTable();">
+    Clear Storage
+  </button>
+  <table id="blookTable">
+    <thead>
+      <tr><th>Blook</th><th>Count</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function refreshTable() {
+      const tbody = document.querySelector("#blookTable tbody");
+      tbody.innerHTML = "";
+
+      const data = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+      const entries = Object.entries(data).sort((a,b) => a[0].localeCompare(b[0]));
+
+      if (entries.length === 0) {
+        const row = document.createElement("tr");
+        row.innerHTML = "<td colspan='2'>No data in storage</td>";
+        tbody.appendChild(row);
+        return;
+      }
+
+      for (const [blook, count] of entries) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${blook}</td><td>${count}</td>`;
+        tbody.appendChild(row);
+      }
+    }
+
+    refreshTable();
+  </script>
+</body>
+</html>

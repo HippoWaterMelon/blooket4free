@@ -1,4 +1,25 @@
 const packData = [{
+    name: "Lunch Pack",
+    id: "lunch",
+    bg: "radial-gradient(circle, rgb(195, 119, 212) 0%, rgb(119, 43, 136) 100%)",
+    blook: ["Bananas","Watermelon","Cheese","Doughnut","Taco","Bao","Sushi","Cheeseburger","Sandwich","Half a Sandwich"],
+    chance: [18.75,18.75,18.75,18.75,7,7,7,3.31,0.65,0.04],
+    svg: ["https://ac.blooket.com/marketassets/blooks/bananas.svg","https://ac.blooket.com/marketassets/blooks/watermelon.svg","https://ac.blooket.com/marketassets/blooks/cheese.svg","https://ac.blooket.com/marketassets/blooks/doughnut.svg","https://ac.blooket.com/marketassets/blooks/taco.svg","https://ac.blooket.com/marketassets/blooks/bao.svg","https://ac.blooket.com/marketassets/blooks/sushi.svg","https://ac.blooket.com/marketassets/blooks/cheeseburger.svg","https://ac.blooket.com/marketassets/blooks/sandwich.svg","https://ac.blooket.com/marketassets/blooks/halfasandwich.svg"],
+    png: "https://ac.blooket.com/dashclassic/assets/Lunch_Pack-DWYwdJdz.png",
+    rarity: ["Uncommon","Uncommon","Uncommon","Uncommon","Rare","Rare","Rare","Epic","Legendary","Chroma"],
+
+    colorBlook: [],
+    colorSvg: [],
+    colorRarity: [],
+
+    packBottom: "https://ac.blooket.com/dashclassic/assets/LunchPackBottom-DMHlxGQI.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Lunch-DUWKFHx8.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Lunch-BfOeSTeT.svg",
+
+    comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/bug.svg",
+},{
     name: "Bug Pack",
     id: "bug",
     bg: "radial-gradient(circle, rgba(146,181,125,1) 0%, rgba(65,96,57,1) 100%)",
