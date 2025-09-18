@@ -296,6 +296,15 @@
             bottom: 12px;
             left: 0;
         }
+
+        @media (max-width: 849px) {
+            body {
+                transform: scale(1.2);
+                /* zoom in */
+                transform-origin: top center;
+                /* keep it centered */
+            }
+        }
     </style>
 
     <link rel="stylesheet"
@@ -316,6 +325,7 @@
     <link rel="stylesheet"
         href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/51e88ac748998e08.css"
         data-precedence="next">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -586,7 +596,7 @@
             return arr.slice(shift).concat(arr.slice(0, shift));
         }
 
-        let debugOffset = 0; 
+        let debugOffset = 0;
 
         function getDaysSinceRef() {
             const refDate = new Date("2025-09-15T00:00:00Z");
@@ -788,7 +798,7 @@
                 let packBlooks = [...pack.blook];
 
                 if (pack.colorBlook && pack.colorBlook.length > 0) {
-                    packBlooks.pop(); 
+                    packBlooks.pop();
 
                     packBlooks = packBlooks.concat(pack.colorBlook);
                 }
