@@ -385,7 +385,7 @@
                     <img id="unlockImg" draggable="false" class="styles__blook___1R6So-camelCase" />
                 </div>
                 <div class="styles__unlockedText___1diat-camelCase">
-                    <div class="styles__unlockedBlook___2pr1Z-camelCase" style="font-size:2vw;">
+                    <div class="styles__unlockedBlook___2pr1Z-camelCase">
                         <div id="unlockName" style="font-family: Titan One;"></div>
                     </div>
                     <div id="unlockRarity" class="styles__rarityText___1PfSA-camelCase"></div>
@@ -715,24 +715,38 @@
             });
         }
 
-        function resizeTextToFit(textElement, containerElement) {
-            const container = containerElement || textElement.parentElement;
+        function resizeTextToFit(textElement) {
+            // Start with a size relative to viewport width
+            let fontSizeVW = 2; // try 5vw as a starting point
+            textElement.style.fontSize = fontSizeVW + 'vw';
+
+            // Get container dimensions
+            const container = textElement.parentElement;
             const maxWidth = container.offsetWidth * 0.95;
             const maxHeight = container.offsetHeight * 0.9;
 
-            let fontSize = window.innerWidth * 0.02;
-            textElement.style.fontSize = fontSize + 'px';
+            // Convert the current font size to pixels for comparison
+            let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
-            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSize > 8) {
-                fontSize -= 0.5;
-                textElement.style.fontSize = fontSize + 'px';
+            // Shrink down until it fits
+            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 2) {
+                fontSizeVW -= 0.25; // shrink in small vw steps
+                textElement.style.fontSize = fontSizeVW + 'vw';
+                computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
 
-            if (fontSize < 12) {
-                fontSize = 12;
-                textElement.style.fontSize = fontSize + 'px';
+            // Enforce minimum of 2vw
+            if (fontSizeVW < 2) {
+                fontSizeVW = 2;
+                textElement.style.fontSize = fontSizeVW + 'vw';
+            }
+
+            if (window.innerWidth <= 849) {
+                fontSizeVW = fontSizeVW* 2.525; 
+                textElement.style.fontSize = fontSizeVW + 'vw';
             }
         }
+
     </script>
 
     <script>
