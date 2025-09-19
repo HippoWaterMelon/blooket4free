@@ -741,8 +741,8 @@
             alert(fontSizeVW);
 
             // Enforce minimum of 2vw
-            if (fontSizeVW < 2) {
-                fontSizeVW = 2;
+            if (fontSizeVW < 0) {
+                fontSizeVW = 0.1;
                 textElement.style.fontSize = fontSizeVW + 'vw';
             }
 
