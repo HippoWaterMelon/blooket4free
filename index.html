@@ -728,10 +728,7 @@
             // Convert the current font size to pixels for comparison
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
-            alert(textElement.scrollWidth)
-            alert(maxWidth)
-            alert(textElement.scrollHeight)
-            alert(maxHeight)
+            alert(textElement.style.fontSize)
 
             // Shrink down until it fits
             while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 0) {
@@ -739,6 +736,8 @@
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
+
+            alert(textElement.style.fontSize)
 
             // Enforce minimum of 2vw
             if (fontSizeVW < 2) {
