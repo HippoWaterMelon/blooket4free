@@ -11460,7 +11460,7 @@
     }
 }
 
-@media (max-width: 849px) {
+@media (max-width: 625px) {
     .styles__openContainer___3paFG-camelCase {
         width: calc(15.625vw * 4.5);
     }
@@ -19491,7 +19491,7 @@
     }
 }
 
-@media (max-width: 849px) {
+@media (max-width: 625px) {
     .styles__packImage___1jX3J-camelCase {
         min-width: calc(12.205vw * 4.5);
         height: calc(11.719vw * 4.5);

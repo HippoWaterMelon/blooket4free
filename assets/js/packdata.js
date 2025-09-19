@@ -18,7 +18,7 @@ const packData = [{
 
     comingSoon: false,
 
-    tileBackground: "./assets/blooktiles/bug.svg",
+    tileBackground: "./assets/blooktiles/lunch.svg",
 },{
     name: "Bug Pack",
     id: "bug",

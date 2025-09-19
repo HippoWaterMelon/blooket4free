@@ -26,7 +26,6 @@
     data-precedence="next">
 
   <style>
-
     .TokenCounter_tokenContainer__wE6XL {
       display: none !important;
     }
@@ -112,6 +111,26 @@
 
     #sidebar.Sidebar_sidebar__J7H_G {
       justify-content: flex-start !important;
+    }
+
+    #modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 9999;
+      /* behind the modal, above everything else */
+    }
+
+    #modal-overlay.active {
+      display: block;
+    }
+
+    .BlookModal_blookModal__kZ5LX {
+      z-index: 10000;
     }
   </style>
 </head>
@@ -240,9 +259,11 @@
     </div>
   </div>
 
+  <div id="modal-overlay"></div>
+
   <script src="./assets/js/freepackdata.js"></script>
   <script src="./assets/js/packdata.js"></script>
-  <script src="./assets/js/seasonalpackdata.js"></script>
+  <script src="./assets/js/seasonalpackdata-market.js"></script>
 
   <script>
 
@@ -258,6 +279,16 @@
       const freeArr = (typeof freePackData !== 'undefined' && Array.isArray(freePackData)) ? freePackData : [];
       const packArr = (typeof packData !== 'undefined' && Array.isArray(packData)) ? packData : [];
       const seasonalArr = (typeof seasonalPackData !== 'undefined' && Array.isArray(seasonalPackData)) ? seasonalPackData : [];
+
+      const order = ["medieval", "wonderland", "breakfast", "space", "bot", "aquatic", "safari", "dino", "iceMonsters", "outback", "pirate", "bug", "lunch"];
+
+      packArr.sort((a, b) => {
+        const aIndex = order.indexOf(a.id);
+        const bIndex = order.indexOf(b.id);
+
+        return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+      });
+
       const allPacks = [
         ...freeArr.map(p => (Object.assign({}, p, { _isFree: true }))),
         ...packArr.map(p => (Object.assign({}, p, { _isFree: false }))),
@@ -406,6 +437,10 @@
       function openModal(packIdx, bIdx, clickedTile) {
         closeModal();
 
+        const modalOverlay = document.getElementById('modal-overlay');
+        if (modalOverlay) modalOverlay.classList.add('active');
+
+
         const pack = allPacks[Number(packIdx)];
         if (!pack) return;
         const names = Array.isArray(pack.blook) ? pack.blook : (Array.isArray(pack.blooks) ? pack.blooks : []);
@@ -473,7 +508,7 @@
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
         if (clickedTile) {
-          clickedTile.appendChild(clone);  
+          clickedTile.appendChild(clone);
         } else if (blooksContainer) {
           blooksContainer.appendChild(clone);
         }
@@ -484,6 +519,10 @@
       function closeModal() {
         const m = document.querySelector('._modal_fhi6r_13.BlookModal_blookModal__kZ5LX');
         if (m) m.remove();
+
+        const modalOverlay = document.getElementById('modal-overlay');
+        if (modalOverlay) modalOverlay.classList.remove('active');
+
         document.removeEventListener('click', outsideClickClose);
       }
 
@@ -516,7 +555,7 @@
 
       chkFree.addEventListener('change', () => {
         render();
-        packsScroll.scrollTop = 0;  
+        packsScroll.scrollTop = 0;
       });
     });    
   </script>
