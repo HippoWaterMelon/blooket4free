@@ -728,6 +728,11 @@
             // Convert the current font size to pixels for comparison
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
+            alert(textElement.scrollWidth)
+            alert(maxWidth)
+            alert(textElement.scrollHeight)
+            alert(maxHeight)
+
             // Shrink down until it fits
             while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 0) {
                 fontSizeVW -= 0.25; // shrink in small vw steps
