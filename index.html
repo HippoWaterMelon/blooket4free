@@ -729,7 +729,7 @@
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
             // Shrink down until it fits
-            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 0.1) {
+            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 0) {
                 fontSizeVW -= 0.25; // shrink in small vw steps
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
