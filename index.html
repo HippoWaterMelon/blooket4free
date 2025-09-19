@@ -722,14 +722,14 @@
 
             // Get container dimensions
             const container = textElement.parentElement;
-            const maxWidth = container.offsetWidth * 0.8;
+            const maxWidth = container.offsetWidth * 0.95;
             const maxHeight = container.offsetHeight * 0.9;
 
             // Convert the current font size to pixels for comparison
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
             // Shrink down until it fits
-            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 2) {
+            while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 0.1) {
                 fontSizeVW -= 0.25; // shrink in small vw steps
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
