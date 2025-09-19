@@ -730,7 +730,7 @@
 
             // Shrink down until it fits
             while ((textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) && fontSizeVW > 2) {
-                fontSizeVW -= 0.25; // shrink in small vw steps
+                fontSizeVW -= 0.5; // shrink in small vw steps
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
