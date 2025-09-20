@@ -299,6 +299,8 @@
   <script src="./assets/js/packdata.js"></script>
   <script src="./assets/js/seasonalpackdata-market.js"></script>
 
+  <script src="./assets/js/indexed-db.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       if (window.matchMedia("(max-width: 625px)").matches) {
@@ -309,15 +311,20 @@
     function esc(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function normRarity(r) { return r ? String(r).trim().replace(/\s+/g, '') : 'Common'; }
 
-    function loadCustomPacks() {
-      return JSON.parse(localStorage.getItem("customPacks") || "[]");
+    async function loadCustomPacks() {
+      try {
+        return await packDB.loadCustomPacks();
+      } catch (error) {
+        console.error('Error loading custom packs:', error);
+        return [];
+      }
     }
 
     function cleanDisplayName(name) {
       return name.replace(/_custom$/, "");
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', async function () {
       const packsScroll = document.getElementById('packs-scroll');
       const chkFree = document.getElementById('toggle-free');
       const chkPacks = document.getElementById('toggle-packs');
@@ -327,7 +334,7 @@
       const packArr = (typeof packData !== 'undefined' && Array.isArray(packData)) ? packData : [];
       const seasonalArr = (typeof seasonalPackData !== 'undefined' && Array.isArray(seasonalPackData)) ? seasonalPackData : [];
 
-      const customArr = loadCustomPacks();
+      const customArr = await loadCustomPacks();
 
       const order = ["medieval", "wonderland", "breakfast", "space", "bot", "aquatic", "safari", "dino", "iceMonsters", "outback", "pirate", "bug", "lunch"];
 

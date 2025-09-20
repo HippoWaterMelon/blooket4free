@@ -487,6 +487,8 @@
     <script src="./assets/js/seasonalpackdata.js"></script>
     <script src="./assets/js/freepackdata.js"></script>
 
+    <script src="./assets/js/indexed-db.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (window.matchMedia("(max-width: 625px)").matches) {
@@ -965,29 +967,39 @@
             return stored;
         }
 
-        function loadCustomPacks() {
-            return JSON.parse(localStorage.getItem("customPacks") || "[]");
+        async function loadCustomPacks() {
+            try {
+                return await packDB.loadCustomPacks();
+            } catch (error) {
+                console.error('Error loading custom packs:', error);
+                return [];
+            }
         }
 
-        function saveCustomPacks(packs) {
-            localStorage.setItem("customPacks", JSON.stringify(packs));
+        async function saveCustomPacks(packs) {
+            try {
+                await packDB.saveCustomPacks(packs);
+            } catch (error) {
+                console.error('Error saving custom packs:', error);
+            }
         }
 
-        function getAllPacks() {
+        async function getAllPacks() {
             let allPacks = packData.concat(seasonalPackData).concat(freePackData);
-            return allPacks.concat(loadCustomPacks());
+            const customPacks = await loadCustomPacks();
+            return allPacks.concat(customPacks);
         }
 
         document.getElementById("uploadBtn").addEventListener("click", () => {
             document.getElementById("bpkUpload").click();
         });
 
-        document.getElementById("bpkUpload").addEventListener("change", (event) => {
+        document.getElementById("bpkUpload").addEventListener("change", async (event) => {
             const file = event.target.files[0];
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = async function (e) {
                 try {
                     let text = e.target.result;
 
@@ -1006,20 +1018,10 @@
 
                     let stored = ensureAllBlooksInStorage();
 
-                    newPack.blook = newPack.blook.map(name => {
-                        if (stored[name] !== undefined) {
-                            return name + "_custom";
-                        }
-                        return name;
-                    });
+                    newPack.blook = newPack.blook.map(name => name + "_custom");
 
                     if (Array.isArray(newPack.colorBlook)) {
-                        newPack.colorBlook = newPack.colorBlook.map(name => {
-                            if (stored[name] !== undefined) {
-                                return name + "_custom";
-                            }
-                            return name;
-                        });
+                        newPack.colorBlook = newPack.colorBlook.map(name => name + "_custom");
                     }
 
                     newPack.blook.forEach(b => {
@@ -1034,13 +1036,13 @@
 
                     localStorage.setItem("blooksCollection", JSON.stringify(stored));
 
-                    let packs = loadCustomPacks();
-                    packs.push(newPack);
-                    saveCustomPacks(packs);
+                    await packDB.addCustomPack(newPack);
 
                     document.getElementById("packContainer").innerHTML = "";
+                    await renderPacksAsync();
 
-                    renderPacks();
+                    event.target.value = '';
+
                 } catch (err) {
                     alert("Invalid .bpk file: " + err.message);
                 }
@@ -1048,9 +1050,8 @@
             reader.readAsText(file);
         });
 
-        const originalRenderPacks = renderPacks;
-        renderPacks = function () {
-            let allPacks = getAllPacks();
+        async function renderPacksAsync() {
+            let allPacks = await getAllPacks();
             allPacks = processPacks(allPacks);
 
             document.getElementById("packContainer").innerHTML = "";
@@ -1101,19 +1102,14 @@
                 <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
             </svg>`;
                     deleteBtn.title = 'Delete custom pack';
-                    deleteBtn.title = 'Delete custom pack';
 
-                    deleteBtn.addEventListener('click', (e) => {
+                    deleteBtn.addEventListener('click', async (e) => {
                         e.stopPropagation();
 
                         if (confirm('Delete this custom pack? This cannot be undone.')) {
-                            let customPacks = loadCustomPacks();
-                            customPacks.splice(customPackIndex, 1);
-                            saveCustomPacks(customPacks);
-
+                            await packDB.deleteCustomPack(customPackIndex);
                             document.getElementById("packContainer").innerHTML = "";
-
-                            renderPacks();
+                            await renderPacksAsync();
                         }
                     });
 
@@ -1163,10 +1159,19 @@
                     }
                 });
             }
-        };
+        }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            renderPacks();
+        function checkForDayChange() {
+            const currentDay = getDaysSinceRef();
+            if (currentDay !== lastCheckedDay) {
+                lastCheckedDay = currentDay;
+                document.getElementById("packContainer").innerHTML = "";
+                renderPacksAsync();
+            }
+        }
+
+        $(document).ready(async function () {
+            await renderPacksAsync();
         });
     </script>
 
