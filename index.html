@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blooket4Free | Market</title>
+    <link rel="icon" type="image/x-icon" href="./assets/misc_images/favicon.ico">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Titan+One&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -19,9 +20,6 @@
 
         .bodyContainer {
             display: flex;
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
             left: 0;
             top: 0;
         }
@@ -32,10 +30,8 @@
 
         .scrollWrapper {
             width: 100%;
-            height: calc(100vh - (2vh + 3vw - 60px));
-
             overflow: auto;
-
+            padding-bottom: 20px;
         }
 
         .packContainer {
@@ -44,7 +40,6 @@
             grid-template-rows: repeat(auto-fill, 210px);
             grid-gap: 25px;
             width: 100%;
-
             justify-content: center;
             overflow: visible;
             padding-bottom: 10px;
@@ -296,6 +291,70 @@
             bottom: 12px;
             left: 0;
         }
+
+        .delete-pack-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #0bc2cf;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            z-index: 10;
+            line-height: 1;
+        }
+
+        .delete-pack-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .packWrapper:hover .delete-pack-btn {
+            opacity: 1;
+        }
+
+        .custom-pack-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #0bc2cf;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: normal;
+            text-transform: uppercase;
+            font-family: 'Titan One', sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .uploadBtn {
+            background: var(--purple);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin: 5px 0;
+            box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 4px 4px var(--gray-shadow);
+            font-weight: normal;
+            font-family: 'Titan One', sans-serif;
+            height: 60px;
+            font-size: 20px;      
+            transition: transform 0.2s ease;
+        }
+
+        .uploadBtn:hover {
+            transform: scale(0.95);
+        }
     </style>
 
     <link rel="stylesheet"
@@ -352,6 +411,20 @@
                     <span class="Sidebar_text__TwkTk">Market</span>
                 </a>
             </li>
+
+            <li>
+                <a class="Sidebar_link__pbkfx" href="/maker.html">
+                    <span class="Sidebar_listIcon__rg5X6" style="scale: 1.2; margin-top: 8px;">
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512" class="svg-inline--fa fa-store fa-w-20">
+                            <path fill="currentColor"
+                                d="M328.41269,285.7436l-39.66604,39.66604c-6.74045,6.74045 -17.67231,6.74045 -24.41283,0l-37.62562,-37.62562c-7.2319,-7.2307 -17.23499,-10.72933 -27.4579,-9.61416c-10.19073,1.11982 -19.19375,6.71398 -24.69935,15.35103c-70.47063,110.55325 -80.77985,120.86374 -84.16789,124.25065c-24.27818,24.28044 -63.82566,24.32878 -88.15445,0c-24.30458,-24.30577 -24.30458,-63.851 0,-88.15445c3.38578,-3.38691 13.69155,-13.69387 124.25059,-84.16909c8.65779,-5.51943 14.26465,-14.52591 15.38214,-24.71198c1.11862,-10.19299 -2.39716,-20.19727 -9.64635,-27.4464l-37.62562,-37.62562c-3.23843,-3.23617 -5.05677,-7.62774 -5.05677,-12.20582c0,-4.57801 1.81946,-8.96851 5.05677,-12.20582l39.66491,-39.66491zM64.61681,355.38332c-9.52786,-9.52892 -24.97676,-9.52892 -34.50568,0c-9.52892,9.52786 -9.52892,24.97676 0,34.50568c9.52786,9.52892 24.97676,9.52892 34.50568,0c9.52892,-9.52892 9.52892,-24.97789 0,-34.50568zM353.92565,260.23176l-194.15848,-194.15841l137.0192,-137.01801c6.74164,-6.74045 17.67231,-6.74045 24.41276,0l17.64013,17.6378c5.07405,5.07518 6.48039,12.75818 3.53081,19.30074l-4.65288,10.32305l9.71656,-4.67815c6.60813,-3.18437 14.50756,-1.8414 19.69551,3.34662l56.19553,56.1956c5.83361,5.83128 6.72436,14.97594 2.12906,21.82457l-36.79818,54.83986l54.47162,-37.02259c6.85209,-4.65634 16.05074,-3.7874 21.90968,2.07154l25.90661,25.90654c6.74164,6.74164 6.74164,17.67231 0,24.41283z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span class="Sidebar_text__TwkTk">Pack Maker</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -369,8 +442,13 @@
         <div class="title">Blooket4Free</div>
         <div class="packContainer" id="packContainer"></div>
         <div style="height: 15px;"></div>
-        <div class="packContainer" id="comingSoonContainer"></div>
-    </div>
+        
+        <div style="text-align:center; margin: 30px;">
+            <input type="file" id="bpkUpload" accept=".bpk,application/json" style="display:none;">
+            <button id="uploadBtn" class="uploadBtn">
+                Load Custom Pack
+            </button>
+        </div>
     </div>
 
     <div id="unlockScreen" style="display:none;">
@@ -446,7 +524,7 @@
             currentPack = pack;
             opened = false;
 
-            document.getElementById("unlockName").innerText = result.name;
+            document.getElementById("unlockName").innerText = result.name.replace(/_custom$/, "");
             document.getElementById("unlockRarity").innerText = result.rarity;
             document.getElementById("unlockRarity").style.color = rarityColor(result.rarity);
             document.getElementById("unlockImg").src = result.svg;
@@ -592,6 +670,7 @@
         function getDaysSinceRef() {
             const refDate = new Date("2025-09-15T00:00:00Z");
             const today = new Date();
+            today.setHours(0, 0, 0, 0); 
             return Math.floor((today - refDate) / (1000 * 60 * 60 * 24)) + debugOffset;
         }
 
@@ -676,11 +755,11 @@
                     lock.classList.add("lockIcon");
                     newPack.appendChild(lock);
 
-                    document.getElementById("comingSoonContainer").appendChild(wrapper);
                 } else {
                     let tooltipHtml = "<strong>Pack Rates:</strong><br>";
                     for (let j = 0; j < allPacks[i].blook.length; j++) {
-                        tooltipHtml += `${allPacks[i].blook[j]}: ${allPacks[i].chance[j]}%<br>`;
+                        let displayName = allPacks[i].blook[j].replace(/_custom$/, "");
+                        tooltipHtml += `${displayName}: ${allPacks[i].chance[j]}%<br>`;
                     }
                     tooltip.innerHTML = tooltipHtml;
 
@@ -716,33 +795,29 @@
         }
 
         function resizeTextToFit(textElement) {
-            // Start with a size relative to viewport width
-            let fontSizeVW = 2; // try 5vw as a starting point
+
+            let fontSizeVW = 2; 
             textElement.style.fontSize = fontSizeVW + 'vw';
 
-            // Get container dimensions
             const container = textElement.parentElement;
             const maxWidth = container.offsetWidth * 0.95;
             const maxHeight = container.offsetHeight * 0.9;
 
-            // Convert the current font size to pixels for comparison
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
-            // Shrink down until it fits
             while (textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) {
-                fontSizeVW -= 0.01; // shrink in small vw steps
+                fontSizeVW -= 0.01; 
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
 
-            // Enforce minimum of 2vw
             if (fontSizeVW < 0) {
                 fontSizeVW = 2;
                 textElement.style.fontSize = fontSizeVW + 'vw';
             }
 
             if (window.innerWidth <= 625) {
-                fontSizeVW = fontSizeVW* 2.525; 
+                fontSizeVW = fontSizeVW * 2.525;
                 textElement.style.fontSize = fontSizeVW + 'vw';
             }
         }
@@ -833,6 +908,197 @@
             e.returnValue = '';
         });
     </script>
+
+    <script>
+
+        function loadCustomPacks() {
+            return JSON.parse(localStorage.getItem("customPacks") || "[]");
+        }
+
+        function saveCustomPacks(packs) {
+            localStorage.setItem("customPacks", JSON.stringify(packs));
+        }
+
+        function getAllPacks() {
+            let allPacks = packData.concat(seasonalPackData).concat(freePackData);
+            return allPacks.concat(loadCustomPacks());
+        }
+
+        document.getElementById("uploadBtn").addEventListener("click", () => {
+            document.getElementById("bpkUpload").click();
+        });
+
+        document.getElementById("bpkUpload").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    let text = e.target.result;
+
+                    if (text.startsWith("data:")) {
+                        const base64 = text.split(",")[1];
+                        text = atob(base64);
+                    }
+
+                    text = text.replace(/^\uFEFF/, "");
+
+                    let newPack = JSON.parse(text);
+
+                    ["blook", "rarity", "chance", "svg"].forEach(key => {
+                        if (!Array.isArray(newPack[key])) newPack[key] = [];
+                    });
+
+                    let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+                    newPack.blook = newPack.blook.map(name => {
+                        if (stored[name] !== undefined) {
+                            return name + "_custom";
+                        }
+                        return name;
+                    });
+
+                    newPack.blook.forEach(b => {
+                        if (!(b in stored)) stored[b] = 0;
+                    });
+                    localStorage.setItem("blooksCollection", JSON.stringify(stored));
+
+                    let packs = loadCustomPacks();
+                    packs.push(newPack);
+                    saveCustomPacks(packs);
+
+                    document.getElementById("packContainer").innerHTML = "";
+
+                    renderPacks();
+                } catch (err) {
+                    alert("Invalid .bpk file: " + err.message);
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        const originalRenderPacks = renderPacks;
+        renderPacks = function () {
+            let allPacks = getAllPacks();
+            allPacks = processPacks(allPacks);
+
+            document.getElementById("packContainer").innerHTML = "";
+
+            const defaultPacksCount = packData.length + seasonalPackData.length + freePackData.length;
+
+            for (let i = 0; i < allPacks.length; i++) {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add("packWrapper");
+
+                const newPack = document.createElement("div");
+                newPack.classList.add("pack");
+                newPack.style.backgroundImage = allPacks[i].bg;
+                wrapper.appendChild(newPack);
+
+                const pngContainer = document.createElement("div");
+                pngContainer.classList.add('pngContainer');
+                newPack.appendChild(pngContainer);
+
+                const pngBg = document.createElement("img");
+                pngBg.src = allPacks[i].png;
+                pngBg.classList.add('pngBg');
+                pngContainer.appendChild(pngBg);
+
+                const pngMain = document.createElement("img");
+                pngMain.src = allPacks[i].png;
+                pngMain.classList.add('pngMain');
+                pngContainer.appendChild(pngMain);
+
+                if (allPacks[i].year) {
+                    const packBottomDiv = document.createElement("div");
+                    packBottomDiv.classList.add("packYear");
+                    packBottomDiv.innerText = allPacks[i].year;
+                    newPack.appendChild(packBottomDiv);
+                }
+
+                if (i >= defaultPacksCount) {
+                    const customPackIndex = i - defaultPacksCount;
+
+                    const badge = document.createElement('div');
+                    badge.className = 'custom-pack-badge';
+                    badge.textContent = 'Custom';
+                    newPack.appendChild(badge);
+
+                    const deleteBtn = document.createElement('div');
+                    deleteBtn.className = 'delete-pack-btn';
+                    deleteBtn.innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" viewBox="0 0 352 512" xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px;">
+                <path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
+            </svg>`;
+                    deleteBtn.title = 'Delete custom pack';
+                    deleteBtn.title = 'Delete custom pack';
+
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation(); 
+
+                        if (confirm('Delete this custom pack? This cannot be undone.')) {
+                            let customPacks = loadCustomPacks();
+                            customPacks.splice(customPackIndex, 1);
+                            saveCustomPacks(customPacks);
+
+                            document.getElementById("packContainer").innerHTML = "";
+
+                            renderPacks();
+                        }
+                    });
+
+                    newPack.appendChild(deleteBtn);
+                }
+
+                const tooltip = document.createElement("div");
+                tooltip.classList.add("tooltip");
+
+                if (allPacks[i].comingSoon) {
+                    tooltip.innerHTML = "Coming Soon";
+
+                    const overlay = document.createElement("div");
+                    overlay.classList.add("darkOverlay");
+                    newPack.appendChild(overlay);
+
+                    const lock = document.createElement("img");
+                    lock.src = "./assets/misc_images/lock.svg";
+                    lock.classList.add("lockIcon");
+                    newPack.appendChild(lock);
+
+                } else {
+                    let tooltipHtml = "<strong>Pack Rates:</strong><br>";
+                    for (let j = 0; j < allPacks[i].blook.length; j++) {
+                        let displayName = allPacks[i].blook[j].replace(/_custom$/, "");
+                        tooltipHtml += `${displayName}: ${allPacks[i].chance[j]}%<br>`;
+                    }
+                    tooltip.innerHTML = tooltipHtml;
+
+                    newPack.addEventListener("click", function () {
+                        const result = rollBlook(allPacks[i]);
+                        document.getElementById("packContainer").style.visibility = "hidden";
+                        showUnlock(result, allPacks[i]);
+                    });
+
+                    document.getElementById("packContainer").appendChild(wrapper);
+                }
+
+                wrapper.appendChild(tooltip);
+
+                wrapper.addEventListener("mouseenter", () => {
+                    const rect = wrapper.getBoundingClientRect();
+                    if (rect.top < 200) {
+                        tooltip.classList.add("below");
+                    } else {
+                        tooltip.classList.remove("below");
+                    }
+                });
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderPacks();
+        });
+    </script>
+
 </body>
 
 </html>

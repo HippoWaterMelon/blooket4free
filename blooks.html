@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blooket4Free | My Blooks</title>
+  <link rel="icon" type="image/x-icon" href="./assets/misc_images/favicon.ico">
 
   <link rel="stylesheet"
     href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/121a1462914990a5.css"
@@ -122,7 +123,7 @@
       background: rgba(0, 0, 0, 0.7);
       display: none;
       z-index: 9999;
-      /* behind the modal, above everything else */
+
     }
 
     #modal-overlay.active {
@@ -131,6 +132,23 @@
 
     .BlookModal_blookModal__kZ5LX {
       z-index: 10000;
+    }
+
+    .custom-pack-badge {
+      display: inline-block;
+      margin-left: 8px;
+      background: #0bc2cf;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: normal;
+      text-transform: uppercase;
+      font-family: 'Titan One', sans-serif;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      vertical-align: middle;
+      z-index: 10;
+      position: relative;
     }
   </style>
 </head>
@@ -166,6 +184,20 @@
             </svg>
           </span>
           <span class="Sidebar_text__TwkTk">Market</span>
+        </a>
+      </li>
+
+      <li>
+        <a class="Sidebar_link__pbkfx" href="/maker.html">
+          <span class="Sidebar_listIcon__rg5X6" style="scale: 1.2; margin-top: 8px;">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+              class="svg-inline--fa fa-store fa-w-20">
+              <path fill="currentColor"
+                d="M328.41269,285.7436l-39.66604,39.66604c-6.74045,6.74045 -17.67231,6.74045 -24.41283,0l-37.62562,-37.62562c-7.2319,-7.2307 -17.23499,-10.72933 -27.4579,-9.61416c-10.19073,1.11982 -19.19375,6.71398 -24.69935,15.35103c-70.47063,110.55325 -80.77985,120.86374 -84.16789,124.25065c-24.27818,24.28044 -63.82566,24.32878 -88.15445,0c-24.30458,-24.30577 -24.30458,-63.851 0,-88.15445c3.38578,-3.38691 13.69155,-13.69387 124.25059,-84.16909c8.65779,-5.51943 14.26465,-14.52591 15.38214,-24.71198c1.11862,-10.19299 -2.39716,-20.19727 -9.64635,-27.4464l-37.62562,-37.62562c-3.23843,-3.23617 -5.05677,-7.62774 -5.05677,-12.20582c0,-4.57801 1.81946,-8.96851 5.05677,-12.20582l39.66491,-39.66491zM64.61681,355.38332c-9.52786,-9.52892 -24.97676,-9.52892 -34.50568,0c-9.52892,9.52786 -9.52892,24.97676 0,34.50568c9.52786,9.52892 24.97676,9.52892 34.50568,0c9.52892,-9.52892 9.52892,-24.97789 0,-34.50568zM353.92565,260.23176l-194.15848,-194.15841l137.0192,-137.01801c6.74164,-6.74045 17.67231,-6.74045 24.41276,0l17.64013,17.6378c5.07405,5.07518 6.48039,12.75818 3.53081,19.30074l-4.65288,10.32305l9.71656,-4.67815c6.60813,-3.18437 14.50756,-1.8414 19.69551,3.34662l56.19553,56.1956c5.83361,5.83128 6.72436,14.97594 2.12906,21.82457l-36.79818,54.83986l54.47162,-37.02259c6.85209,-4.65634 16.05074,-3.7874 21.90968,2.07154l25.90661,25.90654c6.74164,6.74164 6.74164,17.67231 0,24.41283z">
+              </path>
+            </svg>
+          </span>
+          <span class="Sidebar_text__TwkTk">Pack Maker</span>
         </a>
       </li>
     </ul>
@@ -270,6 +302,14 @@
     function esc(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function normRarity(r) { return r ? String(r).trim().replace(/\s+/g, '') : 'Common'; }
 
+    function loadCustomPacks() {
+      return JSON.parse(localStorage.getItem("customPacks") || "[]");
+    }
+
+    function cleanDisplayName(name) {
+      return name.replace(/_custom$/, "");
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const packsScroll = document.getElementById('packs-scroll');
       const chkFree = document.getElementById('toggle-free');
@@ -280,77 +320,22 @@
       const packArr = (typeof packData !== 'undefined' && Array.isArray(packData)) ? packData : [];
       const seasonalArr = (typeof seasonalPackData !== 'undefined' && Array.isArray(seasonalPackData)) ? seasonalPackData : [];
 
+      const customArr = loadCustomPacks();
+
       const order = ["medieval", "wonderland", "breakfast", "space", "bot", "aquatic", "safari", "dino", "iceMonsters", "outback", "pirate", "bug", "lunch"];
 
       packArr.sort((a, b) => {
         const aIndex = order.indexOf(a.id);
         const bIndex = order.indexOf(b.id);
-
         return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
       });
 
       const allPacks = [
         ...freeArr.map(p => (Object.assign({}, p, { _isFree: true }))),
         ...packArr.map(p => (Object.assign({}, p, { _isFree: false }))),
-        ...seasonalArr.map(p => (Object.assign({}, p, { _isFree: false })))
+        ...seasonalArr.map(p => (Object.assign({}, p, { _isFree: false }))),
+        ...customArr.map(p => (Object.assign({}, p, { _isFree: false, _isCustom: true })))
       ];
-
-      function createTile(name, img, rarity, pIdx, bIdx) {
-        const rn = normRarity(rarity || 'Common');
-        const root = document.createElement('div');
-        root.className = 'BlookModal_blook__h0dTV';
-        root.dataset.pack = String(pIdx);
-        root.dataset.index = String(bIdx);
-
-        const stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
-        const count = stored[name] || 0;
-
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'BlookModal_blookButton__hSYIJ';
-
-        const inner = document.createElement('div');
-        inner.className = '_blookContainer_inzvw_1';
-        inner.setAttribute('data-tooltip-id', 'blook-tooltip');
-
-        const imgEl = document.createElement('img');
-        imgEl.className = '_blook_inzvw_1';
-        imgEl.draggable = false;
-        imgEl.src = img || '';
-        imgEl.alt = name || '';
-
-        inner.appendChild(imgEl);
-        btn.appendChild(inner);
-        root.appendChild(btn);
-
-        if (count > 0) {
-
-          const badge = document.createElement('div');
-          badge.className = 'BlookModal_quantity__BiP_5';
-          badge.style.backgroundColor = `var(--${rn})`;
-          badge.textContent = count;
-          root.appendChild(badge);
-          root.dataset.locked = "false";
-        } else {
-
-          root.dataset.locked = "true";
-          imgEl.style.filter = "brightness(0)";
-
-          const lock = document.createElement("img");
-          lock.src = "./assets/misc_images/lock.svg";
-          lock.style.position = "absolute";
-          lock.style.top = "50%";
-          lock.style.left = "50%";
-          lock.style.transform = "translate(-50%, -50%)";
-          lock.style.width = "40%";
-          lock.style.zIndex = 2;
-
-          root.style.position = "relative";
-          root.appendChild(lock);
-        }
-
-        return root;
-      }
 
       function expandColorPack(pack) {
         if (pack.colorBlook && pack.colorBlook.length > 0) {
@@ -381,6 +366,62 @@
 
       allPacks.forEach((p, i) => { allPacks[i] = expandColorPack(p); });
 
+      function createTile(name, img, rarity, pIdx, bIdx) {
+        const displayName = cleanDisplayName(name); 
+        const rn = normRarity(rarity || 'Common');
+        const root = document.createElement('div');
+        root.className = 'BlookModal_blook__h0dTV';
+        root.dataset.pack = String(pIdx);
+        root.dataset.index = String(bIdx);
+
+        const stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+        const count = stored[name] || 0; 
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'BlookModal_blookButton__hSYIJ';
+
+        const inner = document.createElement('div');
+        inner.className = '_blookContainer_inzvw_1';
+        inner.setAttribute('data-tooltip-id', 'blook-tooltip');
+
+        const imgEl = document.createElement('img');
+        imgEl.className = '_blook_inzvw_1';
+        imgEl.draggable = false;
+        imgEl.src = img || '';
+        imgEl.alt = displayName || ''; 
+
+        inner.appendChild(imgEl);
+        btn.appendChild(inner);
+        root.appendChild(btn);
+
+        if (count > 0) {
+          const badge = document.createElement('div');
+          badge.className = 'BlookModal_quantity__BiP_5';
+          badge.style.backgroundColor = `var(--${rn})`;
+          badge.textContent = count;
+          root.appendChild(badge);
+          root.dataset.locked = "false";
+        } else {
+          root.dataset.locked = "true";
+          imgEl.style.filter = "brightness(0)";
+
+          const lock = document.createElement("img");
+          lock.src = "./assets/misc_images/lock.svg";
+          lock.style.position = "absolute";
+          lock.style.top = "50%";
+          lock.style.left = "50%";
+          lock.style.transform = "translate(-50%, -50%)";
+          lock.style.width = "40%";
+          lock.style.zIndex = 2;
+
+          root.style.position = "relative";
+          root.appendChild(lock);
+        }
+
+        return root;
+      }
+
       function render() {
         packsScroll.innerHTML = '';
         const showFree = chkFree ? chkFree.checked : true;
@@ -396,8 +437,15 @@
             const rarities = Array.isArray(pack.rarity) ? pack.rarity : [];
             names.forEach((entry, i) => {
               let name = '', img = '', rarity = 'Common';
-              if (typeof entry === 'string') { name = entry; img = svgs[i] || ''; rarity = rarities[i] || pack.rarity || 'Common'; }
-              else { name = entry.name || entry.title || ''; img = entry.svg || entry.image || svgs[i] || ''; rarity = entry.rarity || rarities[i] || pack.rarity || 'Common'; }
+              if (typeof entry === 'string') {
+                name = entry;
+                img = svgs[i] || '';
+                rarity = rarities[i] || pack.rarity || 'Common';
+              } else {
+                name = entry.name || entry.title || '';
+                img = entry.svg || entry.image || svgs[i] || '';
+                rarity = entry.rarity || rarities[i] || pack.rarity || 'Common';
+              }
               grid.appendChild(createTile(name, img, rarity, pIdx, i));
             });
           });
@@ -416,18 +464,32 @@
 
           let bg = pack.tileBackground || pack.bg || '';
           if (bg && !String(bg).trim().startsWith('linear-gradient')) bg = `url('${esc(bg)}')`;
+
+          const packTitle = pack.name || pack.title || '';
+
           packDiv.innerHTML = `
         <div class="BlooksPacks_textureHeader__1ecGZ">
           <div class="BlooksPacks_texture__7_8Gf" style="background-image:${bg}"></div>
-          <h2 class="BlooksPacks_title__qiDcM">${esc(pack.name || pack.title || '')}</h2>
+          <h2 class="BlooksPacks_title__qiDcM">
+            ${esc(packTitle)}
+            ${pack._isCustom ? '<span class="custom-pack-badge">Custom</span>' : ''}
+          </h2>
         </div>
         <div class="BlooksPacks_divider__mT_iM"></div>
         <div class="BlooksPacks_blooks__ocBoL"></div>`;
+
           const container = packDiv.querySelector('.BlooksPacks_blooks__ocBoL');
           names.forEach((entry, i) => {
             let name = '', img = '', rarity = 'Common';
-            if (typeof entry === 'string') { name = entry; img = svgs[i] || ''; rarity = rarities[i] || pack.rarity || 'Common'; }
-            else { name = entry.name || entry.title || ''; img = entry.svg || entry.image || svgs[i] || ''; rarity = entry.rarity || rarities[i] || pack.rarity || 'Common'; }
+            if (typeof entry === 'string') {
+              name = entry;
+              img = svgs[i] || '';
+              rarity = rarities[i] || pack.rarity || 'Common';
+            } else {
+              name = entry.name || entry.title || '';
+              img = entry.svg || entry.image || svgs[i] || '';
+              rarity = entry.rarity || rarities[i] || pack.rarity || 'Common';
+            }
             container.appendChild(createTile(name, img, rarity, pIdx, i));
           });
           packsScroll.appendChild(packDiv);
@@ -440,7 +502,6 @@
         const modalOverlay = document.getElementById('modal-overlay');
         if (modalOverlay) modalOverlay.classList.add('active');
 
-
         const pack = allPacks[Number(packIdx)];
         if (!pack) return;
         const names = Array.isArray(pack.blook) ? pack.blook : (Array.isArray(pack.blooks) ? pack.blooks : []);
@@ -451,8 +512,20 @@
         if (!entry) return;
 
         let name = '', imgSrc = '', rarity = 'Common', desc = '';
-        if (typeof entry === 'string') { name = entry; imgSrc = svgs[bIdx] || ''; rarity = rarities[bIdx] || pack.rarity || 'Common'; desc = descs[bIdx] || ''; }
-        else { name = entry.name || entry.title || ''; imgSrc = entry.svg || entry.image || svgs[bIdx] || ''; rarity = entry.rarity || rarities[bIdx] || pack.rarity || 'Common'; desc = entry.description || entry.desc || descs[bIdx] || ''; }
+        if (typeof entry === 'string') {
+          name = entry;
+          imgSrc = svgs[bIdx] || '';
+          rarity = rarities[bIdx] || pack.rarity || 'Common';
+          desc = descs[bIdx] || '';
+        } else {
+          name = entry.name || entry.title || '';
+          imgSrc = entry.svg || entry.image || svgs[bIdx] || '';
+          rarity = entry.rarity || rarities[bIdx] || pack.rarity || 'Common';
+          desc = entry.description || entry.desc || descs[bIdx] || '';
+        }
+
+        const displayName = cleanDisplayName(name); 
+        const packTitle = pack.name || pack.title || '';
 
         const packDiv = clickedTile.closest('.BlooksPacks_pack___MJtt');
         const blooksContainer = packDiv ? packDiv.querySelector('.BlooksPacks_blooks__ocBoL') : clickedTile.closest('.BlooksPacks_blooks__ocBoL');
@@ -463,14 +536,17 @@
         const modalBlook = clone.querySelector('.BlookModal_modalBlook__y3uOR');
         const modalInfo = clone.querySelector('#modal-info');
 
-        if (modalImg) { modalImg.src = imgSrc || ''; modalImg.alt = name || ''; }
+        if (modalImg) {
+          modalImg.src = imgSrc || '';
+          modalImg.alt = displayName || ''; 
+        }
 
         const bgVal = pack.blookBackground || pack.tileBackground || pack.bg || '';
         if (bgVal && String(bgVal).trim().startsWith('linear-gradient')) {
           if (modalBlook) modalBlook.style.backgroundImage = bgVal;
           if (modalBg) { modalBg.style.display = 'none'; modalBg.src = ''; }
         } else if (bgVal) {
-          if (modalBg) { modalBg.style.display = ''; modalBg.src = bgVal; modalBg.alt = pack.name || ''; }
+          if (modalBg) { modalBg.style.display = ''; modalBg.src = bgVal; modalBg.alt = packTitle; }
           if (modalBlook) modalBlook.style.backgroundImage = '';
         } else {
           if (modalBg) { modalBg.style.display = 'none'; modalBg.src = ''; }
@@ -492,8 +568,8 @@
 
         if (modalInfo) {
           modalInfo.innerHTML = `
-        <h2>${esc(name)}</h2>
-        <h3>${esc(pack.name || pack.title || '')}</h3>
+        <h2>${esc(displayName)}</h2>
+        <h3>${esc(packTitle)}</h3>
         <div class="BlookModal_tags__My798">
           <span class="BlookModal_tag__iidYw">
             <img alt="${esc(rarity)}" draggable="false" loading="lazy" width="20" height="25" src="${rarityIcon}" style="color: transparent; margin: 0px 5px 0px -3px;">

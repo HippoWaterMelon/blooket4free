@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blooket4Free | Pack Maker</title>
+    <link rel="icon" type="image/x-icon" href="./assets/misc_images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Titan+One&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
@@ -52,6 +53,11 @@
             background-color: var(--purple);
             padding: 20px;
             margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
         label {
@@ -69,6 +75,7 @@
             border-radius: 6px;
             border: none;
             margin-top: 5px;
+            font-family: 'Nunito', sans-serif;
         }
 
         input[type="file"] {
@@ -83,35 +90,36 @@
             padding: 8px 12px;
             cursor: pointer;
             margin: 5px 0;
-            box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+            box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 4px 4px var(--gray-shadow);
+            font-weight: bold;
+            transition: transform 0.2s ease;
         }
 
         button:hover {
             transform: scale(0.95);
         }
 
-        pre {
-            background: #0f1724;
-            color: #e6eef8;
-            padding: 12px;
-            border-radius: 8px;
-            overflow: auto;
-            max-height: 300px;
-        }
-
         .colorRow {
             display: flex;
-            gap: 20px;
             align-items: center;
+
+            gap: 12px;
+
         }
 
         .colorRow label {
-            flex: 1;
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            white-space: nowrap;
+
         }
 
         .colorRow input[type="color"] {
-            width: 100%;
-            max-width: 120px;
+            width: 40px;
+            height: 30px;
         }
 
         #sidebar {
@@ -146,8 +154,8 @@
 
         .hamburger {
             position: fixed;
-            top: 35px;
-            left: 25px;
+            top: 17px;
+            left: 23px;
             font-size: 28px;
             background: none;
             border: none;
@@ -196,7 +204,6 @@
             justify-content: flex-start !important;
         }
 
-        /* Grid layout for blooks */
         .blookGrid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -204,7 +211,6 @@
             margin-top: 15px;
         }
 
-        /* Each block styled like Infinite Craft */
         .blookBlock {
             background: #0bc2cf;
             border-radius: 8px;
@@ -214,7 +220,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+            box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 4px 4px var(--gray-shadow);
         }
 
         body.dark-mode .blookBlock {
@@ -222,7 +228,6 @@
             border: 2px solid #ffffff;
         }
 
-        /* Image preview */
         .blook-image {
             width: 80px;
             height: 80px;
@@ -232,7 +237,6 @@
             filter: drop-shadow(4px 4px var(--gray-shadow));
         }
 
-        /* Inputs styled like Infinite Craft */
         .blookBlock input,
         .blookBlock select {
             margin: 5px 0;
@@ -255,10 +259,60 @@
         }
 
         .blookTileBg {
-            position: absolute;
             background-color: var(--purple);
             border-radius: var(--card-radius);
             border: 6px solid var(--white-transparent);
+        }
+
+        .custom-upload {
+            display: inline-block;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+            background: var(--purple);
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 5px;
+            text-align: center;
+            box-shadow: inset 0 -4px rgba(0, 0, 0, 0.2), 4px 4px var(--gray-shadow);
+            transition: transform 0.2s ease;
+        }
+
+        .custom-upload:hover {
+            transform: scale(0.97);
+        }
+
+        .hidden-file-input {
+            display: none;
+        }
+
+        ._checkers_l90pt_12 {
+            z-index: 2;
+            width: 500%;
+            height: 500%;
+            pointer-events: none;
+        }
+
+        pre {
+            background: #0f1724;
+            color: #e6eef8;
+            padding: 12px;
+            border-radius: 8px;
+            overflow: auto;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+
+        .zIndex2 {
+            position: relative;
+            z-index: 1000;
+        }
+
+        h2 {
+            font-family: 'Titan One', cursive;
+            font-weight: normal;
+            text-shadow: 4px 4px var(--gray-shadow);
         }
     </style>
 </head>
@@ -295,6 +349,20 @@
                     <span class="Sidebar_text__TwkTk">Market</span>
                 </a>
             </li>
+
+            <li>
+                <a class="Sidebar_link__pbkfx" href="/maker.html">
+                    <span class="Sidebar_listIcon__rg5X6" style="scale: 1.2; margin-top: 8px;">
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512" class="svg-inline--fa fa-store fa-w-20">
+                            <path fill="currentColor"
+                                d="M328.41269,285.7436l-39.66604,39.66604c-6.74045,6.74045 -17.67231,6.74045 -24.41283,0l-37.62562,-37.62562c-7.2319,-7.2307 -17.23499,-10.72933 -27.4579,-9.61416c-10.19073,1.11982 -19.19375,6.71398 -24.69935,15.35103c-70.47063,110.55325 -80.77985,120.86374 -84.16789,124.25065c-24.27818,24.28044 -63.82566,24.32878 -88.15445,0c-24.30458,-24.30577 -24.30458,-63.851 0,-88.15445c3.38578,-3.38691 13.69155,-13.69387 124.25059,-84.16909c8.65779,-5.51943 14.26465,-14.52591 15.38214,-24.71198c1.11862,-10.19299 -2.39716,-20.19727 -9.64635,-27.4464l-37.62562,-37.62562c-3.23843,-3.23617 -5.05677,-7.62774 -5.05677,-12.20582c0,-4.57801 1.81946,-8.96851 5.05677,-12.20582l39.66491,-39.66491zM64.61681,355.38332c-9.52786,-9.52892 -24.97676,-9.52892 -34.50568,0c-9.52892,9.52786 -9.52892,24.97676 0,34.50568c9.52786,9.52892 24.97676,9.52892 34.50568,0c9.52892,-9.52892 9.52892,-24.97789 0,-34.50568zM353.92565,260.23176l-194.15848,-194.15841l137.0192,-137.01801c6.74164,-6.74045 17.67231,-6.74045 24.41276,0l17.64013,17.6378c5.07405,5.07518 6.48039,12.75818 3.53081,19.30074l-4.65288,10.32305l9.71656,-4.67815c6.60813,-3.18437 14.50756,-1.8414 19.69551,3.34662l56.19553,56.1956c5.83361,5.83128 6.72436,14.97594 2.12906,21.82457l-36.79818,54.83986l54.47162,-37.02259c6.85209,-4.65634 16.05074,-3.7874 21.90968,2.07154l25.90661,25.90654c6.74164,6.74164 6.74164,17.67231 0,24.41283z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span class="Sidebar_text__TwkTk">Pack Maker</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -309,48 +377,115 @@
     </div>
 
     <div class="container">
-        <h1>BPK Pack Builder</h1>
+        <h1>Pack Maker</h1>
         <div class="section">
-            <h2>Pack Metadata</h2>
-            <label>Name <input type="text" id="packName" value="Debug Pack"></label>
-            <label>ID <input type="text" id="packId" value="debug"></label>
-            <div class="colorRow">
-                <label>Outer Color <input type="color" id="outerColor" value="#000000"></label>
-                <label>Inner Color <input type="color" id="innerColor" value="#00ff00"></label>
+
+            <div class="zIndex2">
+                <h2>Pack Metadata</h2>
+                <label>Name <input type="text" id="packName" value="Custom Pack" placeholder="Pack"></label>
+                <label>ID <input type="text" id="packId" value="custom" placeholder="pack"></label>
+                <div class="colorRow">
+                    <label>Gradient Outer Color: <input type="color" id="outerColor" value="#000000"></label>
+                    <label>Gradient Inner Color: <input type="color" id="innerColor" value="#ffffff"></label>
+                </div>
+            </div>
+
+            <div class="_checkers_l90pt_12" style="opacity: 0.05;"></div>
+        </div>
+
+        <div class="section">
+            <div class="_checkers_l90pt_12" style="opacity: 0.05;"></div>
+            <div class="zIndex2">
+                <h2>Pack Images</h2>
+                <div id="packImageContainer" class="blookGrid">
+                    <div class="blookBlock packBlock" data-input-id="packPng">
+                        <div style="font-weight:bold; margin-bottom:8px;">Pack Image</div>
+                        <img class="blook-image" src="./assets/misc_images/unknown.svg" alt="Pack Image">
+                        <label class="custom-upload">Upload
+                            <input type="file" id="packPng" accept="image/*" class="hidden-file-input">
+                        </label>
+                    </div>
+
+                    <div class="blookBlock packBlock" data-input-id="packBottom">
+                        <div style="font-weight:bold; margin-bottom:8px;">Pack Bottom</div>
+                        <img class="blook-image" src="./assets/misc_images/unknown.svg" alt="Pack Bottom">
+                        <label class="custom-upload">Upload
+                            <input type="file" id="packBottom" accept="image/*" class="hidden-file-input">
+                        </label>
+                    </div>
+
+                    <div class="blookBlock packBlock" data-input-id="cornerIcon">
+                        <div style="font-weight:bold; margin-bottom:8px;">Corner Icon</div>
+                        <img class="blook-image" src="./assets/misc_images/unknown.svg" alt="Corner Icon">
+                        <label class="custom-upload">Upload
+                            <input type="file" id="cornerIcon" accept="image/*" class="hidden-file-input">
+                        </label>
+                    </div>
+
+                    <div class="blookBlock packBlock" data-input-id="tileBackground">
+                        <div style="font-weight:bold; margin-bottom:8px;">Tile Background</div>
+                        <img class="blook-image" src="./assets/misc_images/unknown.svg" alt="Tile Background">
+                        <label class="custom-upload">Upload
+                            <input type="file" id="tileBackground" accept="image/*" class="hidden-file-input">
+                        </label>
+                    </div>
+
+                    <div class="blookBlock packBlock" data-input-id="blookBackground">
+                        <div style="font-weight:bold; margin-bottom:8px;">Blook Background</div>
+                        <img class="blook-image" src="./assets/misc_images/unknown.svg" alt="Pack Image">
+                        <label class="custom-upload">Upload
+                            <input type="file" id="blookBackground" accept="image/*" class="hidden-file-input">
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <h2>Pack Images</h2>
-            <label>Pack Image (png): <input type="file" id="packPng" accept="image/*"></label>
-            <label>Pack Bottom: <input type="file" id="packBottom" accept="image/*"></label>
-            <label>Corner Icon: <input type="file" id="cornerIcon" accept="image/*"></label>
-            <label>Tile Background: <input type="file" id="tileBackground" accept="image/*"></label>
+            <div class="_checkers_l90pt_12" style="opacity: 0.05;"></div>
+            <div class="zIndex2">
+                <h2>Blooks</h2>
+                <button type="button" onclick="addBlook()">+ Add Blook</button>
+                <div id="blookContainer" class="blookGrid"></div>
+            </div>
         </div>
 
         <div class="section">
-            <h2>Blooks</h2>
-            <button type="button" onclick="addBlook()">+ Add Blook</button>
-            <div id="blookContainer" class="blookGrid"></div>
-        </div>
+            <div class="_checkers_l90pt_12" style="opacity: 0.05;"></div>
+            <div class="zIndex2">
 
-        <div class="section">
-            <h2>Color Blooks</h2>
-            <button type="button" onclick="addColorBlook()">+ Add Color Blook</button>
-            <div id="colorContainer" class="blookGrid"></div>
+                <h2>Rotating Blooks</h2>
+                <button type="button" onclick="addColorBlook()">+ Add Rotating Blook</button>
+                <div id="colorContainer" class="blookGrid"></div>
+            </div>
         </div>
 
         <button onclick="generateBpk()">Generate .bpk</button>
         <button onclick="document.getElementById('importFile').click()">Import .bpk</button>
         <input type="file" id="importFile" accept=".bpk,.json" style="display:none" onchange="importBpk(event)">
 
-        <pre id="output"></pre>
+        <pre id="output" style="display: none;"></pre>
     </div>
 
     <script>
         const rarities = ["Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"];
         function createRarityDropdown(selected = "") { return `<select>` + rarities.map(r => `<option value="${r}" ${r === selected ? "selected" : ""}>${r}</option>`).join("") + `</select>`; }
         function fileToDataUrl(file, cb) { const r = new FileReader(); r.onload = e => cb(e.target.result); r.readAsDataURL(file); }
+        ["packPng", "packBottom", "cornerIcon", "tileBackground", "blookBackground"].forEach(id => {
+            const input = document.getElementById(id);
+            const block = input.closest(".packBlock");
+            const img = block.querySelector(".blook-image");
+
+            input.addEventListener("change", e => {
+                const file = e.target.files[0];
+                if (file) {
+                    fileToDataUrl(file, d => {
+                        img.src = d;
+                        input.dataset.remote = d; 
+                    });
+                }
+            });
+        });
 
         function addBlook(name = "", rarity = "Uncommon", chance = "", svg = "") {
             const container = document.querySelector("#blookContainer");
@@ -358,17 +493,21 @@
             block.className = "blookBlock";
 
             block.innerHTML = `
-    <input type="text" value="${name}" placeholder="Name">
-    ${createRarityDropdown(rarity)}
-    <input type="number" step="0.01" value="${chance}" placeholder="Chance %">
-    <img class="blook-image" src="${svg || ''}" alt="Blook Image">
-    <input type="file" accept="image/*">
-    <button onclick="this.closest('.blookBlock').remove()">Delete</button>
-  `;
+  <input type="text" value="${name}" placeholder="Name">
+  ${createRarityDropdown(rarity)}
+  <input type="number" step="0.01" value="${chance}" placeholder="Chance %">
+  <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
 
-            // Handle image preview
-            const fileInput = block.querySelector("input[type='file']");
+  <label class="custom-upload">Upload Image
+    <input type="file" accept="image/*" class="hidden-file-input">
+  </label>
+
+  <button onclick="this.closest('.blookBlock').remove()">Delete</button>
+`;
+
+            const fileInput = block.querySelector(".hidden-file-input");
             const img = block.querySelector(".blook-image");
+
             fileInput.addEventListener("change", e => {
                 const file = e.target.files[0];
                 if (file) {
@@ -390,16 +529,20 @@
             block.className = "blookBlock color-block";
 
             block.innerHTML = `
-    <input type="text" value="${name}" placeholder="Name">
-    ${createRarityDropdown(rarity)}
-    <img class="blook-image" src="${svg || ''}" alt="Color Blook Image">
-    <input type="file" accept="image/*">
-    <button onclick="this.closest('.blookBlock').remove()">Delete</button>
-  `;
+  <input type="text" value="${name}" placeholder="Name">
+  ${createRarityDropdown(rarity)}
+  <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
 
-            // Handle image preview
-            const fileInput = block.querySelector("input[type='file']");
+  <label class="custom-upload">Upload Image
+    <input type="file" accept="image/*" class="hidden-file-input">
+  </label>
+
+  <button onclick="this.closest('.blookBlock').remove()">Delete</button>
+`;
+
+            const fileInput = block.querySelector(".hidden-file-input");
             const img = block.querySelector(".blook-image");
+
             fileInput.addEventListener("change", e => {
                 const file = e.target.files[0];
                 if (file) {
@@ -422,76 +565,66 @@
             const inner = document.getElementById("innerColor").value;
             const bg = `radial-gradient(circle, ${inner} 0%, ${outer} 100%)`;
 
-            const files = ["packPng", "packBottom", "cornerIcon", "tileBackground"];
-            const promises = files.map(fid => {
+            const files = ["packPng", "packBottom", "cornerIcon", "tileBackground", "blookBackground"];
+            const fileMap = {};
+            files.forEach(fid => {
                 const inp = document.getElementById(fid);
-                const f = inp.files[0];
-                return new Promise(res => {
-                    if (f) return fileToDataUrl(f, d => res([fid, d]));
-                    if (inp.dataset && inp.dataset.remote) return res([fid, inp.dataset.remote]);
-                    return res([fid, ""]);
-                });
+                fileMap[fid] = inp.dataset.remote || "";
             });
 
-            Promise.all(promises).then(filePairs => {
-                const fileMap = Object.fromEntries(filePairs);
-
-                // Gather blooks
-                const blookBlocks = document.querySelectorAll("#blookContainer .blookBlock");
-                const blookData = Array.from(blookBlocks).map(block => {
-                    const name = block.querySelector("input[type=text]").value;
-                    const rarity = block.querySelector("select").value;
-                    const chance = parseFloat(block.querySelector("input[type=number]").value) || 0;
-                    const svg = block.dataset.svg || "";
-                    return { name, rarity, chance, svg };
-                });
-
-                // Gather color blooks
-                const colorBlocks = document.querySelectorAll("#colorContainer .blookBlock");
-                const colorData = Array.from(colorBlocks).map(block => {
-                    const name = block.querySelector("input[type=text]").value;
-                    const rarity = block.querySelector("select").value;
-                    const svg = block.dataset.svg || "";
-                    return { name, rarity, svg };
-                });
-
-                const bpk = {
-                    name,
-                    id,
-                    bg,
-                    blook: blookData.map(b => b.name),
-                    chance: blookData.map(b => b.chance),
-                    svg: blookData.map(b => b.svg),
-                    png: fileMap.packPng,
-                    rarity: blookData.map(b => b.rarity),
-                    colorBlook: colorData.map(c => c.name),
-                    colorSvg: colorData.map(c => c.svg),
-                    colorRarity: colorData.map(c => c.rarity),
-                    packBottom: fileMap.packBottom,
-                    cornerIcon: fileMap.cornerIcon,
-                    blookBackground: "",
-                    comingSoon: false,
-                    tileBackground: fileMap.tileBackground
-                };
-
-                const text = JSON.stringify(bpk, null, 2);
-                document.getElementById("output").textContent = text;
-                const a = document.createElement("a");
-                a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
-                a.download = `${id}.bpk`;
-                a.click();
+            const blookBlocks = document.querySelectorAll("#blookContainer .blookBlock");
+            const blookData = Array.from(blookBlocks).map(block => {
+                const name = block.querySelector("input[type=text]").value;
+                const rarity = block.querySelector("select").value;
+                const chance = parseFloat(block.querySelector("input[type=number]").value) || 0;
+                const svg = block.dataset.svg || "";
+                return { name, rarity, chance, svg };
             });
+
+            const colorBlocks = document.querySelectorAll("#colorContainer .blookBlock");
+            const colorData = Array.from(colorBlocks).map(block => {
+                const name = block.querySelector("input[type=text]").value;
+                const rarity = block.querySelector("select").value;
+                const svg = block.dataset.svg || "";
+                return { name, rarity, svg };
+            });
+
+            const bpk = {
+                name,
+                id,
+                bg,
+                blook: blookData.map(b => b.name),
+                chance: blookData.map(b => b.chance),
+                svg: blookData.map(b => b.svg),
+                png: fileMap.packPng,
+                rarity: blookData.map(b => b.rarity),
+                colorBlook: colorData.map(c => c.name),
+                colorSvg: colorData.map(c => c.svg),
+                colorRarity: colorData.map(c => c.rarity),
+                packBottom: fileMap.packBottom,
+                cornerIcon: fileMap.cornerIcon,
+                blookBackground: fileMap.blookBackground,
+                comingSoon: false,
+                tileBackground: fileMap.tileBackground
+            };
+
+            const text = JSON.stringify(bpk, null, 2);
+            document.getElementById("output").textContent = text;
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+            a.download = `${id}.bpk`;
+            a.click();
         }
 
         function robustFixLooseJson(s) {
-            // 1) extract double-quoted strings and replace with placeholders
+
             const strings = [];
             s = s.replace(/"(?:\\.|[^"\\])*"/g, function (m) { strings.push(m); return `__STR_${strings.length - 1}__`; });
-            // 2) quote unquoted keys (only keys, since strings removed)
+
             s = s.replace(/([\{\s,])([A-Za-z0-9_]+)\s*:/g, '$1"$2":');
-            // 3) remove trailing commas
+
             s = s.replace(/,\s*([\}\]])/g, '$1');
-            // 4) restore strings
+
             s = s.replace(/__STR_(\d+)__/g, function (_, n) { return strings[Number(n)]; });
             return s;
         }
@@ -524,7 +657,6 @@
                     }
                 }
 
-                // clear containers
                 document.querySelector('#blookContainer').innerHTML = '';
                 document.querySelector('#colorContainer').innerHTML = '';
 
@@ -545,18 +677,21 @@
                     });
                 }
 
-                // restore pack images
                 const fileMap = {
                     packPng: bpk.png || '',
                     packBottom: bpk.packBottom || '',
                     cornerIcon: bpk.cornerIcon || '',
-                    tileBackground: bpk.tileBackground || ''
+                    tileBackground: bpk.tileBackground || '',
+                    blookBackground: bpk.blookBackground || ''
                 };
                 Object.keys(fileMap).forEach(key => {
                     const val = fileMap[key];
                     if (val) {
                         const inp = document.getElementById(key);
+                        const block = inp.closest(".packBlock");
+                        const img = block.querySelector(".blook-image");
                         inp.dataset.remote = val;
+                        img.src = val;
                     }
                 });
 
@@ -583,6 +718,12 @@
 
         hamburgerBtn.addEventListener('click', openSidebar);
         overlay.addEventListener('click', closeSidebarMenu);
+    </script>
+    <script>
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
     </script>
 </body>
 
