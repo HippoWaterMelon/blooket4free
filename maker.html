@@ -248,6 +248,7 @@
             background: white;
             color: black;
             font-family: 'Nunito', sans-serif;
+            font-weight: bold;
         }
 
         .blookBlock button {
@@ -463,11 +464,19 @@
         <button onclick="generateBpk()">Generate .bpk</button>
         <button onclick="document.getElementById('importFile').click()">Import .bpk</button>
         <input type="file" id="importFile" accept=".bpk,.json" style="display:none" onchange="importBpk(event)">
+        <button onclick="loadExample()">Load Example</button>
 
         <pre id="output" style="display: none;"></pre>
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.matchMedia("(max-width: 625px)").matches) {
+                alert("Hello! This website is not at all made for mobile devices. For the best experience, go open this on a computer. \n \n(If you are on a computer and see this message, just rezise the window.)");
+            }
+        });
+
+
         const rarities = ["Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"];
         function createRarityDropdown(selected = "") { return `<select>` + rarities.map(r => `<option value="${r}" ${r === selected ? "selected" : ""}>${r}</option>`).join("") + `</select>`; }
         function fileToDataUrl(file, cb) { const r = new FileReader(); r.onload = e => cb(e.target.result); r.readAsDataURL(file); }
@@ -481,7 +490,7 @@
                 if (file) {
                     fileToDataUrl(file, d => {
                         img.src = d;
-                        input.dataset.remote = d; 
+                        input.dataset.remote = d;
                     });
                 }
             });
@@ -629,12 +638,94 @@
             return s;
         }
 
+        async function loadExample() {
+            try {
+                const response = await fetch('./assets/js/example.bpk');
+                if (!response.ok) throw new Error('Failed to load example file');
+
+                const text = await response.text();
+                let bpk = null;
+
+                try {
+                    bpk = JSON.parse(text);
+                } catch (err) {
+                    try {
+                        const fixed = robustFixLooseJson(text);
+                        bpk = JSON.parse(fixed);
+                    } catch (err2) {
+                        console.error('Example parse error', err2);
+                        return alert('Failed to load example: invalid format');
+                    }
+                }
+
+                // Use the same loading logic from importBpk
+                loadBpkData(bpk);
+
+            } catch (error) {
+                alert('Could not load example file: ' + error.message);
+            }
+        }
+
+        function loadBpkData(bpk) {
+            document.getElementById("packName").value = bpk.name || "";
+            document.getElementById("packId").value = bpk.id || "";
+
+            if (bpk.bg && typeof bpk.bg === 'string' && bpk.bg.includes('radial-gradient')) {
+                const colors = bpk.bg.match(/#[0-9a-fA-F]{3,6}/g);
+                if (colors && colors.length >= 2) {
+                    document.getElementById('innerColor').value = colors[0];
+                    document.getElementById('outerColor').value = colors[1];
+                }
+            }
+
+            document.querySelector('#blookContainer').innerHTML = '';
+            document.querySelector('#colorContainer').innerHTML = '';
+
+            if (Array.isArray(bpk.blook)) {
+                bpk.blook.forEach((name, i) => {
+                    const rarity = (Array.isArray(bpk.rarity) && bpk.rarity[i]) ? bpk.rarity[i] : 'Uncommon';
+                    const chance = (Array.isArray(bpk.chance) && bpk.chance[i]) ? bpk.chance[i] : '';
+                    const svg = (Array.isArray(bpk.svg) && bpk.svg[i]) ? bpk.svg[i] : '';
+                    addBlook(name, rarity, chance, svg);
+                });
+            }
+
+            if (Array.isArray(bpk.colorBlook)) {
+                bpk.colorBlook.forEach((name, i) => {
+                    const rarity = (Array.isArray(bpk.colorRarity) && bpk.colorRarity[i]) ? bpk.colorRarity[i] : 'Uncommon';
+                    const svg = (Array.isArray(bpk.colorSvg) && bpk.colorSvg[i]) ? bpk.colorSvg[i] : '';
+                    addColorBlook(name, rarity, svg);
+                });
+            }
+
+            const fileMap = {
+                packPng: bpk.png || '',
+                packBottom: bpk.packBottom || '',
+                cornerIcon: bpk.cornerIcon || '',
+                tileBackground: bpk.tileBackground || '',
+                blookBackground: bpk.blookBackground || ''
+            };
+            Object.keys(fileMap).forEach(key => {
+                const val = fileMap[key];
+                if (val) {
+                    const inp = document.getElementById(key);
+                    const block = inp.closest(".packBlock");
+                    const img = block.querySelector(".blook-image");
+                    inp.dataset.remote = val;
+                    img.src = val;
+                }
+            });
+        }
+
         function importBpk(event) {
-            const file = event.target.files[0]; if (!file) return;
+            const file = event.target.files[0];
+            if (!file) return;
+
             const reader = new FileReader();
             reader.onload = e => {
                 let text = e.target.result;
                 let bpk = null;
+
                 try {
                     bpk = JSON.parse(text);
                 } catch (err) {
@@ -647,54 +738,7 @@
                     }
                 }
 
-                document.getElementById("packName").value = bpk.name || "";
-                document.getElementById("packId").value = bpk.id || "";
-                if (bpk.bg && typeof bpk.bg === 'string' && bpk.bg.includes('radial-gradient')) {
-                    const colors = bpk.bg.match(/#[0-9a-fA-F]{3,6}/g);
-                    if (colors && colors.length >= 2) {
-                        document.getElementById('innerColor').value = colors[0];
-                        document.getElementById('outerColor').value = colors[1];
-                    }
-                }
-
-                document.querySelector('#blookContainer').innerHTML = '';
-                document.querySelector('#colorContainer').innerHTML = '';
-
-                if (Array.isArray(bpk.blook)) {
-                    bpk.blook.forEach((name, i) => {
-                        const rarity = (Array.isArray(bpk.rarity) && bpk.rarity[i]) ? bpk.rarity[i] : 'Uncommon';
-                        const chance = (Array.isArray(bpk.chance) && bpk.chance[i]) ? bpk.chance[i] : '';
-                        const svg = (Array.isArray(bpk.svg) && bpk.svg[i]) ? bpk.svg[i] : '';
-                        addBlook(name, rarity, chance, svg);
-                    });
-                }
-
-                if (Array.isArray(bpk.colorBlook)) {
-                    bpk.colorBlook.forEach((name, i) => {
-                        const rarity = (Array.isArray(bpk.colorRarity) && bpk.colorRarity[i]) ? bpk.colorRarity[i] : 'Uncommon';
-                        const svg = (Array.isArray(bpk.colorSvg) && bpk.colorSvg[i]) ? bpk.colorSvg[i] : '';
-                        addColorBlook(name, rarity, svg);
-                    });
-                }
-
-                const fileMap = {
-                    packPng: bpk.png || '',
-                    packBottom: bpk.packBottom || '',
-                    cornerIcon: bpk.cornerIcon || '',
-                    tileBackground: bpk.tileBackground || '',
-                    blookBackground: bpk.blookBackground || ''
-                };
-                Object.keys(fileMap).forEach(key => {
-                    const val = fileMap[key];
-                    if (val) {
-                        const inp = document.getElementById(key);
-                        const block = inp.closest(".packBlock");
-                        const img = block.querySelector(".blook-image");
-                        inp.dataset.remote = val;
-                        img.src = val;
-                    }
-                });
-
+                loadBpkData(bpk);
             };
             reader.readAsText(file);
         }

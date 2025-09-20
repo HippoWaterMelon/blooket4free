@@ -26,6 +26,8 @@
     href="https://ac.blooket.com/dashboard/ee3082e9bdda941fdd8418c7b00c1d2ee1cd3a73/_next/static/css/51e88ac748998e08.css"
     data-precedence="next">
 
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Titan+One&display=swap" rel="stylesheet">
+
   <style>
     .TokenCounter_tokenContainer__wE6XL {
       display: none !important;
@@ -298,6 +300,11 @@
   <script src="./assets/js/seasonalpackdata-market.js"></script>
 
   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.matchMedia("(max-width: 625px)").matches) {
+        alert("Hello! This website is not at all made for mobile devices. For the best experience, go open this on a computer. \n \n(If you are on a computer and see this message, just rezise the window.)");
+      }
+    });
 
     function esc(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
     function normRarity(r) { return r ? String(r).trim().replace(/\s+/g, '') : 'Common'; }
@@ -367,7 +374,7 @@
       allPacks.forEach((p, i) => { allPacks[i] = expandColorPack(p); });
 
       function createTile(name, img, rarity, pIdx, bIdx) {
-        const displayName = cleanDisplayName(name); 
+        const displayName = cleanDisplayName(name);
         const rn = normRarity(rarity || 'Common');
         const root = document.createElement('div');
         root.className = 'BlookModal_blook__h0dTV';
@@ -375,7 +382,7 @@
         root.dataset.index = String(bIdx);
 
         const stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
-        const count = stored[name] || 0; 
+        const count = stored[name] || 0;
 
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -389,7 +396,7 @@
         imgEl.className = '_blook_inzvw_1';
         imgEl.draggable = false;
         imgEl.src = img || '';
-        imgEl.alt = displayName || ''; 
+        imgEl.alt = displayName || '';
 
         inner.appendChild(imgEl);
         btn.appendChild(inner);
@@ -524,7 +531,7 @@
           desc = entry.description || entry.desc || descs[bIdx] || '';
         }
 
-        const displayName = cleanDisplayName(name); 
+        const displayName = cleanDisplayName(name);
         const packTitle = pack.name || pack.title || '';
 
         const packDiv = clickedTile.closest('.BlooksPacks_pack___MJtt');
@@ -538,7 +545,7 @@
 
         if (modalImg) {
           modalImg.src = imgSrc || '';
-          modalImg.alt = displayName || ''; 
+          modalImg.alt = displayName || '';
         }
 
         const bgVal = pack.blookBackground || pack.tileBackground || pack.bg || '';

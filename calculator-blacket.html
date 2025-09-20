@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&amp;family=Titan+One&amp;display=swap"
+    rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    .content {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      background-color: #3f3f3f;
+    }
+
+    .title {
+      width: 100%;
+      font-size: calc(5vh + 3vw);
+      height: 15%;
+      padding: 0%;
+      font-family: 'Titan One', cursive;
+      text-align: center;
+      color: white;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .container {
+      width: 96%;
+      height: 85%;
+      transform: translate(2%, 0px);
+    }
+
+    .criteria {
+      width: 100%;
+      height: 22.5%;
+      margin-bottom: 2vh;
+      border: none;
+      background-color: #2f2f2f;
+      border-radius: 7px;
+      box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+    }
+
+    @keyframes swipe {
+      0% {
+        height: 0%;
+        top: 0%;
+        bottom: 100%
+      }
+
+      50% {
+        height: 100%;
+        top: 0%;
+        bottom: 100%
+      }
+
+      100% {
+        height: 0%;
+        top: 100%;
+        bottom: 0%
+      }
+    }
+
+    .transition {
+      position: fixed;
+      bottom: 100%;
+      width: 100%;
+      left: 0;
+      height: 0%;
+      background-color: #3f3f3f;
+      animation-name: swipe;
+      animation-duration: 1s;
+    }
+
+    .miniTitle {
+      width: 100%;
+      height: 30%;
+      font-size: 5vh;
+      padding: 0%;
+      font-family: 'Titan One', cursive;
+      text-align: center;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      color: #fff;
+    }
+
+    .miniText {
+      font-size: 4vh;
+      height: 100%;
+      font-family: Nunito, sans-serif;
+      user-select: none;
+      color: #fff;
+      align-items: center;
+      display: flex;
+    }
+
+    .token {
+      background-color: #3f3f3f;
+      margin-top: 1.5%;
+      margin-bottom: 1.5%;
+      width: 30%;
+      height: 60%;
+      font-size: 4vh;
+      padding: 0%;
+      font-family: Nunito, sans-serif;
+      text-align: center;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      color: #fff;
+      box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+      border-radius: 7px;
+      border: none;
+    }
+
+    .packOptions {
+      font-family: Nunito, sans-serif;
+      border: none;
+      background-color: #3f3f3f;
+      width: auto;
+      height: 70%;
+      font-size: 4vh;
+      color: white;
+      border-radius: 7px;
+      padding-bottom: 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+      box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+    }
+
+    .buttonContainer {
+      width: 98%;
+      height: 70%;
+      padding-left: 1%;
+      padding-right: 1%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .middleContainer {
+      width: 98%;
+      height: 70%;
+      padding-left: 1%;
+      padding-right: 1%;
+      user-select: none;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .resultsContainer {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: auto;
+      text-align: center;
+      border: none;
+      border-radius: 7px;
+      padding-bottom: 10px;
+      padding-left: 8px;
+      padding-right: 8px;
+      background-color: #2f2f2f;
+      box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+    }
+
+    .button {
+      background-color: #3f3f3f;
+      margin-top: 5px;
+      margin-bottom: calc(5px + 1vh);
+      width: 49.5%;
+      font-size: calc(2vw + 3vh);
+      line-height: 0;
+      padding: 0%;
+      font-family: Nunito, sans-serif;
+      text-align: center;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      color: #fff;
+      box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 0 0 4px rgb(0 0 0 / 15%);
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+      border-radius: 7px;
+      border: none;
+    }
+
+    .button:hover {
+      background-color: #575757;
+    }
+
+    .switch {
+      vertical-align: middle;
+      position: relative;
+      display: inline-block;
+      width: 7.5vh;
+      height: 4.5vh;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #aaa;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 3vh;
+      width: 3vh;
+      left: 0.75vh;
+      bottom: 0.75vh;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #3f3f3f;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 0.5px #3f3f3f;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(3vh);
+      -ms-transform: translateX(3vh);
+      transform: translateX(3vh);
+    }
+
+    .results {
+      width: 20%;
+      height: 12vh;
+      font-size: 4vw;
+      line-height: 6vh;
+      transform: translate(0, 5px);
+      text-align: left;
+      text-decoration: none;
+      outline: none;
+      font-family: Nunito, sans-serif;
+      color: #fff;
+      user-select: none;
+      padding-bottom: none;
+      display: inline-block;
+      margin-bottom: 5px;
+      white-space: pre-line;
+    }
+
+    .blookImg {
+      width: 7vh;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .resultName {
+      width: calc(100% - 1vh);
+      height: 1vh;
+      display: inline-block;
+      margin: 0px;
+      padding: 0px;
+      font-size: 2vh;
+      white-space: normal;
+      vertical-align: top;
+      position: absolute;
+    }
+
+    .resultChance {
+      width: calc(100% - 1vh);
+      height: 1vh;
+      display: inline-block;
+      margin: 0px;
+      padding: 0px;
+      font-size: 2vh;
+      white-space: normal;
+      vertical-align: top;
+      position: absolute;
+      transform: translate(0, 4vh);
+    }
+
+    @media (max-aspect-ratio: 6/5) {
+      .results {
+        width: 100%;
+        height: 5vh;
+        line-height: 4vh;
+      }
+
+      .resultName {
+        height: 1vh;
+        font-size: 2vh;
+      }
+
+      .resultChance {
+        height: 1vh;
+        font-size: 2vh;
+        transform: translate(0, 2.5vh);
+      }
+
+      .blookImg {
+        width: 5vh;
+      }
+    }
+
+    .darkener {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 100vh;
+      left: 0px;
+      background-color: black;
+      opacity: 0.5;
+    }
+
+    .footer {
+      width: 100vw;
+      height: 12vh;
+      font-size: 4vh;
+      padding: 0%;
+      font-family: 'Titan One', cursive;
+      text-align: center;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      color: #fff;
+      text-decoration: none;
+      outline: none;
+      border: none;
+      position: absolute;
+      left: 50%;
+      bottom: 200vh;
+      transform: translateX(-50%);
+      display: inline-block;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .bgBlooks {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: 50%;
+      left: 50%;
+      background-size: 550px;
+      background-position: -100px -100px;
+      opacity: 0.1;
+      transform: translate(-50%, -50%) rotate(15deg);
+      background-image: url('https://blacket.org/content/background.webp');
+    }
+
+    .backButton:hover {
+      background-color: #bbb;
+      box-shadow: 0 5px #888;
+    }
+
+    .backButton {
+      background-color: #aaa;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      width: 36vh;
+      height: 7vh;
+      font-size: 5vh;
+      padding: 0%;
+      position: absolute;
+      bottom: -10vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Titan One', cursive;
+      text-align: center;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      color: #fff;
+      box-shadow: 0 5px #777, 0 0 4px rgb(0 0 0 / 15%);
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+      border-radius: 7px;
+      border: none;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="bgBlooks"></div>
+    <div class="title">iBlacket</div>
+    <div class="container">
+      <div class="criteria">
+        <div class="miniTitle">1. Choose Token Amount</div>
+        <div class="middleContainer">
+          <div class="miniText">Token Amount:&nbsp;&nbsp;</div>
+          <input class="token" id="tokenInput" min="0" max="9999999" name="tokenInputName" value="0" type="number"
+            maxLength="7"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+        </div>
+      </div>
+      <div class="criteria">
+        <div class="miniTitle">2. Select a Pack</div>
+        <div class="middleContainer">
+          <div class="miniText">Selected Pack:&nbsp;&nbsp;</div>
+          <select name="packs" id="packs" class="packOptions">
+            <option value="Space Pack">Space Pack</option>
+            <option value="Wonderland Pack">Wonderland Pack</option>
+            <option value="Breakfast Pack">Breakfast Pack</option>
+            <option value="Dino Pack">Dino Pack</option>
+            <option value="Aquatic Pack">Aquatic Pack</option>
+            <option value="Safari Pack">Safari Pack</option>
+            <option value="Bot Pack">Bot Pack</option>
+            <option value="Medieval Pack">Medieval Pack</option>
+            <option value="Ice Monsters Pack">Ice Monsters Pack</option>
+            <option value="Spooky Pack">Spooky Pack</option>
+            <option value="Blizzard Pack">Blizzard Pack</option>
+            <option value="Autumn Pack">Autumn Pack</option>
+            <option value="Outback Pack">Outback Pack</option>
+            <option value="Pirate Pack">Pirate Pack</option>
+            <option value="Sports Pack">Sports Pack</option>
+            <option value="Video Game Pack">Video Game
+              Pack</option>
+            <option value="Elemental Pack">Elemental Pack</option>
+            <option value="Gemstone Pack">Gemstone Pack</option>
+            <option value="Science Pack">Science Pack</option>
+            <option value="Dessert Pack">Dessert Pack</option>
+            <option value="Summer Pack">Summer Pack</option>
+            <option value="Sci-Fi Pack">Sci-Fi Pack</option>
+            <option value="Combat Pack">Combat Pack</option>
+            <option value="Retro Pack">Retro Pack</option>
+            <option value="Music Pack">Music Pack</option>
+            <option value="Magic Pack">Magic Pack</option>
+            <option value="Fruit Pack">Fruit Pack</option>
+            <option value="Color Pack">Color Pack</option>
+            <option value="Candy Pack">Candy Pack</option>
+            <option value="Ankha Pack">Ankha Pack</option>
+            <option value="OG Pack">OG Pack</option>
+          </select>
+        </div>
+      </div>
+      <div class="criteria">
+        <div class="miniTitle">3. Resell blooks?</div>
+        <div class="middleContainer">
+          <div class="miniText">Include Reselling:&nbsp;&nbsp;</div>
+          <label class="switch">
+            <input type="checkbox" id="resellToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="criteria">
+        <div class="miniTitle">4. Select Type</div>
+        <div class="buttonContainer">
+          <button class="button" id="calculate">Calculate</button>
+          <button class="button" id="simulate">Simulate</button>
+        </div>
+      </div>
+    </div>
+    <div id="darkener" class="darkener"></div>
+    <div id="resultsContainer"><button class="backButton" id="backButton">Back</button></div>
+    <div class="footer" id="footer">
+      <buton class="subButton" id="subButton"></button>
+    </div>
+  </div>
+  <div id="transition"></div>
+  <script>
+    $(document).ready(function () {
+
+      var bBoxNames = ["Space Pack", "Wonderland Pack", "Breakfast Pack", "Dino Pack", "Aquatic Pack", "Safari Pack", "Bot Pack", "Medieval Pack", "Ice Monsters Pack", "Spooky Pack", "Blizzard Pack", "Autumn Pack", "Sports Pack", "Video Game Pack", "Alien Pack", "Outback Pack", "Pirate Pack", "Sports Pack", "Alien Pack", "Video Game Pack", "Elemental Pack", "Gemstone Pack", "Science Pack", "Dessert Pack", "Summer Pack", "Sci-Fi Pack", "Combat Pack", "Retro Pack", "Music Pack", "Magic Pack", "Fruit Pack", "Color Pack", "Candy Pack", "Ankha Pack", "OG Pack",];
+      var bBoxPrice = [25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25];
+      var spaceNames = ["Earth", "Meteor", "Stars", "Alien", "Planet", "UFO", "Spaceship", "Astronaut", "Pink Astronaut", "Red Astronaut", "Orange Astronaut", "Yellow Astronaut", "Lime Astronaut", "Green Astronaut", "Cyan Astronaut", "Blue Astronaut", "Purple Astronaut", "Brown Astronaut", "Black Astronaut", "Space Terminal", "Space Debugger", "Tim the Alien", "Rainbow Astronaut"];
+      var autumnNames = ["Black Bear", "Pumpkin Pie", "Chipmunk", "Cornucopia", "Autumn Cat", "Pumpkin Puppy", "Autumn Crow", "Turkey", "Autumn Wreath", "Golden Pumpkin Pie"];
+      var wonderlandNames = ["Two of Spades", "Eat Me", "Drink Me", "Alice", "Queen of Hearts", "Dormouse", "White Rabbit", "Cheshire Cat", "Caterpillar", "Mad Hatter", "King of Hearts", "Dinah", "March Hare"];
+      var breakfastNames = ["Toast", "Cereal", "Yogurt", "Breakfast Combo", "Orange Juice", "Milk", "Waffle", "Pancakes", "French Toast", "Pizza", "Sandwich", "Chocolate Milk"];
+      var dinoNames = ["Amber", "Dino Egg", "Dino Fossil", "Stegosaurus", "Velociraptor", "Brontosaurus", "Triceratops", "Tyrannosaurus Rex", "Golden Amber"];
+      var aquaticNames = ["Old Boot", "Jellyfish", "Clownfish", "Frog", "Crab", "Pufferfish", "Blobfish", "Octopus", "Narwhal", "Dolphin", "Baby Shark", "Megalodon", "Lovely Frog", "Lucky Frog", "Spring Frog", "Pirahnna", "Rainbow Jellyfish", "Blizzard Clownfish", "Poison Dart Frog", "Lemon Crab", "Crimson Octopus", "Donut Blobfish", "Rainbow Narwhal", "Kraken"];
+      var safariNames = ["Panda", "Sloth", "Tenrec", "Flamingo", "Zebra", "Elephant", "Lemur", "Peacock", "Chameleon", "Lion", "Rainbow Panda", "White Peacock", "Tiger Zebra"];
+      var botNames = ["Lil Bot", "Lovely Bot", "Angry Bot", "Happy Bot", "Watson", "Buddy Bot", "Brainy Bot", "Mega Bot", "Catson", "Forgotten Bot"];
+      var medievalNames = ["Elf", "Witch", "Wizard", "Fairy", "Slime Monster", "Jester", "Dragon", "Queen", "Unicorn", "King", "Agent Owl", "Wise Owl", "Master Elf", "Phantom King", "Dark Dragon"];
+      var iceMonsterNames = ["Ice Bat", "Ice Bug", "Ice Elemental", "Rock Monster", "Dink", "Donk", "Bush Monster", "Yeti", "Ice Slime", "Frozen Fossil", "Ice Crab"];
+      var spookyNames = ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Skeleton", "Crow", "Werewolf", "Ghost", "Haunted Pumpkin", "Pumpkin Cookie", "Mummy Cookie", "Ghost Cookie", "Red Gummy Bear", "Blue Gummy Bear", "Green Gummy Bear", "Haunted Cookie", "Chick Chicken", "Chicken Chick", "Raccoon Bandit", "Owl Sheriff", "Anaconda Wizard", "Vampire Frog", "Pumpkin King", "Spooky Cookie", "Spooky Pumpkin", "Spooky Mummy", "Spooky Skeleton", "Spooky Ghost"];
+      var blizzardNames = ["Snow Globe", "Holiday Gift", "Hot Chocolate", "Holiday Wreath", "Stocking", "Gingerbread Man", "Gingerbread House", "Reindeer", "Snowman", "Santa Claus", "Santa Claws", "New York Snow Globe", "London Snow Globe", "Japan Snow Globe", "Egypt Snow Globe", "Paris Snow Globe", "Cookies Combo", "Frost Wreath", "Tropical Globe", "Chilly Flamingo", "Snowy Bush Monster", "Red Sweater Snowman", "Blue Sweater Snowman", "Elf Sweater Snowman", "Nutcracker Koala", "Golden Gift", "Diamond Gift", "Hamsta Claus"];
+      var sportsNames = ["Basketball", "Baseball", "Soccer Ball", "Tennis Ball", "Golf Ball", "Football", "Bowling Ball", "Ping Pong Racket", "Curling Stone", "Football Helmet", "Red Bowling Ball"];
+      var videoGameNames = ["Pac-Man", "Space Invader", "Among Us", "Poké Ball", "Flappy Bird", "Goomba", "Big Shield", "Creeper", "Red Bird", "Companion Cube", "Enderman", "Master Chief", "Golden Among Us", "Gaming Mouse"];
+      var alienNames = ["Alien Mug", "Alien Ghost", "Alien", "Alien Goldfish", "Alien King", "Alien Unicorn", "Alien Caterpillar", "Alien Snowman", "Alien Blobfish"];
+      var outbackNames = ["Dingo", "Echidna", "Koala", "Kookaburra", "Platypus", "Joey", "Kangaroo", "Crocodile", "Sugar Glider", "Teal Platypus"];
+      var pirateNames = ["Deckhand", "Buccaneer", "Swashbuckler", "Treasure Map", "Seagull", "Jolly Pirate", "Pirate Ship", "Sea Monster", "Captain Blackbeard", "Pirate Pufferfish"];
+      var elementalNames = ["Nature Elemental", "Fire Elemental", "Water Elemental", "Air Elemental", "Frost Elemental", "Lava Elemental", "Space Elemental", "Electric Elemental", "Plasma Elemental"];
+      var gemstoneNames = ["Jasper", "Jade", "Onyx", "Quartz", "Lapis Lazuli", "Topaz", "Ruby", "Sapphire", "Amethyst", "Opal", "Moonstone", "Rose Quartz", "Black Opal"];
+
+      var today = new Date();
+      var dayOfWeek = today.getDay();
+      var scienceNames = [];
+
+      switch (dayOfWeek) {
+        case 0: // Sunday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Charles Darwin", "Lava Lamp", "Beating Heart"];
+          break;
+        case 1: // Monday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Albert Einstein", "Lava Lamp", "Beating Heart"];
+          break;
+        case 2: // Tuesday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Neil deGrasse Tyson", "Lava Lamp", "Beating Heart"];
+          break;
+        case 3: // Wednesday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Gregor Mendel", "Lava Lamp", "Beating Heart"];
+          break;
+        case 4: // Thursday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Isaac Newton", "Lava Lamp", "Beating Heart"];
+          break;
+        case 5: // Friday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Stephen Hawking", "Lava Lamp", "Beating Heart"];
+          break;
+        case 6: // Saturday
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Nikola Tesla", "Lava Lamp", "Beating Heart"];
+          break;
+        default:
+          scienceNames = ["Magnet", "DNA", "Scale", "Beaker", "Blood Bag", "Magnifying Glass", "Battery", "Atom", "Test Tubes", "Bunsen Burner", "Bacteria", "Microscope", "Eyeball", "Toxic Waste", "Light Prism", "Telescope", "Skull", "Lightbulb", "Brain", "Flask", "Petri Dish", "Scientist Chroma", "Lava Lamp", "Beating Heart"];
+          break;
+      }
+
+      var dessertNames = ["Elderberry Pie", "Cherry Pie", "Donut", "Flan", "Chocolate Ice Cream", "Strawberry Ice Cream", "Raspberry Macaroon", "Cake", "Blueberry Macaroon", "Birthday Cake", "Magic Chocolate"];
+      var summerNames = ["Sand Bucket", "Beach Ball", "Plastic Shovel", "Popsicle", "Life Float", "Conch Shell", "Surfboard", "Sand Castle", "Coconut Cocktail", "Tropical Pig"];
+      var scifiNames = ["Gravity Switcher", "Stealth Disguise Kit", "Object Miniaturizer", "Object Maximizer", "Holographic Display", "Flying Car", "Void Pistol", "Red Lightsaber", "Neural Implant", "Hijacked Radio", "Eternal Prism Blade", "Blue Lightsaber", "Hijacked Neural Implant", "Celestial Oracle Staff"];
+      var combatNames = ["Viking Helmet", "Iron Chestplate", "Spiked Boot", "Silver Shuriken", "Knight Shield", "Knight Sword", "Fragment Grenade", "M12 Shotgun", "M67 Grenade", "Diamond Sword", "Golden Shuriken"];
+      var retroNames = ["Dial Telephone", "EtchASketch", "Cassette Tape", "Polaroid Camera", "Vending Machine", "TamaGotchi", "GameBlook", "Donkey Kong Machine", "BoomBox", "CRT Television", "GameBlook Color", "PacMan Machine", "Blackintosh"];
+      var musicNames = ["Sheet Music", "Music Disc", "Xylophone", "Drums", "Metronome", "Triangle", "Speaker", "Piano", "White Piano", "Golden Harp"];
+      var magicNames = ["Magic Spellbook", "Cursed Ring", "Bubbling Cauldron", "Fairy Dust", "Magic Scroll", "Magician’s Wand", "Crystal Ball", "Ancient Runes", "Enchantment Hall", "Strength Potion", "Magician’s Hat", "Sentient Spellbook", "Golden Magician’s Wand", "Invisibility Cloak"];
+      var fruitNames = ["Apple", "Orange", "Lemon", "Lime", "Grape", "Strawberry", "Raspberry", "Cherry", "Watermelon", "Dragon Fruit", "Starfruit", "Green Apple", "Blue Raspberry", "Golden Apple"];
+      var colorNames = ["Brown Blook", "Dull Blue Blook", "Dust Blook", "Maroon Blook", "Tan Blook", "Baby Blue Blook", "Gray Blook", "Light Blue Blook", "Lime  Blook", "Orange  Blook", "Blue Blook", "Salmon Blook", "Teal Blook", "Burgandy Blook", "Green Blook", "Mint Blook", "Purple Blook", "Yellow Blook", "Red Blook", "White Blook", "Black Blook", "Pink Blook", "Rainbow Blook"];
+      var candyNames = ["Candy Corn", "Jellybean", "Lollipop", "Black Licorice", "Peppermint", "Chocolate", "Gummy Worm", "Rock Candy", "White Chocolate", "Red Licorice", "Blue Gummy Worm"];
+      var ankhaNames = ["Ankha", "Mummy Ankha", "Realistic Ankha", "Glowing Ankha", "Mark Ankha", "Ankha’s House", "High Ankha", "Black Ankha", "Golden Ankha", "Zone Ankha", "Rainbow Ankha"];
+      var ogNames = ["acai", "yesbutterjeff", "Pablo", "fristic", "Minesraft2", "Piotr", "painbow", "okr765", "Cerulean", "iBlooket", "root", "envi", "GAMERYT", "zastix", "Xotic"];;
+
+      var spaceChances = [18.64, 18.64, 18.64, 18.64, 9.95, 9.95, 4.5, 0.44, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.0481, 0.009, 0.0074, 0.004, 0.0024];
+      var autumnChances = [19.5, 19.5, 19.5, 19.5, 9, 9, 2.93, 1, 0.05, 0.02];
+      var wonderlandChances = [15.2, 15, 15, 15, 15, 6.5, 6.5, 6.5, 2.475, 2.475, 0.3, 0.03, 0.02];
+      var breakfastChances = [12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 9, 9, 4, 1.95, 1, 0.05];
+      var dinoChances = [19.5, 19.5, 19.5, 19.5, 9, 9, 3.65, 0.3, 0.05];
+      var aquaticChances = [14.8774, 14.8774, 14.8774, 14.8774, 14.8774, 6.1, 6.1, 6.1, 3, 3, 0.5, 0.2, 0.08, 0.07, 0.06, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.003];
+      var safariChances = [15, 15, 15, 15, 15, 7, 7, 7, 3.44, 0.5, 0.02, 0.02, 0.02];
+      var botChances = [19.5, 19.5, 19.5, 19.5, 9, 9, 3.666, 0.3, 0.03, 0.004];
+      var medievalChances = [13.4, 13.4, 13.4, 13.4, 13.4, 9, 9, 9, 4.842, 1, 0.05, 0.05, 0.05, 0.005, 0.003];
+      var iceMonsterChances = [19.5, 19.5, 19.5, 19.5, 8.5, 8.5, 4.5, 0.35, 0.08, 0.05, 0.02];
+      var spookyChances = [19, 19, 19, 19, 3.9339, 3.9339, 3.9339, 3.9339, 3.9339, 3.29, 0.65, 0.05, 0.03, 0.025, 0.02, 0.02, 0.02, 0.02, 0.0175, 0.0175, 0.0175, 0.0175, 0.0175, 0.0175, 0.015, 0.015, 0.013, 0.0125, 0.01, 0.03, 0.005];
+      var blizzardChances = [14.4085, 14.4085, 14.4085, 14.4085, 14.4085, 7.1, 7.1, 7.1, 5.15, 1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.04, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.01, 0.01, 0.01, 0.005, 0.0025];
+      var sportsChances = [20, 20, 20, 20, 5.2, 5.2, 5.1, 2, 2, 0.5];
+      var videoGameChances = [13.929932439827668, 13.929932439827668, 13.929932439827668, 13.929932439827668, 13.929932439827668, 8.954956568460645, 8.954956568460645, 8.954956568460645, 1.2934937265554265, 1.2934937265554265, 0.49749758713670245, 0.3482483109956917, 0.049749758713670246, 0.0029849855228202145];
+      var alienChances = [19, 19, 19, 19, 10, 10, 3.5, 0.45, 0.05];
+      var outbackChances = [18.75, 18.75, 18.75, 18.75, 7, 7, 7, 3.6, 0.37, 0.03];
+      var pirateChances = [16, 16, 16, 16, 16, 8, 8, 3.67, 0.3, 0.03];
+      var elementalChances = [100];
+      var gemstoneChances = [14.991949323213435, 14.991949323213435, 14.991949323213435, 14.991949323213435, 14.991949323213435, 6.796350359856757, 6.796350359856757, 6.796350359856757, 3.897906824035493, 0.4997316441071145, 0.1998926576428458, 0.04997316441071145, 0.0036980141663926474];
+      var scienceChances = [11.12202717481973, 11.12202717481973, 11.12202717481973, 11.12202717481973, 11.12202717481973, 11.12202717481973, 11.12202717481973, 2.595139674124604, 2.595139674124604, 2.595139674124604, 2.595139674124604, 2.595139674124604, 2.595139674124604, 1.7053775001390252, 1.7053775001390252, 1.7053775001390252, 0.4448810869927892, 0.4448810869927892, 0.40780766307672345, 0.05190279348249208, 0.05190279348249208, 0.05190279348249208, 0.0037073423916065768, 0.0018536711958032884];
+      var dessertChances = [19.43742537417044, 19.43742537417044, 19.43742537417044, 16.660650320717522, 9.996390192430512, 9.996390192430512, 4.442840085524672, 0.555355010690584, 0.02221420042762336, 0.01110710021381168, 0.00277677505345292];
+      var summerChances = [18.701472902210643, 18.701472902210643, 18.701472902210643, 18.701472902210643, 10.318054015012768, 10.318054015012768, 3.998245930817448, 0.5159027007506384, 0.03869270255629788, 0.0051590270075063845];
+      var scifiChances = [15.19190271585245, 14.992009259064918, 14.992009259064918, 14.992009259064918, 14.992009259064918, 6.496537345594798, 6.496537345594798, 6.496537345594798, 2.498668209844153, 2.498668209844153, 0.29984018518129835, 0.029984018518129835, 0.019989345678753226, 0.003298242036994282];
+      var combatChances = [18.749343772967947, 18.749343772967947, 18.749343772967947, 18.749343772967947, 9.999650012249571, 9.999650012249571, 4.499842505512307, 0.4499842505512307, 0.04999825006124786, 0.002499912503062393, 0.0009999650012249572];
+      var retroChances = [14.911757482193606, 14.911757482193606, 14.911757482193606, 13.157433072523771, 8.77162204834918, 12.280270867688852, 8.77162204834918, 8.77162204834918, 3.070067716922213, 0.3947229921757131, 0.02631486614504754, 0.01754324409669836, 0.003508648819339672];
+      var musicChances = [18.701545263543466, 18.701545263543466, 18.701545263543466, 18.701545263543466, 10.31809393850674, 10.31809393850674, 3.9982614011713618, 0.515904696925337, 0.03869285226940027, 0.004772118446559367];
+      var magicChances = [13.995521433141395, 13.995521433141395, 13.995521433141395, 13.995521433141395, 13.495681381957773, 7.99744081893794, 7.99744081893794, 7.99744081893794, 2.9990403071017275, 2.9990403071017275, 0.49984005118362124, 0.01999360204734485, 0.009996801023672425, 0.001999360204734485];
+      var fruitChances = [15.19050593379138, 14.990630855715178, 14.990630855715178, 14.990630855715178, 14.990630855715178, 6.4959400374765774, 6.4959400374765774, 6.4959400374765774, 2.4984384759525295, 2.4984384759525295, 0.29981261711430357, 0.0499687695190506, 0.009993753903810118, 0.0024984384759525295];
+      var colorChances = [7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 7.233011464323171, 3.6165057321615857, 3.6165057321615857, 3.6165057321615857, 3.6165057321615857, 3.6165057321615857, 3.6165057321615857, 1.8082528660807928, 1.8082528660807928, 1.8082528660807928, 0.36165057321615857, 0.14466022928646344, 0.03616505732161586, 0.0036165057321615856];
+      var candyChances = [19.500000000000004, 19.500000000000004, 19.500000000000004, 19.500000000000004, 8.500000000000002, 8.500000000000002, 4.500000000000001, 0.35000000000000003, 0.08000000000000002, 0.05000000000000002, 0.020000000000000004];
+      var ankhaChances = [18.514012462575245, 18.514012462575245, 18.514012462575245, 15.869153539350211, 10.579435692900141, 10.579435692900141, 4.231774277160056, 2.6448589232250352, 0.528971784645007, 0.021158871385800283, 0.0031738307078700424];
+      var ogChances = [14.618717274007922, 14.618717274007922, 14.618717274007922, 14.618717274007922, 14.618717274007922, 6.910666347712836, 6.910666347712836, 6.910666347712836, 2.657948595274168, 2.657948595274168, 0.5315897190548335, 0.26579485952741677, 0.053158971905483354, 0.005315897190548336, 0.002657948595274168];
+
+      var spaceReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000, 1000, 1000];
+      var autumnReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300, 300];
+      var wonderlandReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 200, 300, 300];
+      var breakfastReturn = [5, 5, 5, 5, 5, 5, 20, 20, 75, 75, 200, 300];
+      var dinoReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300];
+      var aquaticReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 200, 250, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000];
+      var safariReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 200, 300, 300, 300];
+      var botReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300, 1000];
+      var medievalReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 200, 300, 300, 300, 1000, 1000];
+      var iceMonsterReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300, 300, 300];
+      var spookyReturn = [5, 5, 5, 5, 20, 20, 20, 20, 20, 75, 200, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000];
+      var blizzardReturn = [5, 5, 5, 5, 5, 20, 20, 20, 20, 75, 200, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000, 1000];
+      var sportsReturn = [5, 5, 5, 5, 20, 20, 20, 75, 75, 200];
+      var videoGameReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 200, 200, 300, 1000];
+      var alienReturn = [5, 5, 5, 5, 20, 20, 75, 200, 300];
+      var outbackReturn = [5, 5, 5, 5, 20, 20, 20, 75, 200, 300];
+      var pirateReturn = [5, 5, 5, 5, 5, 20, 20, 75, 200, 300];
+      var elementalReturn = [5];
+      var gemstoneReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 100, 100, 300, 1000];
+      var scienceReturn = [5, 5, 5, 5, 5, 5, 5, 20, 20, 20, 20, 20, 20, 75, 75, 75, 200, 200, 200, 300, 300, 300, 1000, 1000];
+      var dessertReturn = [5, 5, 5, 5, 20, 20, 75, 100, 300, 300, 1000];
+      var summerReturn = [5, 5, 5, 5, 20, 20, 75, 100, 300, 1000];
+      var scifiReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 100, 300, 300, 1000];
+      var combatReturn = [5, 5, 5, 5, 20, 20, 75, 100, 300, 1000, 1000];
+      var retroReturn = [5, 5, 5, 5, 20, 5, 20, 20, 75, 100, 300, 300, 1000];
+      var musicReturn = [5, 5, 5, 5, 20, 20, 75, 100, 300, 1000];
+      var magicReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 100, 300, 300, 1000];
+      var fruitReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 100, 300, 300, 1000];
+      var colorReturn = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 20, 20, 20, 20, 20, 75, 75, 75, 200, 200, 300, 1000];
+      var candyReturn = [5, 5, 5, 5, 20, 20, 75, 100, 300, 300, 300];
+      var ankhaReturn = [5, 5, 5, 5, 20, 20, 75, 75, 100, 300, 1000];
+      var ogReturn = [5, 5, 5, 5, 5, 20, 20, 20, 75, 75, 100, 100, 300, 1000, 1000];
+
+      var spaceWebps = ["https://blacket.org/content/blooks/Earth.webp", "https://blacket.org/content/blooks/Meteor.webp", "https://blacket.org/content/blooks/Stars.webp", "https://blacket.org/content/blooks/Alien.webp", "https://blacket.org/content/blooks/Planet.webp", "https://blacket.org/content/blooks/UFO.webp", "https://blacket.org/content/blooks/Spaceship.webp", "https://blacket.org/content/blooks/Astronaut.webp", "https://blacket.org/content/blooks/Pink%20Astronaut.webp", "https://blacket.org/content/blooks/Red%20Astronaut.webp", "https://blacket.org/content/blooks/Orange%20Astronaut.webp", "https://blacket.org/content/blooks/Yellow%20Astronaut.webp", "https://blacket.org/content/blooks/Lime%20Astronaut.webp", "https://blacket.org/content/blooks/Green%20Astronaut.webp", "https://blacket.org/content/blooks/Cyan%20Astronaut.webp", "https://blacket.org/content/blooks/Blue%20Astronaut.webp", "https://blacket.org/content/blooks/Purple%20Astronaut.webp", "https://blacket.org/content/blooks/Brown%20Astronaut.webp", "https://blacket.org/content/blooks/Black%20Astronaut.webp", "https://blacket.org/content/blooks/Space%20Terminal.webp", "https://blacket.org/content/blooks/Space%20Debugger.webp", "https://blacket.org/content/blooks/Tim%20the%20Alien.webp", "https://blacket.org/content/blooks/Rainbow%20Astronaut.webp"];
+      var autumnWebps = ["https://blacket.org/content/blooks/Black%20Bear.webp", "https://blacket.org/content/blooks/Pumpkin%20Pie.webp", "https://blacket.org/content/blooks/Chipmunk.webp", "https://blacket.org/content/blooks/Cornucopia.webp", "https://blacket.org/content/blooks/Autumn%20Cat.webp", "https://blacket.org/content/blooks/Pumpkin%20Puppy.webp", "https://blacket.org/content/blooks/Autumn%20Crow.webp", "https://blacket.org/content/blooks/Turkey.webp", "https://blacket.org/content/blooks/Autumn%20Wreath.webp", "https://blacket.org/content/blooks/Golden%20Pumpkin%20Pie.webp"];
+      var wonderlandWebps = ["https://blacket.org/content/blooks/Two%20of%20Spades.webp", "https://blacket.org/content/blooks/Eat%20Me.webp", "https://blacket.org/content/blooks/Drink%20Me.webp", "https://blacket.org/content/blooks/Alice.webp", "https://blacket.org/content/blooks/Queen%20of%20Hearts.webp", "https://blacket.org/content/blooks/Dormouse.webp", "https://blacket.org/content/blooks/White%20Rabbit.webp", "https://blacket.org/content/blooks/Cheshire%20Cat.webp", "https://blacket.org/content/blooks/Caterpillar.webp", "https://blacket.org/content/blooks/Mad%20Hatter.webp", "https://blacket.org/content/blooks/King%20of%20Hearts.webp", "https://blacket.org/content/blooks/Dinah.webp", "https://blacket.org/content/blooks/March%20Hare.webp"];
+      var breakfastWebps = ["https://blacket.org/content/blooks/Toast.webp", "https://blacket.org/content/blooks/Cereal.webp", "https://blacket.org/content/blooks/Yogurt.webp", "https://blacket.org/content/blooks/Breakfast%20Combo.webp", "https://blacket.org/content/blooks/Orange%20Juice.webp", "https://blacket.org/content/blooks/Milk.webp", "https://blacket.org/content/blooks/Waffle.webp", "https://blacket.org/content/blooks/Pancakes.webp", "https://blacket.org/content/blooks/French%20Toast.webp", "https://blacket.org/content/blooks/Pizza.webp", "https://blacket.org/content/blooks/Sandwich.webp", "https://blacket.org/content/blooks/Chocolate%20Milk.webp"];
+      var dinoWebps = ["https://blacket.org/content/blooks/Amber.webp", "https://blacket.org/content/blooks/Dino%20Egg.webp", "https://blacket.org/content/blooks/Dino%20Fossil.webp", "https://blacket.org/content/blooks/Stegosaurus.webp", "https://blacket.org/content/blooks/Velociraptor.webp", "https://blacket.org/content/blooks/Brontosaurus.webp", "https://blacket.org/content/blooks/Triceratops.webp", "https://blacket.org/content/blooks/Tyrannosaurus%20Rex.webp", "https://blacket.org/content/blooks/Golden%20Amber.webp"];
+      var aquaticWebps = ["https://blacket.org/content/blooks/Old%20Boot.webp", "https://blacket.org/content/blooks/Jellyfish.webp", "https://blacket.org/content/blooks/Clownfish.webp", "https://blacket.org/content/blooks/Frog.webp", "https://blacket.org/content/blooks/Crab.webp", "https://blacket.org/content/blooks/Pufferfish.webp", "https://blacket.org/content/blooks/Blobfish.webp", "https://blacket.org/content/blooks/Octopus.webp", "https://blacket.org/content/blooks/Narwhal.webp", "https://blacket.org/content/blooks/Dolphin.webp", "https://blacket.org/content/blooks/Baby%20Shark.webp", "https://blacket.org/content/blooks/Megalodon.webp", "https://blacket.org/content/blooks/Lovely%20Frog.webp", "https://blacket.org/content/blooks/Lucky%20Frog.webp", "https://blacket.org/content/blooks/Spring%20Frog.webp", "https://blacket.org/content/blooks/Pirahnna.webp", "https://blacket.org/content/blooks/Rainbow%20Jellyfish.webp", "https://blacket.org/content/blooks/Blizzard%20Clownfish.webp", "https://blacket.org/content/blooks/Poison%20Dart%20Frog.webp", "https://blacket.org/content/blooks/Lemon%20Crab.webp", "https://blacket.org/content/blooks/Crimson%20Octopus.webp", "https://blacket.org/content/blooks/Donut%20Blobfish.webp", "https://blacket.org/content/blooks/Rainbow%20Narwhal.webp", "https://blacket.org/content/blooks/Kraken.webp"];
+      var safariWebps = ["https://blacket.org/content/blooks/Panda.webp", "https://blacket.org/content/blooks/Sloth.webp", "https://blacket.org/content/blooks/Tenrec.webp", "https://blacket.org/content/blooks/Flamingo.webp", "https://blacket.org/content/blooks/Zebra.webp", "https://blacket.org/content/blooks/Elephant.webp", "https://blacket.org/content/blooks/Lemur.webp", "https://blacket.org/content/blooks/Peacock.webp", "https://blacket.org/content/blooks/Chameleon.webp", "https://blacket.org/content/blooks/Lion.webp", "https://blacket.org/content/blooks/Rainbow%20Panda.webp", "https://blacket.org/content/blooks/White%20Peacock.webp", "https://blacket.org/content/blooks/Tiger%20Zebra.webp"];
+      var botWebps = ["https://blacket.org/content/blooks/Lil%20Bot.webp", "https://blacket.org/content/blooks/Lovely%20Bot.webp", "https://blacket.org/content/blooks/Angry%20Bot.webp", "https://blacket.org/content/blooks/Happy%20Bot.webp", "https://blacket.org/content/blooks/Watson.webp", "https://blacket.org/content/blooks/Buddy%20Bot.webp", "https://blacket.org/content/blooks/Brainy%20Bot.webp", "https://blacket.org/content/blooks/Mega%20Bot.webp", "https://blacket.org/content/blooks/Catson.webp", "https://blacket.org/content/blooks/Forgotten%20Bot.webp"];
+      var medievalWebps = ["https://blacket.org/content/blooks/Elf.webp", "https://blacket.org/content/blooks/Witch.webp", "https://blacket.org/content/blooks/Wizard.webp", "https://blacket.org/content/blooks/Fairy.webp", "https://blacket.org/content/blooks/Slime%20Monster.webp", "https://blacket.org/content/blooks/Jester.webp", "https://blacket.org/content/blooks/Dragon.webp", "https://blacket.org/content/blooks/Queen.webp", "https://blacket.org/content/blooks/Unicorn.webp", "https://blacket.org/content/blooks/King.webp", "https://blacket.org/content/blooks/Agent%20Owl.webp", "https://blacket.org/content/blooks/Wise%20Owl.webp", "https://blacket.org/content/blooks/Master%20Elf.webp", "https://blacket.org/content/blooks/Phantom%20King.webp", "https://blacket.org/content/blooks/Dark%20Dragon.webp"];
+      var iceMonsterWebps = ["https://blacket.org/content/blooks/Ice%20Bat.webp", "https://blacket.org/content/blooks/Ice%20Bug.webp", "https://blacket.org/content/blooks/Ice%20Elemental1.webp", "https://blacket.org/content/blooks/Rock%20Monster.webp", "https://blacket.org/content/blooks/Dink.webp", "https://blacket.org/content/blooks/Donk.webp", "https://blacket.org/content/blooks/Bush%20Monster.webp", "https://blacket.org/content/blooks/Yeti.webp", "https://blacket.org/content/blooks/Ice%20Slime.webp", "https://blacket.org/content/blooks/Frozen%20Fossil.webp", "https://blacket.org/content/blooks/Ice%20Crab.webp"];
+      var spookyWebps = ["https://blacket.org/content/blooks/Pumpkin.webp", "https://blacket.org/content/blooks/Swamp%20Monster.webp", "https://blacket.org/content/blooks/Frankenstein.webp", "https://blacket.org/content/blooks/Vampire.webp", "https://blacket.org/content/blooks/Zombie.webp", "https://blacket.org/content/blooks/Mummy.webp", "https://blacket.org/content/blooks/Caramel%20Apple.webp", "https://blacket.org/content/blooks/Skeleton.webp", "https://blacket.org/content/blooks/Crow.webp", "https://blacket.org/content/blooks/Werewolf.webp", "https://blacket.org/content/blooks/Ghost.webp", "https://blacket.org/content/blooks/Haunted%20Pumpkin.webp", "https://blacket.org/content/blooks/Pumpkin%20Cookie.webp", "https://blacket.org/content/blooks/Mummy%20Cookie.webp", "https://blacket.org/content/blooks/Ghost%20Cookie.webp", "https://blacket.org/content/blooks/Red%20Gummy%20Bear.webp", "https://blacket.org/content/blooks/Blue%20Gummy%20Bear.webp", "https://blacket.org/content/blooks/Green%20Gummy%20Bear.webp", "https://blacket.org/content/blooks/Haunted%20Cookie.webp", "https://blacket.org/content/blooks/Chick%20Chicken.webp", "https://blacket.org/content/blooks/Chicken%20Chick.webp", "https://blacket.org/content/blooks/Raccoon%20Bandit.webp", "https://blacket.org/content/blooks/Owl%20Sheriff.webp", "https://blacket.org/content/blooks/Anaconda%20Wizard.webp", "https://blacket.org/content/blooks/Vampire%20Frog.webp", "https://blacket.org/content/blooks/Pumpkin%20King.webp", "https://blacket.org/content/blooks/Spooky%20Cookie.webp", "https://blacket.org/content/blooks/Spooky%20Pumpkin.webp", "https://blacket.org/content/blooks/Spooky%20Mummy.webp", "https://blacket.org/content/blooks/Spooky%20Skeleton.webp", "https://blacket.org/content/blooks/Spooky%20Ghost.webp"];
+      var blizzardWebps = ["https://blacket.org/content/blooks/Snow%20Globe.webp", "https://blacket.org/content/blooks/Holiday%20Gift.webp", "https://blacket.org/content/blooks/Hot%20Chocolate.webp", "https://blacket.org/content/blooks/Holiday%20Wreath.webp", "https://blacket.org/content/blooks/Stocking.webp", "https://blacket.org/content/blooks/Gingerbread%20Man.webp", "https://blacket.org/content/blooks/Gingerbread%20House.webp", "https://blacket.org/content/blooks/Reindeer.webp", "https://blacket.org/content/blooks/Snowman.webp", "https://blacket.org/content/blooks/Santa%20Claus.webp", "https://blacket.org/content/blooks/Santa%20Claws.webp", "https://blacket.org/content/blooks/New%20York%20Snow%20Globe.webp", "https://blacket.org/content/blooks/London%20Snow%20Globe.webp", "https://blacket.org/content/blooks/Japan%20Snow%20Globe.webp", "https://blacket.org/content/blooks/Egypt%20Snow%20Globe.webp", "https://blacket.org/content/blooks/Paris%20Snow%20Globe.webp", "https://blacket.org/content/blooks/Cookies%20Combo.webp", "https://blacket.org/content/blooks/Frost%20Wreath.webp", "https://blacket.org/content/blooks/Tropical%20Globe.webp", "https://blacket.org/content/blooks/Chilly%20Flamingo.webp", "https://blacket.org/content/blooks/Snowy%20Bush%20Monster.webp", "https://blacket.org/content/blooks/Red%20Sweater%20Snowman.webp", "https://blacket.org/content/blooks/Blue%20Sweater%20Snowman.webp", "https://blacket.org/content/blooks/Elf%20Sweater%20Snowman.webp", "https://blacket.org/content/blooks/Nutcracker%20Koala.webp", "https://blacket.org/content/blooks/Golden%20Gift.webp", "https://blacket.org/content/blooks/Diamond%20Gift.webp", "https://blacket.org/content/blooks/Hamsta%20Claus.webp"];
+      var sportsWebps = ["https://blacket.org/content/blooks/Basketball.webp", "https://blacket.org/content/blooks/Baseball.webp", "https://blacket.org/content/blooks/Soccer%20Ball.webp", "https://blacket.org/content/blooks/Tennis%20Ball.webp", "https://blacket.org/content/blooks/Golf%20Ball.webp", "https://blacket.org/content/blooks/Football.webp", "https://blacket.org/content/blooks/Bowling%20Ball.webp", "https://blacket.org/content/blooks/Ping%20Pong%20Racket.webp", "https://blacket.org/content/blooks/Curling%20Stone.webp", "https://blacket.org/content/blooks/Football%20Helmet.webp", "https://blacket.org/content/blooks/Red%20Bowling%20Ball.webp"];
+      var videoGameWebps = ["https://blacket.org/content/blooks/Pac-Man.webp", "https://blacket.org/content/blooks/Space%20Invader.webp", "https://blacket.org/content/blooks/Among%20Us.webp", "https://blacket.org/content/blooks/Poke%20Ball.webp", "https://blacket.org/content/blooks/Flappy%20Bird.webp", "https://blacket.org/content/blooks/Goomba.webp", "https://blacket.org/content/blooks/Big%20Shield.webp", "https://blacket.org/content/blooks/Creeper.webp", "https://blacket.org/content/blooks/Red%20Bird.webp", "https://blacket.org/content/blooks/Companion%20Cube.webp", "https://blacket.org/content/blooks/Enderman.webp", "https://blacket.org/content/blooks/Master%20Chief.webp", "https://blacket.org/content/blooks/Golden%20Among%20Us.webp", "https://blacket.org/content/blooks/Gaming%20Mouse.webp"];
+      var alienWebps = ["https://i.imgur.com/dUqWP2K.png", "https://i.imgur.com/kpjewb5.png", "https://ac.blooket.com/marketassets/blooks/alien.svg", "https://i.imgur.com/iTqzxlH.png", "https://i.imgur.com/OtjJhj8.png", "https://i.imgur.com/YUsX654.png", "https://i.imgur.com/ZCFPrFb.png", "https://i.imgur.com/tMU1PvJ.png", "https://i.imgur.com/2Onn2Hv.png"];
+      var outbackWebps = ["https://blacket.org/content/blooks/Dingo.webp", "https://blacket.org/content/blooks/Echidna.webp", "https://blacket.org/content/blooks/Koala.webp", "https://blacket.org/content/blooks/Kookaburra.webp", "https://blacket.org/content/blooks/Platypus.webp", "https://blacket.org/content/blooks/Joey.webp", "https://blacket.org/content/blooks/Kangaroo.webp", "https://blacket.org/content/blooks/Crocodile.webp", "https://blacket.org/content/blooks/Sugar%20Glider.webp", "https://blacket.org/content/blooks/Teal%20Platypus.webp"];
+      var pirateWebps = ["https://blacket.org/content/blooks/Deckhand.webp", "https://blacket.org/content/blooks/Buccaneer.webp", "https://blacket.org/content/blooks/Swashbuckler.webp", "https://blacket.org/content/blooks/Treasure%20Map.webp", "https://blacket.org/content/blooks/Seagull.webp", "https://blacket.org/content/blooks/Jolly%20Pirate.webp", "https://blacket.org/content/blooks/Pirate%20Ship.webp", "https://blacket.org/content/blooks/Sea%20Monster.webp", "https://blacket.org/content/blooks/Captain%20Blackbeard.webp", "https://blacket.org/content/blooks/Pirate%20Pufferfish.webp"];
+      var elementalWebps = ["https://blacket.org/content/blooks/Nature%20Elemental1.webp", "https://blacket.org/content/blooks/Fire%20Elemental1.webp", "https://blacket.org/content/blooks/Water%20Elemental1.webp", "https://blacket.org/content/blooks/Air%20Elemental1.webp", "https://blacket.org/content/blooks/Frost%20Elemental1.webp", "https://blacket.org/content/blooks/Lava%20Elemental1.webp", "https://blacket.org/content/blooks/Space%20Elemental1.webp", "https://blacket.org/content/blooks/Electric%20Elemental1.webp", "https://blacket.org/content/blooks/Plasma%20Elemental1.webp"];
+      var gemstoneWebps = ["https://blacket.org/content/blooks/Jasper.webp", "https://blacket.org/content/blooks/Jade.webp", "https://blacket.org/content/blooks/Onyx.webp", "https://blacket.org/content/blooks/Quartz.webp", "https://blacket.org/content/blooks/Lapis%20Lazuli.webp", "https://blacket.org/content/blooks/Topaz.webp", "https://blacket.org/content/blooks/Ruby.webp", "https://blacket.org/content/blooks/Sapphire.webp", "https://blacket.org/content/blooks/Amethyst.webp", "https://blacket.org/content/blooks/Opal.webp", "https://blacket.org/content/blooks/Moonstone.webp", "https://blacket.org/content/blooks/Rose%20Quartz.webp", "https://blacket.org/content/blooks/Black%20Opal.webp"];
+
+      var today = new Date()
+      var dayOfWeek = today.getDay();
+      var scienceWebps = [];
+
+      switch (dayOfWeek) {
+        case 0: // Sunday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Charles%20Darwin.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 1: // Monday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Albert%20Einstein.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 2: // Tuesday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Neil%20deGrasse%20Tyson.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 3: // Wednesday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Gregor%20Mendel.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 4: // Thursday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Isaac%20Newton.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 5: // Friday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Stephen%20Hawking.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        case 6: // Saturday
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Nikola%20Tesla.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+        default:
+          scienceWebps = ["https://blacket.org/content/blooks/Magnet.webp", "https://blacket.org/content/blooks/DNA.webp", "https://blacket.org/content/blooks/Scale.webp", "https://blacket.org/content/blooks/Beaker.webp", "https://blacket.org/content/blooks/Blood%20Bag.webp", "https://blacket.org/content/blooks/Magnifying%20Glass.webp", "https://blacket.org/content/blooks/Battery.webp", "https://blacket.org/content/blooks/Atom.webp", "https://blacket.org/content/blooks/Test%20Tubes.webp", "https://blacket.org/content/blooks/Bunsen%20Burner.webp", "https://blacket.org/content/blooks/Bacteria.webp", "https://blacket.org/content/blooks/Microscope.webp", "https://blacket.org/content/blooks/Eyeball.webp", "https://blacket.org/content/blooks/Toxic%20Waste.webp", "https://blacket.org/content/blooks/Light%20Prism.webp", "https://blacket.org/content/blooks/Telescope.webp", "https://blacket.org/content/blooks/Skull.webp", "https://blacket.org/content/blooks/Lightbulb.webp", "https://blacket.org/content/blooks/Brain.webp", "https://blacket.org/content/blooks/Flask.webp", "https://blacket.org/content/blooks/Petri%20Dish.webp", "https://blacket.org/content/blooks/Scientist%20Chroma.webp", "https://blacket.org/content/blooks/Lava%20Lamp.webp", "https://blacket.org/content/blooks/Beating%20Heart.webp"];
+          break;
+      }
+
+      var dessertWebps = ["https://blacket.org/content/blooks/Elderberry%20Pie.webp", "https://blacket.org/content/blooks/Cherry%20Pie.webp", "https://blacket.org/content/blooks/Donut.webp", "https://blacket.org/content/blooks/Flan.webp", "https://blacket.org/content/blooks/Chocolate%20Ice%20Cream.webp", "https://blacket.org/content/blooks/Strawberry%20Ice%20Cream.webp", "https://blacket.org/content/blooks/Raspberry%20Macaroon.webp", "https://blacket.org/content/blooks/Cake.webp", "https://blacket.org/content/blooks/Blueberry%20Macaroon.webp", "https://blacket.org/content/blooks/Birthday%20Cake.webp", "https://blacket.org/content/blooks/Magic%20Chocolate.webp"];
+      var summerWebps = ["https://blacket.org/content/blooks/Sand%20Bucket.webp", "https://blacket.org/content/blooks/Beach%20Ball.webp", "https://blacket.org/content/blooks/Plastic%20Shovel.webp", "https://blacket.org/content/blooks/Popsicle.webp", "https://blacket.org/content/blooks/Life%20Float.webp", "https://blacket.org/content/blooks/Conch%20Shell.webp", "https://blacket.org/content/blooks/Surfboard.webp", "https://blacket.org/content/blooks/Sand%20Castle.webp", "https://blacket.org/content/blooks/Coconut%20Cocktail.webp", "https://blacket.org/content/blooks/Tropical%20Pig.webp"];
+      var scifiWebps = ["https://blacket.org/content/blooks/Gravity%20Switcher.webp", "https://blacket.org/content/blooks/Stealth%20Disguise%20Kit.webp", "https://blacket.org/content/blooks/Object%20Miniaturizer.webp", "https://blacket.org/content/blooks/Object%20Maximizer.webp", "https://blacket.org/content/blooks/Holographic%20Display.webp", "https://blacket.org/content/blooks/Flying%20Car.webp", "https://blacket.org/content/blooks/Void%20Pistol.webp", "https://blacket.org/content/blooks/Red%20Lightsaber.webp", "https://blacket.org/content/blooks/Neural%20Implant.webp", "https://blacket.org/content/blooks/Hijacked%20Radio.webp", "https://blacket.org/content/blooks/Eternal%20Prism%20Blade.webp", "https://blacket.org/content/blooks/Blue%20Lightsaber.webp", "https://blacket.org/content/blooks/Hijacked%20Neural%20Implant.webp", "https://blacket.org/content/blooks/Celestial%20Oracle%20Staff.webp"];
+      var combatWebps = ["https://blacket.org/content/blooks/Viking%20Helmet.webp", "https://blacket.org/content/blooks/Iron%20Chestplate.webp", "https://blacket.org/content/blooks/Spiked%20Boot.webp", "https://blacket.org/content/blooks/Silver%20Shuriken.webp", "https://blacket.org/content/blooks/Knight%20Shield.webp", "https://blacket.org/content/blooks/Knight%20Sword.webp", "https://blacket.org/content/blooks/Fragment%20Grenade.webp", "https://blacket.org/content/blooks/M12%20Shotgun.webp", "https://blacket.org/content/blooks/M67%20Grenade.webp", "https://blacket.org/content/blooks/Diamond%20Sword.webp", "https://blacket.org/content/blooks/Golden%20Shuriken.webp"];
+      var retroWebps = ["https://blacket.org/content/blooks/Dial%20Telephone.webp", "https://blacket.org/content/blooks/EtchASketch.webp", "https://blacket.org/content/blooks/Cassette%20Tape.webp", "https://blacket.org/content/blooks/Polaroid%20Camera.webp", "https://blacket.org/content/blooks/Vending%20Machine.webp", "https://blacket.org/content/blooks/TamaGotchi.webp", "https://blacket.org/content/blooks/GameBlook.webp", "https://blacket.org/content/blooks/Donkey%20Kong%20Machine.webp", "https://blacket.org/content/blooks/BoomBox.webp", "https://blacket.org/content/blooks/CRT%20Television.webp", "https://blacket.org/content/blooks/GameBlook%20Color.webp", "https://blacket.org/content/blooks/PacMan%20Machine.webp", "https://blacket.org/content/blooks/Blackintosh.webp"];
+      var musicWebps = ["https://blacket.org/content/blooks/Sheet%20Music.webp", "https://blacket.org/content/blooks/Music%20Disc.webp", "https://blacket.org/content/blooks/Xylophone.webp", "https://blacket.org/content/blooks/Drums.webp", "https://blacket.org/content/blooks/Metronome.webp", "https://blacket.org/content/blooks/Triangle.webp", "https://blacket.org/content/blooks/Speaker.webp", "https://blacket.org/content/blooks/Piano.webp", "https://blacket.org/content/blooks/White%20Piano.webp", "https://blacket.org/content/blooks/Golden%20Harp.webp"];
+      var magicWebps = ["https://blacket.org/content/blooks/Magic%20Spellbook.webp", "https://blacket.org/content/blooks/Cursed%20Ring.webp", "https://blacket.org/content/blooks/Bubbling%20Cauldron.webp", "https://blacket.org/content/blooks/Fairy%20Dust.webp", "https://blacket.org/content/blooks/Magic%20Scroll.webp", "https://blacket.org/content/blooks/Magician%27s%20Wand.webp", "https://blacket.org/content/blooks/Crystal%20Ball.webp", "https://blacket.org/content/blooks/Ancient%20Runes.webp", "https://blacket.org/content/blooks/Enchantment%20Hall.webp", "https://blacket.org/content/blooks/Strength%20Potion.webp", "https://blacket.org/content/blooks/Magician%27s%20Hat.webp", "https://blacket.org/content/blooks/Sentient%20Spellbook.webp", "https://blacket.org/content/blooks/Golden%20Magician%27s%20Wand.webp", "https://blacket.org/content/blooks/Invisibility%20Cloak.webp"];
+      var fruitWebps = ["https://blacket.org/content/blooks/Apple.webp", "https://blacket.org/content/blooks/Orange.webp", "https://blacket.org/content/blooks/Lemon.webp", "https://blacket.org/content/blooks/Lime.webp", "https://blacket.org/content/blooks/Grape.webp", "https://blacket.org/content/blooks/Strawberry.webp", "https://blacket.org/content/blooks/Raspberry.webp", "https://blacket.org/content/blooks/Cherry.webp", "https://blacket.org/content/blooks/Watermelon.webp", "https://blacket.org/content/blooks/Dragon%20Fruit.webp", "https://blacket.org/content/blooks/Starfruit.webp", "https://blacket.org/content/blooks/Green%20Apple.webp", "https://blacket.org/content/blooks/Blue%20Raspberry.webp", "https://blacket.org/content/blooks/Golden%20Apple.webp"];
+      var colorWebps = ["https://blacket.org/content/blooks/Brown%20Blook.webp", "https://blacket.org/content/blooks/Dull%20Blue%20Blook.webp", "https://blacket.org/content/blooks/Dust%20Blook.webp", "https://blacket.org/content/blooks/Maroon%20Blook.webp", "https://blacket.org/content/blooks/Tan%20Blook.webp", "https://blacket.org/content/blooks/Baby%20Blue%20Blook.webp", "https://blacket.org/content/blooks/Gray%20Blook.webp", "https://blacket.org/content/blooks/Light%20Blue%20Blook.webp", "https://blacket.org/content/blooks/Lime%20Blook.webp", "https://blacket.org/content/blooks/Orange%20Blook.webp", "https://blacket.org/content/blooks/Blue%20Blook.webp", "https://blacket.org/content/blooks/Salmon%20Blook.webp", "https://blacket.org/content/blooks/Teal%20Blook.webp", "https://blacket.org/content/blooks/Burgandy%20Blook.webp", "https://blacket.org/content/blooks/Green%20Blook.webp", "https://blacket.org/content/blooks/Mint%20Blook.webp", "https://blacket.org/content/blooks/Purple%20Blook.webp", "https://blacket.org/content/blooks/Yellow%20Blook.webp", "https://blacket.org/content/blooks/Red%20Blook.webp", "https://blacket.org/content/blooks/White%20Blook.webp", "https://blacket.org/content/blooks/Black%20Blook.webp", "https://blacket.org/content/blooks/Pink%20Blook.webp", "https://blacket.org/content/blooks/Rainbow%20Blook.webp"];
+      var candyWebps = ["https://blacket.org/content/blooks/Candy%20Corn.webp", "https://blacket.org/content/blooks/Jellybean.webp", "https://blacket.org/content/blooks/Lollipop.webp", "https://blacket.org/content/blooks/Black%20Licorice.webp", "https://blacket.org/content/blooks/Peppermint.webp", "https://blacket.org/content/blooks/Chocolate.webp", "https://blacket.org/content/blooks/Gummy%20Worm.webp", "https://blacket.org/content/blooks/Rock%20Candy.webp", "https://blacket.org/content/blooks/White%20Chocolate.webp", "https://blacket.org/content/blooks/Red%20Licorice.webp", "https://blacket.org/content/blooks/Blue%20Gummy%20Worm.webp"];
+      var ankhaWebps = ["https://blacket.org/content/blooks/Ankha.webp", "https://blacket.org/content/blooks/Mummy%20Ankha.webp", "https://blacket.org/content/blooks/Realistic%20Ankha.webp", "https://blacket.org/content/blooks/Glowing%20Ankha.webp", "https://blacket.org/content/blooks/Mark%20Ankha.webp", "https://blacket.org/content/blooks/Ankha%27s%20House.webp", "https://blacket.org/content/blooks/High%20Ankha.webp", "https://blacket.org/content/blooks/Black%20Ankha.webp", "https://blacket.org/content/blooks/Golden%20Ankha.webp", "https://blacket.org/content/blooks/Zone%20Ankha.webp", "https://blacket.org/content/blooks/Rainbow%20Ankha.webp"];
+      var ogWebps = ["https://blacket.org/content/blooks/acai.webp", "https://blacket.org/content/blooks/yesbutterjeff.webp", "https://blacket.org/content/blooks/Pablo.webp", "https://blacket.org/content/blooks/fristic.webp", "https://blacket.org/content/blooks/Minesraft2.webp", "https://blacket.org/content/blooks/Piotr.webp", "https://blacket.org/content/blooks/painbow.webp", "https://blacket.org/content/blooks/okr765.webp", "https://blacket.org/content/blooks/Cerulean.webp", "https://blacket.org/content/blooks/iBlooket.webp", "https://blacket.org/content/blooks/root.webp", "https://blacket.org/content/blooks/envi.webp", "https://blacket.org/content/blooks/GAMERYT.webp", "https://blacket.org/content/blooks/zastix.webp", "https://blacket.org/content/blooks/Xotic.webp"];
+
+      var rng = "x";
+      var tokens = 0;
+      var tempChanceAdd = 0;
+      var tempReturn = 0;
+      var tempAmounts = [];
+      var selectedBoxChancesSim = [];
+      var selectedBoxChances = [];
+      var selectedBoxNames = [];
+      var selectedBoxReturns = [];
+      var selectedBoxWebps = [];
+      var selectedBoxPrice = 0;
+      var tempStop = false;
+      var tempAverageReturn = 0;
+      var selectedBox = "";
+
+      var buttonLock = false;
+
+      /*CHANGE COLORS FOR HOVER*/
+      $(".packOptions").hover(function () {
+        $(".packOptions").css("background-color", "#575757");
+      },
+        function () {
+          $(".packOptions").css("background-color", "#3f3f3f");
+        });
+
+      $(".token").hover(function () {
+        $(".token").css("background-color", "#575757");
+      },
+        function () {
+          $(".token").css("background-color", "#3f3f3f");
+        });
+
+      /*CALCULATE AND SIMULATE BUTTON CLICK DETECTION*/
+      $("#calculate").click(function () {
+        if (buttonLock == false) {
+          buttonLock = true;
+          transition();
+          calcDelay();
+        }
+      });
+
+      $("#simulate").click(function () {
+        if (buttonLock == false) {
+          buttonLock = true;
+          transition();
+          simDelay();
+        }
+      });
+
+      $("#subButton").click(function () {
+        window.open('https://youtube.com/c/iblooket', '_blank');
+      });
+
+      $("#backButton").click(function () {
+        /*transition();*/
+        const remName = document.querySelectorAll('.results');
+        remName.forEach(results => {
+          results.remove();
+        });
+        document.getElementById("darkener").style.top = '100vh';
+        document.getElementById("footer").style.top = '200vh';
+        document.getElementById("resultsContainer").style.top = '200vh';
+        buttonLock = false;
+      });
+
+      function transition() {
+        document.getElementById("transition").classList.add('transition');
+        setTimeout(() => {
+          document.getElementById("transition").classList.remove('transition');
+        }, 1000);
+      }
+
+      function setBlookInfo() {
+        if (document.getElementById("packs").value == "Space Pack") {
+          selectedBoxChances = spaceChances;
+          selectedBoxNames = spaceNames;
+          selectedBoxReturns = spaceReturn;
+          selectedBoxWebps = spaceWebps;
+        } else if (document.getElementById("packs").value == "Wonderland Pack") {
+          selectedBoxChances = wonderlandChances;
+          selectedBoxNames = wonderlandNames;
+          selectedBoxReturns = wonderlandReturn;
+          selectedBoxWebps = wonderlandWebps;
+        } else if (document.getElementById("packs").value == "Breakfast Pack") {
+          selectedBoxChances = breakfastChances;
+          selectedBoxNames = breakfastNames;
+          selectedBoxReturns = breakfastReturn;
+          selectedBoxWebps = breakfastWebps;
+        } else if (document.getElementById("packs").value == "Dino Pack") {
+          selectedBoxChances = dinoChances;
+          selectedBoxNames = dinoNames;
+          selectedBoxReturns = dinoReturn;
+          selectedBoxWebps = dinoWebps;
+        } else if (document.getElementById("packs").value == "Aquatic Pack") {
+          selectedBoxChances = aquaticChances;
+          selectedBoxNames = aquaticNames;
+          selectedBoxReturns = aquaticReturn;
+          selectedBoxWebps = aquaticWebps;
+        } else if (document.getElementById("packs").value == "Safari Pack") {
+          selectedBoxChances = safariChances;
+          selectedBoxNames = safariNames;
+          selectedBoxReturns = safariReturn;
+          selectedBoxWebps = safariWebps;
+        } else if (document.getElementById("packs").value == "Bot Pack") {
+          selectedBoxChances = botChances;
+          selectedBoxNames = botNames;
+          selectedBoxReturns = botReturn;
+          selectedBoxWebps = botWebps;
+        } else if (document.getElementById("packs").value == "Medieval Pack") {
+          selectedBoxChances = medievalChances;
+          selectedBoxNames = medievalNames;
+          selectedBoxReturns = medievalReturn;
+          selectedBoxWebps = medievalWebps;
+        } else if (document.getElementById("packs").value == "Ice Monsters Pack") {
+          selectedBoxChances = iceMonsterChances;
+          selectedBoxNames = iceMonsterNames;
+          selectedBoxReturns = iceMonsterReturn;
+          selectedBoxWebps = iceMonsterWebps;
+        } else if (document.getElementById("packs").value == "Spooky Pack") {
+          selectedBoxChances = spookyChances;
+          selectedBoxNames = spookyNames;
+          selectedBoxReturns = spookyReturn;
+          selectedBoxWebps = spookyWebps;
+        } else if (document.getElementById("packs").value == "Blizzard Pack") {
+          selectedBoxChances = blizzardChances;
+          selectedBoxNames = blizzardNames;
+          selectedBoxReturns = blizzardReturn;
+          selectedBoxWebps = blizzardWebps;
+        } else if (document.getElementById("packs").value == "Sports Pack") {
+          selectedBoxChances = sportsChances;
+          selectedBoxNames = sportsNames;
+          selectedBoxReturns = sportsReturn;
+          selectedBoxWebps = sportsWebps;
+        } else if (document.getElementById("packs").value == "Video Game Pack") {
+          selectedBoxChances = videoGameChances;
+          selectedBoxNames = videoGameNames;
+          selectedBoxReturns = videoGameReturn;
+          selectedBoxWebps = videoGameWebps;
+        } else if (document.getElementById("packs").value == "Alien Pack") {
+          selectedBoxChances = alienChances;
+          selectedBoxNames = alienNames;
+          selectedBoxReturns = alienReturn;
+          selectedBoxWebps = alienWebps;
+        } else if (document.getElementById("packs").value == "Outback Pack") {
+          selectedBoxChances = outbackChances;
+          selectedBoxNames = outbackNames;
+          selectedBoxReturns = outbackReturn;
+          selectedBoxWebps = outbackWebps;
+        } else if (document.getElementById("packs").value == "Pirate Pack") {
+          selectedBoxChances = pirateChances;
+          selectedBoxNames = pirateNames;
+          selectedBoxReturns = pirateReturn;
+          selectedBoxWebps = pirateWebps;
+        } else if (document.getElementById("packs").value == "Autumn Pack") {
+          selectedBoxChances = autumnChances;
+          selectedBoxNames = autumnNames;
+          selectedBoxReturns = autumnReturn;
+          selectedBoxWebps = autumnWebps;
+        } else if (document.getElementById("packs").value == "Elemental Pack") {
+          selectedBoxChances = elementalChances;
+          selectedBoxNames = elementalNames;
+          selectedBoxReturns = elementalReturn;
+          selectedBoxWebps = elementalWebps;
+        } else if (document.getElementById("packs").value == "Gemstone Pack") {
+          selectedBoxChances = gemstoneChances;
+          selectedBoxNames = gemstoneNames;
+          selectedBoxReturns = gemstoneReturn;
+          selectedBoxWebps = gemstoneWebps;
+        } else if (document.getElementById("packs").value == "Science Pack") {
+          selectedBoxChances = scienceChances;
+          selectedBoxNames = scienceNames;
+          selectedBoxReturns = scienceReturn;
+          selectedBoxWebps = scienceWebps;
+        } else if (document.getElementById("packs").value == "Dessert Pack") {
+          selectedBoxChances = dessertChances;
+          selectedBoxNames = dessertNames;
+          selectedBoxReturns = dessertReturn;
+          selectedBoxWebps = dessertWebps;
+        } else if (document.getElementById("packs").value == "Summer Pack") {
+          selectedBoxChances = summerChances;
+          selectedBoxNames = summerNames;
+          selectedBoxReturns = summerReturn;
+          selectedBoxWebps = summerWebps;
+        } else if (document.getElementById("packs").value == "Sci-Fi Pack") {
+          selectedBoxChances = scifiChances;
+          selectedBoxNames = scifiNames;
+          selectedBoxReturns = scifiReturn;
+          selectedBoxWebps = scifiWebps;
+        } else if (document.getElementById("packs").value == "Combat Pack") {
+          selectedBoxChances = combatChances;
+          selectedBoxNames = combatNames;
+          selectedBoxReturns = combatReturn;
+          selectedBoxWebps = combatWebps;
+        } else if (document.getElementById("packs").value == "Retro Pack") {
+          selectedBoxChances = retroChances;
+          selectedBoxNames = retroNames;
+          selectedBoxReturns = retroReturn;
+          selectedBoxWebps = retroWebps;
+        } else if (document.getElementById("packs").value == "Music Pack") {
+          selectedBoxChances = musicChances;
+          selectedBoxNames = musicNames;
+          selectedBoxReturns = musicReturn;
+          selectedBoxWebps = musicWebps;
+        } else if (document.getElementById("packs").value == "Magic Pack") {
+          selectedBoxChances = magicChances;
+          selectedBoxNames = magicNames;
+          selectedBoxReturns = magicReturn;
+          selectedBoxWebps = magicWebps;
+        } else if (document.getElementById("packs").value == "Fruit Pack") {
+          selectedBoxChances = fruitChances;
+          selectedBoxNames = fruitNames;
+          selectedBoxReturns = fruitReturn;
+          selectedBoxWebps = fruitWebps;
+        } else if (document.getElementById("packs").value == "Color Pack") {
+          selectedBoxChances = colorChances;
+          selectedBoxNames = colorNames;
+          selectedBoxReturns = colorReturn;
+          selectedBoxWebps = colorWebps;
+        } else if (document.getElementById("packs").value == "Candy Pack") {
+          selectedBoxChances = candyChances;
+          selectedBoxNames = candyNames;
+          selectedBoxReturns = candyReturn;
+          selectedBoxWebps = candyWebps;
+        } else if (document.getElementById("packs").value == "Ankha Pack") {
+          selectedBoxChances = ankhaChances;
+          selectedBoxNames = ankhaNames;
+          selectedBoxReturns = ankhaReturn;
+          selectedBoxWebps = ankhaWebps;
+        } else if (document.getElementById("packs").value == "OG Pack") {
+          selectedBoxChances = ogChances;
+          selectedBoxNames = ogNames;
+          selectedBoxReturns = ogReturn;
+          selectedBoxWebps = ogWebps;
+        }
+      }
+
+      function calcDelay() {
+        setTimeout(() => {
+          calculate();
+        }, 500);
+      }
+      function simDelay() {
+        setTimeout(() => {
+          simulate();
+        }, 500);
+      }
+
+      function prepare() {
+        document.getElementById("darkener").style.top = '0px';
+        document.getElementById("footer").style.top = '0%';
+        document.getElementById("resultsContainer").style.top = '50%';
+        tokens = ($("#tokenInput").val());
+        tempAverageReturn = 0;
+        selectedBox = ($("#packs").val());
+        const resultsContainer = document.getElementById("resultsContainer");
+        resultsContainer.classList.add('resultsContainer');
+        for (var j = 0; j < bBoxNames.length; j++) {
+          if (bBoxNames[j] === selectedBox) {
+            selectedBoxPrice = bBoxPrice[j];
+          }
+        }
+      }
+
+      function calculate() {
+        prepare();
+        setBlookInfo();
+
+        for (var k = 0; k < selectedBoxNames.length; k++) {
+          tempAverageReturn = tempAverageReturn + selectedBoxReturns[k] * (selectedBoxChances[k] / 100);
+        }
+        if (document.getElementById("resellToggle").checked) {
+          selectedBoxPrice = selectedBoxPrice - tempAverageReturn;
+        }
+        for (var l = 0; l < selectedBoxNames.length; l++) {
+          const result = document.createElement("div");
+          result.classList.add('results');
+          resultsContainer.appendChild(result);
+          const img = document.createElement('img');
+          img.src = selectedBoxWebps[l];
+          img.classList.add('blookImg');
+          result.appendChild(img);
+          const resultName = document.createElement("div");
+          resultName.classList.add('resultName');
+          result.appendChild(resultName);
+          resultName.innerHTML += selectedBoxNames[l];
+          const resultChance = document.createElement("div");
+          resultChance.classList.add('resultChance');
+          result.appendChild(resultChance);
+          resultChance.innerHTML += "Chance: " + (Math.round((1 - Math.pow(1 - selectedBoxChances[l] / 100, tokens / (selectedBoxPrice + (selectedBoxReturns[l] * (selectedBoxChances[l] / 100))))) * 10000) / 100) + "%";
+        }
+      }
+
+      function simulate() {
+        prepare();
+        setBlookInfo();
+        tempAmounts = [];
+        tempChanceAdd = 0;
+        selectedBoxChancesSim = [];
+        for (var i = 0; i < selectedBoxNames.length; i++) {
+          selectedBoxChancesSim.push(selectedBoxChances[i] + tempChanceAdd);
+          tempChanceAdd = selectedBoxChances[i] + tempChanceAdd;
+          tempAmounts.push(0);
+        }
+        while ((tokens >= selectedBoxPrice)) {
+          //SET THE RNG NUMBER
+          rng = (Math.floor(Math.random() * (1000000)) + 1) / 10000;
+          //CHOOSE A BLOOK BASED ON THE RNG
+          if (rng <= selectedBoxChancesSim[0]) {
+            tempAmounts[0] = tempAmounts[0] + 1;
+            tempReturn = selectedBoxReturns[0];
+          } else if ((rng <= selectedBoxChancesSim[1])) {
+            tempAmounts[1] = tempAmounts[1] + 1;
+            tempReturn = selectedBoxReturns[1];
+          } else if ((rng <= selectedBoxChancesSim[2])) {
+            tempAmounts[2] = tempAmounts[2] + 1;
+            tempReturn = selectedBoxReturns[2];
+          } else if ((rng <= selectedBoxChancesSim[3])) {
+            tempAmounts[3] = tempAmounts[3] + 1;
+            tempReturn = selectedBoxReturns[3];
+          } else if ((rng <= selectedBoxChancesSim[4])) {
+            tempAmounts[4] = tempAmounts[4] + 1;
+            tempReturn = selectedBoxReturns[4];
+          } else if ((rng <= selectedBoxChancesSim[5])) {
+            tempAmounts[5] = tempAmounts[5] + 1;
+            tempReturn = selectedBoxReturns[5];
+          } else if ((rng <= selectedBoxChancesSim[6])) {
+            tempAmounts[6] = tempAmounts[6] + 1;
+            tempReturn = selectedBoxReturns[6];
+          } else if ((rng <= selectedBoxChancesSim[7])) {
+            tempAmounts[7] = tempAmounts[7] + 1;
+            tempReturn = selectedBoxReturns[7];
+          } else if ((rng <= selectedBoxChancesSim[8])) {
+            tempAmounts[8] = tempAmounts[8] + 1;
+            tempReturn = selectedBoxReturns[8];
+          } else if ((rng <= selectedBoxChancesSim[9])) {
+            tempAmounts[9] = tempAmounts[9] + 1;
+            tempReturn = selectedBoxReturns[9];
+          } else if ((rng <= selectedBoxChancesSim[10])) {
+            tempAmounts[10] = tempAmounts[10] + 1;
+            tempReturn = selectedBoxReturns[10];
+          } else if ((rng <= selectedBoxChancesSim[11])) {
+            tempAmounts[11] = tempAmounts[11] + 1;
+            tempReturn = selectedBoxReturns[11];
+          } else if ((rng <= selectedBoxChancesSim[12])) {
+            tempAmounts[12] = tempAmounts[12] + 1;
+            tempReturn = selectedBoxReturns[12];
+          } else if ((rng <= selectedBoxChancesSim[13])) {
+            tempAmounts[13] = tempAmounts[13] + 1;
+            tempReturn = selectedBoxReturns[13];
+          } else if ((rng <= selectedBoxChancesSim[14])) {
+            tempAmounts[14] = tempAmounts[14] + 1;
+            tempReturn = selectedBoxReturns[14];
+          } else if ((rng <= selectedBoxChancesSim[15])) {
+            tempAmounts[15] = tempAmounts[15] + 1;
+            tempReturn = selectedBoxReturns[15];
+          } else if ((rng <= selectedBoxChancesSim[16])) {
+            tempAmounts[16] = tempAmounts[16] + 1;
+            tempReturn = selectedBoxReturns[16];
+          } else if ((rng <= selectedBoxChancesSim[17])) {
+            tempAmounts[17] = tempAmounts[17] + 1;
+            tempReturn = selectedBoxReturns[17];
+          } else if ((rng <= selectedBoxChancesSim[18])) {
+            tempAmounts[18] = tempAmounts[18] + 1;
+            tempReturn = selectedBoxReturns[18];
+          } else if ((rng <= selectedBoxChancesSim[19])) {
+            tempAmounts[19] = tempAmounts[19] + 1;
+            tempReturn = selectedBoxReturns[19];
+          } else if ((rng <= selectedBoxChancesSim[20])) {
+            tempAmounts[20] = tempAmounts[20] + 1;
+            tempReturn = selectedBoxReturns[20];
+          } else if ((rng <= selectedBoxChancesSim[21])) {
+            tempAmounts[21] = tempAmounts[21] + 1;
+            tempReturn = selectedBoxReturns[21];
+          } else if ((rng <= selectedBoxChancesSim[22])) {
+            tempAmounts[22] = tempAmounts[22] + 1;
+            tempReturn = selectedBoxReturns[22];
+          } else if ((rng <= selectedBoxChancesSim[23])) {
+            tempAmounts[23] = tempAmounts[23] + 1;
+            tempReturn = selectedBoxReturns[23];
+          } else if ((rng <= selectedBoxChancesSim[24])) {
+            tempAmounts[24] = tempAmounts[24] + 1;
+            tempReturn = selectedBoxReturns[24];
+          } else if ((rng <= selectedBoxChancesSim[25])) {
+            tempAmounts[25] = tempAmounts[25] + 1;
+            tempReturn = selectedBoxReturns[25];
+          } else if ((rng <= selectedBoxChancesSim[26])) {
+            tempAmounts[26] = tempAmounts[26] + 1;
+            tempReturn = selectedBoxReturns[26];
+          } else if ((rng <= selectedBoxChancesSim[27])) {
+            tempAmounts[27] = tempAmounts[27] + 1;
+            tempReturn = selectedBoxReturns[27];
+          } else if ((rng <= selectedBoxChancesSim[28])) {
+            tempAmounts[28] = tempAmounts[28] + 1;
+            tempReturn = selectedBoxReturns[28];
+          } else if ((rng <= selectedBoxChancesSim[29])) {
+            tempAmounts[29] = tempAmounts[29] + 1;
+            tempReturn = selectedBoxReturns[29];
+          } else if ((rng <= selectedBoxChancesSim[30])) {
+            tempAmounts[30] = tempAmounts[30] + 1;
+            tempReturn = selectedBoxReturns[30];
+          } else if ((rng <= selectedBoxChancesSim[31])) {
+            tempAmounts[31] = tempAmounts[31] + 1;
+            tempReturn = selectedBoxReturns[31];
+          } else if ((rng <= selectedBoxChancesSim[32])) {
+            tempAmounts[32] = tempAmounts[32] + 1;
+            tempReturn = selectedBoxReturns[32];
+          } else if ((rng <= selectedBoxChancesSim[33])) {
+            tempAmounts[33] = tempAmounts[33] + 1;
+            tempReturn = selectedBoxReturns[33];
+          } else if ((rng <= selectedBoxChancesSim[34])) {
+            tempAmounts[34] = tempAmounts[34] + 1;
+            tempReturn = selectedBoxReturns[34];
+          } else if ((rng <= selectedBoxChancesSim[35])) {
+            tempAmounts[35] = tempAmounts[35] + 1;
+            tempReturn = selectedBoxReturns[35];
+          }
+          //SUBTRACT TOKENS
+          if (document.getElementById("resellToggle").checked) {
+            tokens = tokens - (selectedBoxPrice - tempReturn);
+          } else {
+            tokens = tokens - selectedBoxPrice;
+          }
+        }
+        for (var l = 0; l < selectedBoxNames.length; l++) {
+          const result = document.createElement("div");
+          result.classList.add('results');
+          resultsContainer.appendChild(result);
+          const img = document.createElement('img');
+          img.src = selectedBoxWebps[l];
+          img.classList.add('blookImg');
+          result.appendChild(img);
+          const resultName = document.createElement("div");
+          resultName.classList.add('resultName');
+          result.appendChild(resultName);
+          resultName.innerHTML += selectedBoxNames[l];
+          const resultChance = document.createElement("div");
+          resultChance.classList.add('resultChance');
+          result.appendChild(resultChance);
+          resultChance.innerHTML += "Amount: " + tempAmounts[l];
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

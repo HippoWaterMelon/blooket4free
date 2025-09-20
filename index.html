@@ -348,7 +348,7 @@
             font-weight: normal;
             font-family: 'Titan One', sans-serif;
             height: 60px;
-            font-size: 20px;      
+            font-size: 20px;
             transition: transform 0.2s ease;
         }
 
@@ -442,7 +442,7 @@
         <div class="title">Blooket4Free</div>
         <div class="packContainer" id="packContainer"></div>
         <div style="height: 15px;"></div>
-        
+
         <div style="text-align:center; margin: 30px;">
             <input type="file" id="bpkUpload" accept=".bpk,application/json" style="display:none;">
             <button id="uploadBtn" class="uploadBtn">
@@ -454,7 +454,6 @@
     <div id="unlockScreen" style="display:none;">
         <div id="background" class="styles__openBackground___-U4oX-camelCase">
             <img id="cornerIcon" alt="Icon" class="styles__cornerIcon___24o3Z-camelCase" draggable="false">
-            <img alt="Icon" class="styles__cornerIcon___24o3Z-camelCase" draggable="false">
             <div id="phaser-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;"></div>
             <div class="styles__openContainer___3paFG-camelCase">
                 <img id="blookBg" loading="lazy" class="styles__blookBackground___3rt4N-camelCase" draggable="false">
@@ -489,6 +488,13 @@
     <script src="./assets/js/freepackdata.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.matchMedia("(max-width: 625px)").matches) {
+                alert("Hello! This website is not at all made for mobile devices. For the best experience, go open this on a computer. \n \n(If you are on a computer and see this message, just rezise the window.)");
+            }
+        });
+
+
         let currentResult = null;
         let currentPack = null;
         let opened = false;
@@ -670,7 +676,7 @@
         function getDaysSinceRef() {
             const refDate = new Date("2025-09-15T00:00:00Z");
             const today = new Date();
-            today.setHours(0, 0, 0, 0); 
+            today.setHours(0, 0, 0, 0);
             return Math.floor((today - refDate) / (1000 * 60 * 60 * 24)) + debugOffset;
         }
 
@@ -796,7 +802,7 @@
 
         function resizeTextToFit(textElement) {
 
-            let fontSizeVW = 2; 
+            let fontSizeVW = 2;
             textElement.style.fontSize = fontSizeVW + 'vw';
 
             const container = textElement.parentElement;
@@ -806,7 +812,7 @@
             let computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
 
             while (textElement.scrollWidth > maxWidth || textElement.scrollHeight > maxHeight) {
-                fontSizeVW -= 0.01; 
+                fontSizeVW -= 0.01;
                 textElement.style.fontSize = fontSizeVW + 'vw';
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
@@ -898,6 +904,26 @@
 
             addBlookToStorage(result.name);
         };
+
+        let lastCheckedDay = getDaysSinceRef();
+
+        function checkForDayChange() {
+            const currentDay = getDaysSinceRef();
+            if (currentDay !== lastCheckedDay) {
+                lastCheckedDay = currentDay;
+                document.getElementById("packContainer").innerHTML = "";
+                document.getElementById("comingSoonContainer").innerHTML = "";
+                renderPacks();
+            }
+        }
+
+        setInterval(checkForDayChange, 60000);
+
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) {
+                checkForDayChange();
+            }
+        });
     </script>
 
     <script src="./assets/js/particles.js"></script>
@@ -910,6 +936,34 @@
     </script>
 
     <script>
+        function ensureAllBlooksInStorage() {
+            let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+            let updated = false;
+
+            const defaultPacks = packData.concat(seasonalPackData).concat(freePackData);
+
+            defaultPacks.forEach(pack => {
+                let packBlooks = [...pack.blook];
+
+                if (pack.colorBlook && pack.colorBlook.length > 0) {
+                    packBlooks.pop();
+                    packBlooks = packBlooks.concat(pack.colorBlook);
+                }
+
+                packBlooks.forEach(blookName => {
+                    if (!(blookName in stored)) {
+                        stored[blookName] = 0;
+                        updated = true;
+                    }
+                });
+            });
+
+            if (updated) {
+                localStorage.setItem("blooksCollection", JSON.stringify(stored));
+            }
+
+            return stored;
+        }
 
         function loadCustomPacks() {
             return JSON.parse(localStorage.getItem("customPacks") || "[]");
@@ -950,7 +1004,8 @@
                         if (!Array.isArray(newPack[key])) newPack[key] = [];
                     });
 
-                    let stored = JSON.parse(localStorage.getItem("blooksCollection")) || {};
+                    let stored = ensureAllBlooksInStorage();
+
                     newPack.blook = newPack.blook.map(name => {
                         if (stored[name] !== undefined) {
                             return name + "_custom";
@@ -958,9 +1013,25 @@
                         return name;
                     });
 
+                    if (Array.isArray(newPack.colorBlook)) {
+                        newPack.colorBlook = newPack.colorBlook.map(name => {
+                            if (stored[name] !== undefined) {
+                                return name + "_custom";
+                            }
+                            return name;
+                        });
+                    }
+
                     newPack.blook.forEach(b => {
                         if (!(b in stored)) stored[b] = 0;
                     });
+
+                    if (Array.isArray(newPack.colorBlook)) {
+                        newPack.colorBlook.forEach(b => {
+                            if (!(b in stored)) stored[b] = 0;
+                        });
+                    }
+
                     localStorage.setItem("blooksCollection", JSON.stringify(stored));
 
                     let packs = loadCustomPacks();
@@ -1033,7 +1104,7 @@
                     deleteBtn.title = 'Delete custom pack';
 
                     deleteBtn.addEventListener('click', (e) => {
-                        e.stopPropagation(); 
+                        e.stopPropagation();
 
                         if (confirm('Delete this custom pack? This cannot be undone.')) {
                             let customPacks = loadCustomPacks();
