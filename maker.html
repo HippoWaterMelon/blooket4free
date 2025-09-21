@@ -221,6 +221,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: inset 0 -5px rgb(0 0 0 / 20%), 4px 4px var(--gray-shadow);
+            position: relative;
         }
 
         body.dark-mode .blookBlock {
@@ -314,6 +315,38 @@
             font-family: 'Titan One', cursive;
             font-weight: normal;
             text-shadow: 4px 4px var(--gray-shadow);
+        }
+
+        .drag-handle {
+            position: absolute;
+            bottom: 12px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: grab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+            transform: translateY(1px);
+        }
+
+        .drag-handle::before {
+            content: "⋮⋮";
+            line-height: 0.8;
+        }
+
+        .sortable-ghost {
+            opacity: 0.6;
+            transform: scale(0.99);
         }
     </style>
 </head>
@@ -469,15 +502,38 @@
         <pre id="output" style="display: none;"></pre>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (window.matchMedia("(max-width: 625px)").matches) {
                 alert("Hello! This website is not at all made for mobile devices. For the best experience, go open this on a computer. \n \n(If you are on a computer and see this message, just rezise the window.)");
             }
+
+            if (window.Sortable) {
+                const blookContainerEl = document.getElementById('blookContainer');
+                const colorContainerEl = document.getElementById('colorContainer');
+
+                new Sortable(blookContainerEl, {
+                    group: 'blooks',
+                    animation: 150,
+                    handle: '.drag-handle',
+                    draggable: '.blookBlock',
+                    ghostClass: 'sortable-ghost'
+                });
+
+                new Sortable(colorContainerEl, {
+                    group: 'colorblooks',
+                    animation: 150,
+                    handle: '.drag-handle',
+                    draggable: '.blookBlock',
+                    ghostClass: 'sortable-ghost'
+                });
+            }
         });
 
 
-        const rarities = ["Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"];
+        const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Chroma", "Unique", "Mystical"];
         function createRarityDropdown(selected = "") { return `<select>` + rarities.map(r => `<option value="${r}" ${r === selected ? "selected" : ""}>${r}</option>`).join("") + `</select>`; }
         function fileToDataUrl(file, cb) { const r = new FileReader(); r.onload = e => cb(e.target.result); r.readAsDataURL(file); }
         ["packPng", "packBottom", "cornerIcon", "tileBackground", "blookBackground"].forEach(id => {
@@ -496,23 +552,26 @@
             });
         });
 
+        function escapeHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, "&#39;"); }
+
         function addBlook(name = "", rarity = "Uncommon", chance = "", svg = "") {
             const container = document.querySelector("#blookContainer");
             const block = document.createElement("div");
             block.className = "blookBlock";
 
             block.innerHTML = `
-  <input type="text" value="${name}" placeholder="Name">
-  ${createRarityDropdown(rarity)}
-  <input type="number" step="0.01" value="${chance}" placeholder="Chance %">
-  <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
+    <div class="drag-handle" title="Drag to reorder" aria-hidden="true"></div>
+    <input type="text" value="${escapeHtml(name)}" placeholder="Name">
+    ${createRarityDropdown(rarity)}
+    <input type="number" step="0.01" value="${chance}" placeholder="Chance %">
+    <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
 
-  <label class="custom-upload">Upload Image
-    <input type="file" accept="image/*" class="hidden-file-input">
-  </label>
+    <label class="custom-upload">Upload Image
+      <input type="file" accept="image/*" class="hidden-file-input">
+    </label>
 
-  <button onclick="this.closest('.blookBlock').remove()">Delete</button>
-`;
+    <button onclick="this.closest('.blookBlock').remove()">Delete</button>
+  `;
 
             const fileInput = block.querySelector(".hidden-file-input");
             const img = block.querySelector(".blook-image");
@@ -538,16 +597,17 @@
             block.className = "blookBlock color-block";
 
             block.innerHTML = `
-  <input type="text" value="${name}" placeholder="Name">
-  ${createRarityDropdown(rarity)}
-  <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
+    <div class="drag-handle" title="Drag to reorder" aria-hidden="true"></div>
+    <input type="text" value="${escapeHtml(name)}" placeholder="Name">
+    ${createRarityDropdown(rarity)}
+    <img class="blook-image" src="${svg || './assets/misc_images/unknown.svg'}" alt="Blook Image">
 
-  <label class="custom-upload">Upload Image
-    <input type="file" accept="image/*" class="hidden-file-input">
-  </label>
+    <label class="custom-upload">Upload Image
+      <input type="file" accept="image/*" class="hidden-file-input">
+    </label>
 
-  <button onclick="this.closest('.blookBlock').remove()">Delete</button>
-`;
+    <button onclick="this.closest('.blookBlock').remove()">Delete</button>
+  `;
 
             const fileInput = block.querySelector(".hidden-file-input");
             const img = block.querySelector(".blook-image");
