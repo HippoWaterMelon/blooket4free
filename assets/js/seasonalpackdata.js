@@ -141,7 +141,7 @@ const seasonalPackData = [{
     id: "blizzard2022",
     bg: "radial-gradient(circle, rgb(255 255 255) 0%, rgb(80 172 225) 100%)",
     blook: ["Snow Globe", "Holiday Gift", "Hot Chocolate", "Holiday Wreath", "Stocking", "Gingerbread Man", "Gingerbread House", "Reindeer", "Snowman", "Santa Claus", "City Snow Globe"],
-    chance: [0.05, 14.5, 14.5, 14.5, 14.5, 7.1, 7.1, 7.1, 5.15, 1, 14.5],
+    chance: [14.5, 14.5, 14.5, 14.5, 14.5, 7.1, 7.1, 7.1, 5.15, 1, 0.05],
     svg: ["https://ac.blooket.com/marketassets/blooks/snowglobe.svg", "https://ac.blooket.com/marketassets/blooks/holidaygift.svg", "https://ac.blooket.com/marketassets/blooks/hotchocolate.svg", "https://ac.blooket.com/marketassets/blooks/holidaywreath.svg", "https://ac.blooket.com/marketassets/blooks/stocking.svg", "https://ac.blooket.com/marketassets/blooks/gingerbreadman.svg", "https://ac.blooket.com/marketassets/blooks/gingerbreadhouse.svg", "https://ac.blooket.com/marketassets/blooks/reindeer.svg", "https://ac.blooket.com/marketassets/blooks/snowman.svg", "https://ac.blooket.com/marketassets/blooks/santaclaus.svg", "https://ac.blooket.com/marketassets/blooks/japansnowglobe.svg"],
     png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1670301639/Media/market/blizzard_pack_2.png",
     rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
