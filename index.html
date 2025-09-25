@@ -546,10 +546,22 @@
                 document.getElementById("unlockChance").innerText = result.chance + "%";
             }
 
-            document.getElementById("background").style.background = pack.bg;
-            document.getElementById("blookBg").src = pack.blookBackground;
-            document.getElementById("cornerIcon").src = pack.cornerIcon;
-            document.getElementById("packBottom").src = pack.packBottom;
+            // Get index of rolled blook
+            const idx = pack.blook.indexOf(result.name);
+
+            // Helper to choose array-or-single value
+            const pickAsset = (val) => {
+                if (Array.isArray(val)) {
+                    return val[idx] ?? val[0]; // pick matching index or fallback to first
+                }
+                return val;
+            };
+
+            // Apply logic to all assets
+            document.getElementById("background").style.background = pickAsset(pack.bg);
+            document.getElementById("blookBg").src = pickAsset(pack.blookBackground);
+            document.getElementById("cornerIcon").src = pickAsset(pack.cornerIcon);
+            document.getElementById("packBottom").src = pickAsset(pack.packBottom);
 
             const unlockNameElement = document.getElementById("unlockName");
             const unlockContainer = document.querySelector(".styles__unlockedBlook___2pr1Z-camelCase");
@@ -570,6 +582,7 @@
             document.getElementById("unlockScreen").style.display = "block";
             document.getElementById("hamburgerBtn").style.display = "none";
         }
+
 
         function closeUnlock() {
             document.getElementById("unlockScreen").style.display = "none";
@@ -718,13 +731,15 @@
 
             allPacks = processPacks(allPacks);
 
+            const firstAsset = (val) => Array.isArray(val) ? val[0] : val;
+
             for (let i = 0; i < allPacks.length; i++) {
                 const wrapper = document.createElement("div");
                 wrapper.classList.add("packWrapper");
 
                 const newPack = document.createElement("div");
                 newPack.classList.add("pack");
-                newPack.style.backgroundImage = allPacks[i].bg;
+                newPack.style.backgroundImage = firstAsset(allPacks[i].bg);
                 wrapper.appendChild(newPack);
 
                 const pngContainer = document.createElement("div");
@@ -732,12 +747,12 @@
                 newPack.appendChild(pngContainer);
 
                 const pngBg = document.createElement("img");
-                pngBg.src = allPacks[i].png;
+                pngBg.src = firstAsset(allPacks[i].png);
                 pngBg.classList.add('pngBg');
                 pngContainer.appendChild(pngBg);
 
                 const pngMain = document.createElement("img");
-                pngMain.src = allPacks[i].png;
+                pngMain.src = firstAsset(allPacks[i].png);
                 pngMain.classList.add('pngMain');
                 pngContainer.appendChild(pngMain);
 
@@ -819,7 +834,7 @@
                 computedSize = parseFloat(window.getComputedStyle(textElement).fontSize);
             }
 
-            if (fontSizeVW < 0) { 
+            if (fontSizeVW < 0) {
                 fontSizeVW = 2;
                 textElement.style.fontSize = fontSizeVW + 'vw';
             }
@@ -1058,13 +1073,15 @@
 
             const defaultPacksCount = packData.length + seasonalPackData.length + freePackData.length;
 
+            const firstAsset = (val) => Array.isArray(val) ? val[0] : val;
+
             for (let i = 0; i < allPacks.length; i++) {
                 const wrapper = document.createElement("div");
                 wrapper.classList.add("packWrapper");
 
                 const newPack = document.createElement("div");
                 newPack.classList.add("pack");
-                newPack.style.backgroundImage = allPacks[i].bg;
+                newPack.style.backgroundImage = firstAsset(allPacks[i].bg);
                 wrapper.appendChild(newPack);
 
                 const pngContainer = document.createElement("div");
@@ -1072,12 +1089,12 @@
                 newPack.appendChild(pngContainer);
 
                 const pngBg = document.createElement("img");
-                pngBg.src = allPacks[i].png;
+                pngBg.src = firstAsset(allPacks[i].png);
                 pngBg.classList.add('pngBg');
                 pngContainer.appendChild(pngBg);
 
                 const pngMain = document.createElement("img");
-                pngMain.src = allPacks[i].png;
+                pngMain.src = firstAsset(allPacks[i].png);
                 pngMain.classList.add('pngMain');
                 pngContainer.appendChild(pngMain);
 
