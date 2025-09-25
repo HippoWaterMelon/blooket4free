@@ -555,7 +555,12 @@
           modalImg.alt = displayName || '';
         }
 
-        const bgVal = pack.blookBackground || pack.tileBackground || pack.bg || '';
+        let bgVal = '';
+        if (Array.isArray(pack.blookBackground)) {
+          bgVal = pack.blookBackground[bIdx] || '';
+        } else {
+          bgVal = pack.blookBackground || pack.tileBackground || pack.bg || '';
+        }
         if (bgVal && String(bgVal).trim().startsWith('linear-gradient')) {
           if (modalBlook) modalBlook.style.backgroundImage = bgVal;
           if (modalBg) { modalBg.style.display = 'none'; modalBg.src = ''; }
