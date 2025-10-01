@@ -91,6 +91,29 @@ const seasonalPackData = [{
     
     year: "2024"
 }, {
+    name: "Spooky Pack (2025)",
+    id: "spooky2025",
+    bg: "radial-gradient(#525252, #1A1A1A)",
+    blook: ["Pumpkin", "Swamp Monster", "Frankenstein", "Vampire", "Zombie", "Mummy", "Caramel Apple", "Candy Corn", "Crow", "Vampire Bat", "Werewolf", "Ghost", "Red Gummy Bear", "Blue Gummy Bear", "Green Gummy Bear"],
+    chance: [19, 19, 19, 19, 4, 4, 4, 4, 4, 3.29, 0.65, 0.04, 0.02],
+    svg: ["https://ac.blooket.com/marketassets/blooks/pumpkin.svg","https://ac.blooket.com/marketassets/blooks/swampmonster.svg","https://ac.blooket.com/marketassets/blooks/frankenstein.svg","https://ac.blooket.com/marketassets/blooks/vampire.svg","https://ac.blooket.com/marketassets/blooks/zombie.svg","https://ac.blooket.com/marketassets/blooks/mummy.svg","https://ac.blooket.com/marketassets/blooks/caramelapple2.svg","https://ac.blooket.com/marketassets/blooks/candycorn.svg","https://ac.blooket.com/marketassets/blooks/crow.svg","https://ac.blooket.com/marketassets/blooks/vampirebat.svg","https://ac.blooket.com/marketassets/blooks/werewolf.svg","https://ac.blooket.com/marketassets/blooks/ghost.svg","https://ac.blooket.com/marketassets/blooks/skeletonfish.svg","https://ac.blooket.com/marketassets/blooks/superglider.svg"],
+    png: "https://media.blooket.com/image/upload/f_auto,q_auto:best/v1663063471/Media/market/spooky_pack.png",
+    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
+
+    colorBlook: [],
+    colorSvg: [],
+    colorRarity: [],
+
+    packBottom: "https://ac.blooket.com/dashclassic/assets/SpookyPackBottom-Bb7nZ1oD.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Spooky-T-OEBdM8.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Spooky-BE3Q44ax.svg",
+
+    comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/spooky.svg",
+    
+    year: "2025"
+}, {
     name: "Autumn Pack (2024)",
     id: "autumn",
     bg: "radial-gradient(circle, #e9b91c 0%, #be471b 100%)",
