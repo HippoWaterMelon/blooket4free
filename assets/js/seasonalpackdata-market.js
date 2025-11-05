@@ -22,10 +22,10 @@ const seasonalPackData = [{
     name: "Autumn Pack",
     id: "autumn",
     bg: "radial-gradient(circle, #e9b91c 0%, #be471b 100%)",
-    blook: ["Black Bear","Pumpkin Pie","Chipmunk","Cornucopia","Autumn Cat","Pumpkin Puppy","Autumn Crow","Turkey","Golden Pumpkin Pie"],
-    svg: ["https://ac.blooket.com/marketassets/blooks/blackbear.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/chipmunk.svg", "https://ac.blooket.com/marketassets/blooks/cornucopia.svg", "https://ac.blooket.com/marketassets/blooks/autumncat.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpuppy.svg", "https://ac.blooket.com/marketassets/blooks/autumncrow.svg", "https://ac.blooket.com/marketassets/blooks/turkey.svg", "https://ac.blooket.com/marketassets/blooks/goldenpumpkinpie.svg"],
+    blook: ["Black Bear","Pumpkin Pie","Chipmunk","Cornucopia","Autumn Cat","Pumpkin Puppy","Autumn Crow","Red Squirrel","Turkey","Golden Pumpkin Pie", "Goldfinch"],
+    svg: ["https://ac.blooket.com/marketassets/blooks/blackbear.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/chipmunk.svg", "https://ac.blooket.com/marketassets/blooks/cornucopia.svg", "https://ac.blooket.com/marketassets/blooks/autumncat.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpuppy.svg", "https://ac.blooket.com/marketassets/blooks/redsquirrel.svg", "https://ac.blooket.com/marketassets/blooks/autumncrow.svg", "https://ac.blooket.com/marketassets/blooks/turkey.svg", "https://ac.blooket.com/marketassets/blooks/goldenpumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/goldfinch.svg"],
     png: "https://ac.blooket.com/dashclassic/assets/Autumn_Pack-C5VMbtyO.png",
-    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
+    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma", "Chroma"],
 
     colorBlook: [],
     colorSvg: [],
