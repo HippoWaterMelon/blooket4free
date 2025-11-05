@@ -137,6 +137,29 @@ const seasonalPackData = [{
 
     year: "2024"
 }, {
+    name: "Autumn Pack (2025)",
+    id: "autumn",
+    bg: "radial-gradient(circle, #e9b91c 0%, #be471b 100%)",
+    blook: ["Black Bear","Pumpkin Pie","Chipmunk","Cornucopia","Autumn Cat","Pumpkin Puppy","Red Squirrel","Autumn Crow","Turkey","Goldfinch"],
+    chance: [19.5, 19.5, 19.5, 19.5, 6, 6, 6, 2.95, 1, 0.05],
+    svg: ["https://ac.blooket.com/marketassets/blooks/blackbear.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpie.svg", "https://ac.blooket.com/marketassets/blooks/chipmunk.svg", "https://ac.blooket.com/marketassets/blooks/cornucopia.svg", "https://ac.blooket.com/marketassets/blooks/autumncat.svg", "https://ac.blooket.com/marketassets/blooks/pumpkinpuppy.svg", "https://ac.blooket.com/marketassets/blooks/redsquirrel.svg", "https://ac.blooket.com/marketassets/blooks/autumncrow.svg", "https://ac.blooket.com/marketassets/blooks/turkey.svg", "https://ac.blooket.com/marketassets/blooks/goldfinch.svg"],
+    png: "https://ac.blooket.com/dashclassic/assets/Autumn_Pack-C5VMbtyO.png",
+    rarity: ["Uncommon", "Uncommon", "Uncommon", "Uncommon", "Rare", "Rare", "Rare", "Epic", "Legendary", "Chroma"],
+
+    colorBlook: [],
+    colorSvg: [],
+    colorRarity: [],
+
+    packBottom: "https://ac.blooket.com/dashclassic/assets/AutumnPackBottom-C4jQFT0R.png",
+    cornerIcon: "https://ac.blooket.com/dashclassic/assets/Nav_Icon_Autumn-NlPLazWs.svg",
+    blookBackground: "https://ac.blooket.com/dashclassic/assets/Highlighted_Background_Autumn-p3HcOb_2.svg",
+
+    comingSoon: false,
+
+    tileBackground: "./assets/blooktiles/autumn.svg",
+
+    year: "2025"
+}, {
     name: "Blizzard Pack (2021)",
     id: "blizzard2021",
     bg: "radial-gradient(circle, rgb(255 255 255) 0%, rgb(80 172 225) 100%)",
