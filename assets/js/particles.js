@@ -1,4 +1,3 @@
-// Particle asset paths organized by rarity
 const particleSets = {
     uncommon: [
         './assets/particles/uncommon-1.svg',
