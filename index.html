@@ -546,18 +546,15 @@
                 document.getElementById("unlockChance").innerText = result.chance + "%";
             }
 
-            // Get index of rolled blook
             const idx = pack.blook.indexOf(result.name);
 
-            // Helper to choose array-or-single value
             const pickAsset = (val) => {
                 if (Array.isArray(val)) {
-                    return val[idx] ?? val[0]; // pick matching index or fallback to first
+                    return val[idx] ?? val[0];
                 }
                 return val;
             };
 
-            // Apply logic to all assets
             document.getElementById("background").style.background = pickAsset(pack.bg);
             document.getElementById("blookBg").src = pickAsset(pack.blookBackground);
             document.getElementById("cornerIcon").src = pickAsset(pack.cornerIcon);
