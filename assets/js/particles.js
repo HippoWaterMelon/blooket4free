@@ -43,7 +43,7 @@ const particleSets = {
         './assets/particles/chroma-5.svg',
         './assets/particles/chroma-6.svg',
         './assets/particles/chroma-7.svg'
-    ],
+    ] /*,
     mystical: [
         './assets/particles/mystical-1.svg',
         './assets/particles/mystical-2.svg',
@@ -52,7 +52,7 @@ const particleSets = {
         './assets/particles/mystical-5.svg',
         './assets/particles/mystical-6.svg',
         './assets/particles/mystical-7.svg'
-    ]
+    ] */
 };
 
 const rarityColors = {
